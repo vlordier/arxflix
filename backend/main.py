@@ -1,6 +1,8 @@
+""" Main module for the backend application. """
+
 import logging
-import os
 from pathlib import Path
+from typing import Optional
 
 import fastapi
 import typer
@@ -20,50 +22,124 @@ from backend.utils.generate_paper import process_article
 from backend.utils.generate_script import process_script
 from backend.utils.generate_video import process_video
 
+# Constants
 PAPER_URL = ""
-# Load logger
+TEMP_DIR = Path("./audio")
+LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Setup logging
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
-# Load .env file
+# Load environment variables
 load_dotenv()
 
-# Create CLI and API
+# Initialize CLI and API
 cli = typer.Typer()
 api = fastapi.FastAPI()
 
 
-@cli.command("generate_paper")
-@api.get("/generate_paper/")
-def generate_paper(url: str) -> str:
-    global PAPER_URL
-    PAPER_URL = url
-    logger.info(f"Generating paper from URL: {url}")
-    # Also possible with https://r.jina.ai/{url}
-    paper = process_article(url)
-    return paper
+class ScriptInput(BaseModel):
+    """
+    Input parameters for generating a script.
 
+    Attributes:
+        paper (str): The paper content or the path to the paper file.
+        use_path (bool, optional): Whether to treat `paper` as a file path. Defaults to False.
 
-@cli.command("generate_script")
-def generate_script(paper: str, use_path: bool = True) -> str:
-    logger.info(f"Generating script from paper: {paper}")
-    if use_path:
-        paper_path = paper
-        paper = open(paper_path, "r").read()
-    script = process_script(paper, PAPER_URL)
-    return script
+    """
 
-
-class InputGenerateScript(BaseModel):
     paper: str
     use_path: bool = False
 
 
+class AssetsInput(BaseModel):
+    """
+    Input parameters for generating assets.
+
+    Attributes:
+        script (str): The script content or the path to the script file.
+        use_path (bool, optional): Whether to treat `script` as a file path. Defaults to False.
+        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "public/audio.wav".
+        srt_output (str, optional): Path to save the SRT output file. Defaults to "public/output.srt".
+        rich_output (str, optional): Path to save the rich content JSON file. Defaults to "public/output.json".
+    """
+
+    script: str
+    use_path: bool = False
+    mp3_output: str = "public/audio.wav"
+    srt_output: str = "public/output.srt"
+    rich_output: str = "public/output.json"
+
+
+@cli.command("generate_paper")
+@api.get("/generate_paper/")
+def generate_paper(url: str) -> str:  # dead: disable
+    """Generate a paper from a given URL.
+
+    Args:
+        url (str): The URL of the paper to process.
+
+    Returns:
+        str: The content of the processed paper.
+
+    Raises:
+        ValueError: If there is an error processing the article.
+    """
+    global PAPER_URL
+    PAPER_URL = url  # dead: disable
+    logger.info("Generating paper from URL: %s", url)
+    try:
+        paper_content = process_article(url)
+        return paper_content
+    except Exception as inner_e:
+        logger.exception("Error generating paper from URL %s: %s", url, inner_e)
+        raise ValueError(f"Error generating paper from URL {url}") from inner_e
+
+
+@cli.command("generate_script")
+def generate_script(paper: str, use_path: bool = True) -> str:
+    """Generate a script from a given paper.
+
+    Args:
+        paper (str): The paper content or the path to the paper file.
+        use_path (bool, optional): Whether to treat `paper` as a file path. Defaults to True.
+
+    Returns:
+        str: The generated script content.
+
+    Raises:
+        ValueError: If there is an error reading the paper or generating the script.
+    """
+    logger.info("Generating script from paper: %s", paper)
+    if use_path:
+        try:
+            paper_content = Path(paper).read_text()
+        except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+            logger.exception("Error reading paper from path %s: %s", paper, inner_e)
+            raise ValueError(f"Error reading paper from path {paper}") from inner_e
+    else:
+        paper_content = paper
+
+    try:
+        script_content = process_script(paper_content, PAPER_URL)
+        return script_content
+    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+        logger.exception("Error generating script: %s", inner_e)
+        raise ValueError("Error generating script") from inner_e
+
+
 @api.post("/generate_script/")
-def generate_script_api(input: InputGenerateScript) -> str:
-    paper = input.paper
-    use_path = input.use_path
-    script = generate_script(paper, use_path)
-    return script
+def generate_script_api(input: ScriptInput) -> str:  # dead: disable
+    """API endpoint to generate a script from a given paper.
+
+    Args:
+        input (ScriptInput): Input parameters containing the paper content or path.
+
+    Returns:
+        str: The generated script content.
+    """
+    return generate_script(input.paper, input.use_path)
 
 
 @cli.command("generate_assets")
@@ -74,77 +150,113 @@ def generate_assets(
     srt_output: str = "public/output.srt",
     rich_output: str = "public/output.json",
 ) -> float:
-    logger.info(f"Generating assets from script: {script}")
-    # Create a temporary directory
-    # temp_dir = Path(tempfile.TemporaryDirectory().name)
-    temp_dir = Path("./audio")
-    logger.info(f"Created temporary directory: {temp_dir}")
+    """Generate audio, SRT, and rich content JSON assets from a script.
 
-    # Create parent directory for mp3_output, srt_output, and rich_output
-    os.makedirs(os.path.dirname(mp3_output), exist_ok=True)
-    os.makedirs(os.path.dirname(srt_output), exist_ok=True)
-    os.makedirs(os.path.dirname(rich_output), exist_ok=True)
+    Args:
+        script (str): The script content or the path to the script file.
+        use_path (bool, optional): Whether to treat `script` as a file path. Defaults to True.
+        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "public/audio.wav".
+        srt_output (str, optional): Path to save the SRT output file. Defaults to "public/output.srt".
+        rich_output (str, optional): Path to save the rich content JSON file. Defaults to "public/output.json".
 
-    # Parse the script to list[RichContent | Text]
+    Returns:
+        float: The total duration of the audio in seconds.
+
+    Raises:
+        ValueError: If there is an error reading the script or generating the assets.
+    """
+    logger.info("Generating assets from script: %s", script)
+
+    try:
+        TEMP_DIR.mkdir(parents=True, exist_ok=True)
+        Path(mp3_output).parent.mkdir(parents=True, exist_ok=True)
+        Path(srt_output).parent.mkdir(parents=True, exist_ok=True)
+        Path(rich_output).parent.mkdir(parents=True, exist_ok=True)
+    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+        logger.exception("Error creating directories for output files: %s", inner_e)
+        raise ValueError("Error creating directories for output files") from inner_e
+
     if use_path:
-        script_path = script
-        script = open(script_path, "r").read()
-    script_contents = parse_script(script)
-    # Generate audio and caption for each text content
-    script_contents = generate_audio_and_caption(script_contents, temp_dir=temp_dir)
-    # Fill the time for each RichContent
-    script_contents = fill_rich_content_time(script_contents)
+        try:
+            script_content = Path(script).read_text()
+        except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+            logger.exception("Error reading script from path %s: %s", script, inner_e)
+            raise ValueError(f"Error reading script from path {script}") from inner_e
+    else:
+        script_content = script
 
-    # Separate rich content and text content
-    rich_content = [c for c in script_contents if isinstance(c, RichContent)]
-    text_content = [c for c in script_contents if isinstance(c, Text)]
+    try:
+        script_contents = parse_script(script_content)
+        script_contents = generate_audio_and_caption(script_contents, temp_dir=TEMP_DIR)
+        script_contents = fill_rich_content_time(script_contents)
 
-    # Export mp3
-    export_mp3(text_content, mp3_output)
+        rich_content_list = [
+            item for item in script_contents if isinstance(item, RichContent)
+        ]
+        text_content_list = [item for item in script_contents if isinstance(item, Text)]
 
-    # Export srt
-    export_srt(mp3_output, srt_output)
+        export_mp3(text_content_list, mp3_output)
+        export_srt(mp3_output, srt_output)
+        export_rich_content_json(rich_content_list, rich_output)
 
-    # Export rich content
-    export_rich_content_json(rich_content, rich_output)
-
-    total_duration = text_content[-1].end if text_content[-1].end else 0
-    return total_duration
-
-
-class InputGenerateAssets(BaseModel):
-    script: str
-    use_path: bool = False
-    mp3_output: str = "public/audio.wav"
-    srt_output: str = "public/output.srt"
-    rich_output: str = "public/output.json"
+        total_duration = (
+            text_content_list[-1].end
+            if text_content_list and text_content_list[-1].end
+            else 0
+        )
+        return total_duration
+    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+        logger.exception("Error generating assets: %s", inner_e)
+        raise ValueError("Error generating assets") from inner_e
 
 
 @api.post("/generate_assets/")
-def generate_assets_api(
-    input: InputGenerateAssets,
-) -> float:
-    script = input.script
-    use_path = input.use_path
-    mp3_output = input.mp3_output
-    srt_output = input.srt_output
-    rich_output = input.rich_output
-    total_duration = generate_assets(
-        script, use_path, mp3_output, srt_output, rich_output
+def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
+    """API endpoint to generate assets from a script.
+
+    Args:
+        assets_input (AssetsInput): Input parameters containing the script content or path and output file paths.
+
+    Returns:
+        float: The total duration of the audio in seconds.
+    """
+    return generate_assets(
+        script=assets_input.script,
+        use_path=assets_input.use_path,
+        mp3_output=assets_input.mp3_output,
+        srt_output=assets_input.srt_output,
+        rich_output=assets_input.rich_output,
     )
-    return total_duration
 
 
 @cli.command("generate_video")
 @api.post("/generate_video/")
-def generate_video(
-    output: Path = Path("public/output.mp4"),
-):
-    logger.info(f"Generating video to {output}")
-    process_video(output=output)
+def generate_video(output_path: Optional[Path]) -> None:  # dead: disable
+    """Generate a video from the processed script.
+
+    Args:
+        output_path (Path, optional): Path to save the output video file. Defaults to "public/output.mp4".
+
+    Raises:
+        ValueError: If there is an error generating the video.
+    """
+    if not output_path:
+        output_path = Path("public/output.mp4")
+
+    logger.info("Generating video to %s", output_path)
+    try:
+        process_video(
+            output_path=output_path, composition_props=None
+        )  # Add the missing argument 'composition_props'
+    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+        logger.exception("Error generating video: %s", inner_e)
+        raise ValueError(f"Error generating video to {output_path}") from inner_e
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level="INFO")
-    logging.info("info")
-    cli()
+    logger.info("Starting CLI...")
+    try:
+        cli()
+    except Exception as e:
+        logger.exception("Error starting CLI: %s", e)
+        raise

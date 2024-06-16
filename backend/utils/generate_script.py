@@ -1,8 +1,12 @@
+""" Generate a video script for a research paper using OpenAI's GPT-4o model. """
+
+import logging
 import os
 
-import requests
+import requests  # type: ignore
 from openai import OpenAI
 
+# Constants
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 
@@ -15,36 +19,37 @@ The script should be engaging, clear, and concise, effectively communicating the
 The video should give a good overview of the paper in the least amount of time possible, with short sentences that fit well for a dynamic Youtube video.
 
 The script sould be formated following the followings rules below:
-- You should follow this format for the script: \Text, \Figure, \Equation and \Headline
-- \Figure, \Equation (latex) and \Headline will be displayed in the video as *rich content*, in big on the screen. You should incorporate them in the script where they are the most useful and relevant.
-- The \Text will be spoken by a narrator and caption in the video.
+- You should follow this format for the script: \\Text, \\Figure, \\Equation and \\Headline
+- \\Figure, \\Equation (latex) and \\Headline will be displayed in the video as *rich content*, in big on the screen. You should incorporate them in the script where they are the most useful and relevant.
+- The \\Text will be spoken by a narrator and caption in the video.
 - Avoid markdown listing (1., 2., or - dash). Use full sentences that are easy to understand in spoken language.
 - You should always follow the syntax, don't start a line without a slash (\) command. Don't hallucinate figures.
 
 Here an example what you need to produce:
-\Headline: Uni-MoE: Scaling Unified Multimodal LLMs with Mixture of Experts
-\Text: Welcome back to Arxflix! Today, we’re diving into an exciting new paper titled "Uni-MoE: Scaling Unified Multimodal LLMs with Mixture of Experts". This research addresses the challenge of efficiently scaling multimodal large language models (MLLMs) to handle a variety of data types like text, images, audio, and video.
-\Figure: https://ar5iv.labs.arxiv.org/html/2307.06304/assets/moe_intro.png
-\Text: Here’s a snapshot of the Uni-MoE model, illustrating its ability to handle multiple modalities using the Mixture of Experts (MoE) architecture. Let’s break down the main points of this paper.
-\Headline: The Problem with Traditional Scaling
+\\Headline: Uni-MoE: Scaling Unified Multimodal LLMs with Mixture of Experts
+\\Text: Welcome back to Arxflix! Today, we’re diving into an exciting new paper titled "Uni-MoE: Scaling Unified Multimodal LLMs with Mixture of Experts". This research addresses the challenge of efficiently scaling multimodal large language models (MLLMs) to handle a variety of data types like text, images, audio, and video.
+\\Figure: https://ar5iv.labs.arxiv.org/html/2307.06304/assets/moe_intro.png
+\\Text: Here’s a snapshot of the Uni-MoE model, illustrating its ability to handle multiple modalities using the Mixture of Experts (MoE) architecture. Let’s break down the main points of this paper.
+\\Headline: The Problem with Traditional Scaling
 ...
 """
 
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 def correct_result_link(script: str, url: str) -> str:
-    """Correct generated links in a research paper script.
+    """
+    Correct generated links in a research paper script.
 
-    Parameters:
-    - script: str
-        The script of a research paper.
-    - url: str
-        The base URL of the research paper (can contain "/html/").
+    Args:
+        script (str): The script of a research paper.
+        url (str): The base URL of the research paper (can contain "/html/").
 
     Returns:
-    - str
-        The corrected script with valid image links.
+        str: The corrected script with valid image links.
     """
-    # handle non-arXiv links
     if "ar5iv" not in url:
         tmp_url = url.split("/")
         url = (
@@ -56,62 +61,55 @@ def correct_result_link(script: str, url: str) -> str:
     split_script = script.split("\n")
 
     for line_idx, line in enumerate(split_script):
-        if "\Figure: " in line and not line.startswith("https"):
-            tmp_line = line.replace("\Figure: ", "")
+        if "\\Figure: " in line and not line.startswith("https"):
+            tmp_line = line.replace("\\Figure: ", "")
 
             # Construct the potential figure URL
             if "/html/" in tmp_line:
                 modified_base_url = url.split("/html/")[0]
                 figure_url = f"{modified_base_url}{tmp_line}"
             else:
-                figure_url = f"{url if url.endswith('/') else url+'/'}{tmp_line if tmp_line[0] != '/' else tmp_line[1:]}"
+                figure_url = (
+                    f"{url if url.endswith('/') else url + '/'}{tmp_line.lstrip('/')}"
+                )
 
             try:
-                # Check if the URL leads to an image (PNG)
                 response = requests.head(figure_url)
                 if response.status_code == 200 and "image/png" in response.headers.get(
                     "Content-Type", ""
                 ):
-                    split_script[line_idx] = f"\Figure: {figure_url}"
+                    split_script[line_idx] = f"\\Figure: {figure_url}"
                 else:
-                    # Remove "ar5iv.labs." and try again
                     figure_url = figure_url.replace("ar5iv.labs.", "")
                     response = requests.head(figure_url)
                     if (
                         response.status_code == 200
                         and "image/png" in response.headers.get("Content-Type", "")
                     ):
-                        split_script[line_idx] = f"\Figure: {figure_url}"
-            except requests.exceptions.RequestException:
-                # If the request fails, leave the link as is (or handle the error as you prefer)
-                pass
+                        split_script[line_idx] = f"\\Figure: {figure_url}"
+            except requests.exceptions.RequestException as e:
+                logger.error("Failed to verify image URL: %s", e)
 
     return "\n".join(split_script)
 
 
 def process_script(paper: str, url: str) -> str:
-    """Generate a video script for a research paper using OpenAI's GPT-4o model.
+    """
+    Generate a video script for a research paper using OpenAI's GPT-4o model.
 
-    Parameters
-    ----------
-    paper : str
-        A research paper in markdown format. (For the moment, it's HTML)
-    url : str
-        The url of the paper
+    Args:
+        paper (str): A research paper in markdown format (currently HTML).
+        url (str): The URL of the paper.
 
-    Returns
-    -------
-    str
-        The generated video script.
+    Returns:
+        str: The generated video script.
 
-    Raises
-    ------
-    ValueError
-        If no result is returned from OpenAI.
+    Raises:
+        ValueError: If no result is returned from OpenAI.
     """
     openai_client = OpenAI(api_key=OPENAI_API_KEY)
     response = openai_client.chat.completions.create(
-        model="gpt-4o",
+        model=OPENAI_MODEL,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": paper},
@@ -121,5 +119,6 @@ def process_script(paper: str, url: str) -> str:
 
     if not result:
         raise ValueError("No result returned from OpenAI.")
+
     script = correct_result_link(result, url)
     return script

@@ -342,3 +342,6 @@ public/
 **/*.mp4
 **/*.wav
 .aider*
+
+# Ruff files
+.ruff-cache/

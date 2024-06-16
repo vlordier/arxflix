@@ -1,8 +1,42 @@
-import urllib.request
+"""
+This module contains functions to generate a markdown file from a given URL.
+"""
+
+import logging
 from typing import Any
 
-from bs4 import BeautifulSoup
+import requests  # type: ignore
+from bs4 import BeautifulSoup, Tag  # type: ignore
 from markdownify import MarkdownConverter
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+def sanitize_url(url: str) -> str:
+    """
+    Sanitize a URL by removing any query parameters and enforcing HTTPS.
+
+    Args:
+        url (str): The URL to sanitize.
+
+    Returns:
+        str: The sanitized URL.
+
+    Raises:
+        ValueError: If the URL is not HTTPS or contains a file:// scheme.
+    """
+    url = url.strip()
+
+    if url.startswith("file://"):
+        raise ValueError("File URLs are not allowed.")
+
+    if not url.startswith("https"):
+        raise ValueError("Only HTTPS URLs are allowed.")
+
+    url = url.split("?")[0].split("#")[0]
+    return url
 
 
 def fetch_html(url: str) -> str:
@@ -14,9 +48,19 @@ def fetch_html(url: str) -> str:
 
     Returns:
         str: The HTML content as a string.
+
+    Raises:
+        ValueError: If there is an error fetching the HTML content.
     """
-    response = urllib.request.urlopen(url)
-    return response.read().decode("utf-8")
+    sanitized_url = sanitize_url(url)
+
+    try:
+        response = requests.get(sanitized_url)
+        response.raise_for_status()
+        return response.text
+    except requests.exceptions.RequestException as e:
+        logger.error("Failed to fetch HTML from %s: %s", sanitized_url, e)
+        raise ValueError(f"Failed to fetch HTML from {sanitized_url}") from e
 
 
 def convert_to_markdown(soup: BeautifulSoup, **options: Any) -> str:
@@ -25,7 +69,7 @@ def convert_to_markdown(soup: BeautifulSoup, **options: Any) -> str:
 
     Args:
         soup (BeautifulSoup): The BeautifulSoup object to convert.
-        **options: Additional options for MarkdownConverter.
+        options (Any): Additional options for MarkdownConverter.
 
     Returns:
         str: The converted Markdown string.
@@ -43,87 +87,45 @@ def replace_math_tags(soup: BeautifulSoup) -> BeautifulSoup:
     Returns:
         BeautifulSoup: The modified BeautifulSoup object.
     """
-    math_tags = soup.findAll("math")
+    math_tags = soup.find_all("math")
     for math_tag in math_tags:
         display = math_tag.attrs.get("display")
         latex = math_tag.attrs.get("alttext")
 
-        if not latex:
-            continue
-
-        if display == "inline":
-            latex = f"${latex}$"
-        elif display == "block":
-            latex = f"$$ {latex} $$"
-        else:
-            continue
-
-        span_tag = soup.new_tag("span")
-        span_tag.string = latex
-        math_tag.replace_with(span_tag)
+        if latex:
+            latex = f"${latex}$" if display == "inline" else f"$$ {latex} $$"
+            span_tag = soup.new_tag("span")
+            span_tag.string = latex
+            math_tag.replace_with(span_tag)
     return soup
 
 
-def remove_authors_section(article: BeautifulSoup) -> BeautifulSoup:
+def remove_section_by_class(soup: BeautifulSoup, class_name: str) -> BeautifulSoup:
     """
-    Remove the authors section from the article.
+    Remove a section from the BeautifulSoup object by its class name.
 
     Args:
-        article (BeautifulSoup): The BeautifulSoup object containing the article.
+        soup (BeautifulSoup): The BeautifulSoup object.
+        class_name (str): The class name of the section to remove.
+
+    Returns:
+        BeautifulSoup: The modified BeautifulSoup object.
     """
-    authors_div = article.find("div", class_="ltx_authors")
-    if authors_div:
-        authors_div.decompose()  # type: ignore
-    return article
-
-
-def remove_bibliography(soup: BeautifulSoup) -> BeautifulSoup:
-    """
-    Remove the authors section from the soup.
-
-    Args:
-        soup (BeautifulSoup): The BeautifulSoup object containing the soup.
-    """
-    bibliography = soup.find("section", class_="ltx_bibliography")
-    if bibliography:
-        bibliography.decompose()  # type: ignore
-    return soup
-
-
-def remove_appendix(soup: BeautifulSoup) -> BeautifulSoup:
-    """
-    Remove the authors section from the soup.
-
-    Args:
-        soup (BeautifulSoup): The BeautifulSoup object containing the soup.
-    """
-    while soup.find("section", class_="ltx_appendix"):
-        soup.find("section", class_="ltx_appendix").decompose()  # type: ignore
-    return soup
-
-
-def remove_ltx_para(soup: BeautifulSoup) -> BeautifulSoup:
-    """
-    Remove the authors section from the soup.
-
-    Args:
-        soup (BeautifulSoup): The BeautifulSoup object containing the soup.
-    """
-    ltx_para = soup.find("div", class_="ltx_para")
-    if ltx_para:
-        ltx_para.decompose()  # type: ignore
+    section = soup.find("div", class_=class_name)
+    if section and isinstance(section, Tag):
+        section.decompose()
     return soup
 
 
 def strip_attributes(soup: BeautifulSoup) -> BeautifulSoup:
     """
-    Strip all attributes from tags except 'src'.
+    Strip all attributes from tags in a BeautifulSoup object, except for 'src' attributes.
 
     Args:
         soup (BeautifulSoup): The BeautifulSoup object to process.
 
     Returns:
-        BeautifulSoup: The modified BeautifulSoup object.
+        BeautifulSoup: The modified BeautifulSoup object with only 'src' attributes retained.
     """
     for tag in soup.find_all(True):
         tag.attrs = {key: value for key, value in tag.attrs.items() if key == "src"}
@@ -131,31 +133,41 @@ def strip_attributes(soup: BeautifulSoup) -> BeautifulSoup:
 
 
 def process_article(url: str) -> str:
-    """Process an article from a given URL and save it as a markdown file.
-    You need to give an `https://ar5iv.org/html` or `https://arxiv.org/html` URL.
+    """
+    Process an article from a given URL and save it as a markdown file.
 
     Args:
         url (str): The URL of the article.
 
     Returns:
         str: The processed article as a markdown string.
+
+    Raises:
+        ValueError: If no article is found in the HTML content.
     """
     html_content = fetch_html(url)
     soup = BeautifulSoup(html_content, "html.parser")
 
-    replace_math_tags(soup)
-    remove_bibliography(soup)
-    remove_ltx_para(soup)
-    remove_appendix(soup)
+    soup = replace_math_tags(soup)
+    soup = remove_section_by_class(soup, "ltx_bibliography")
+    soup = remove_section_by_class(soup, "ltx_appendix")
+    soup = remove_section_by_class(soup, "ltx_para")
 
     article = soup.find("article")
     if not article:
         raise ValueError("No article found in the HTML content.")
 
-    remove_authors_section(article)  # type: ignore
-    strip_attributes(article)  # type: ignore
-
-    markdown_article = convert_to_markdown(article, wrap_width=True, strip=["button"])  # type: ignore
+    if isinstance(article, Tag):
+        article = remove_section_by_class(
+            BeautifulSoup(str(article), "html.parser"), "ltx_authors"
+        )
+    if isinstance(article, BeautifulSoup):
+        article = strip_attributes(article)
+        markdown_article = convert_to_markdown(
+            article, wrap_width=True, strip=["button"]
+        )
+    else:
+        raise ValueError("Article is not a BeautifulSoup object.")
     markdown_article = markdown_article.replace("\n\n\n", "\n\n").replace(
         "\n\n\n", "\n\n"
     )
