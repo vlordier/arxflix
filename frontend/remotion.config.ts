@@ -11,4 +11,7 @@ Config.setVideoImageFormat("jpeg");
 Config.overrideWebpackConfig(webpackOverride);
 Config.setPublicDir("./public");
 Config.setEntryPoint("./remotion/index.ts");
-
+// export const config = {
+//     webpackOverride,
+//   };
+  
