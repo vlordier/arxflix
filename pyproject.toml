@@ -18,25 +18,32 @@ openai = "*"
 openai-whisper = "*"
 pandas = "*"
 parler-tts = {git = "https://github.com/huggingface/parler-tts.git"}
-python = ">=3.12,<3.13"
+python = ">=3.11,<3.13"
 python-dotenv = "*"
 requests = "*"
 soundfile = "*"
 srt = "*"
-torch = "*"
 transformers = "*"
 typer = "*"
+
+[tool.poetry.extras]
+cpu = ["torch", "torchvision", "torchaudio"]
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
 pytest = "*"
 types-beautifulsoup4 = "*"
-types-pandas = "*"
-types-python-dotenv = "*"
-types-soundfile = "*"
-types-torch = "*"
-types-transformers = "*"
-types-typer = "*"
+types-requests = "*"
 
 [tool.poetry.scripts]
 main = "backend.main:main"
+
+[[tool.poetry.source]]
+name = "torch_cpu"
+priority = "explicit"
+url = "https://download.pytorch.org/whl/cpu"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "backend"
+]

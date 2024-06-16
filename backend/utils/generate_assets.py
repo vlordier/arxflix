@@ -12,7 +12,13 @@ import srt
 import torch
 import torchaudio
 import whisper
-from dotenv import load_dotenv
+from config import (
+    ELEVENLABS_API_KEY,
+    ELEVENLABS_MODEL,
+    ELEVENLABS_SIMILARITY_BOOST,
+    ELEVENLABS_STABILITY,
+    ELEVENLABS_VOICE_ID,
+)
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
 
@@ -21,21 +27,15 @@ from backend.types import Caption, Equation, Figure, Headline, RichContent, Text
 # Setup logging
 logger = logging.getLogger(__name__)
 
-# Load .env file
-load_dotenv()
-
-# Load configuration
-ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ELEVENLABS_VOICE = Voice(
-    voice_id=os.getenv("ELEVENLABS_VOICE_ID", default="lxYfHSkYm1EzQzGhdbfc"),
+    voice_id=ELEVENLABS_VOICE_ID,
     settings=VoiceSettings(
-        stability=float(os.getenv("ELEVENLABS_STABILITY", default=0.35)),
-        similarity_boost=float(os.getenv("ELEVENLABS_SIMILARITY_BOOST", default=0.8)),
+        stability=ELEVENLABS_STABILITY,
+        similarity_boost=ELEVENLABS_SIMILARITY_BOOST,
         style=0.0,
         use_speaker_boost=True,
     ),
 )
-ELEVENLABS_MODEL = os.getenv("ELEVENLABS_MODEL", default="eleven_turbo_v2")
 
 
 def parse_script(script: str) -> List[Union[RichContent, Text]]:
@@ -51,20 +51,20 @@ def parse_script(script: str) -> List[Union[RichContent, Text]]:
     lines = script.split("\n")
     content_list: List[Union[RichContent, Text, Figure, Equation, Headline]] = []
     for line in lines:
-        if line.startswith(r"\\Figure: "):
-            figure_content = line.replace(r"\\Figure: ", "")
+        if line.startswith("\\Figure: "):
+            figure_content = line.replace("\\Figure: ", "")
             figure = Figure(content=figure_content)
             content_list.append(figure)
-        elif line.startswith(r"\\Text: "):
-            text_content = line.replace(r"\\Text: ", "")
+        elif line.startswith("\\Text: "):
+            text_content = line.replace("\\Text: ", "")
             text = Text(content=text_content)
             content_list.append(text)
-        elif line.startswith(r"\\Equation: "):
-            equation_content = line.replace(r"\\Equation: ", "")
+        elif line.startswith("\\Equation: "):
+            equation_content = line.replace("\\Equation: ", "")
             equation = Equation(content=equation_content)
             content_list.append(equation)
-        elif line.startswith(r"\\Headline: "):
-            headline_content = line.replace(r"\\Headline: ", "")
+        elif line.startswith("\\Headline: "):
+            headline_content = line.replace("\\Headline: ", "")
             headline = Headline(content=headline_content)
             content_list.append(headline)
         else:
@@ -128,7 +128,7 @@ def generate_audio_and_caption(
             result = model.transcribe(audio_path, word_timestamps=True)
             content.captions = make_caption(result)
             content.audio_path = audio_path
-            content.end = audio.size(1) / sample_rate
+            content.end = audio.shape[1] / sample_rate
 
     offset = 0.0
     for content in script_contents:
@@ -174,16 +174,18 @@ def fill_rich_content_time(
         if not next_text_group:
             break
 
-        if next_text_group[-1].end is not None and next_text_group[0].start is not None:
-            total_duration = next_text_group[-1].end - next_text_group[0].start
-        else:
-            total_duration = 0
-        duration_per_rich_content = total_duration / len(current_rich_content_group)
-        offset = next_text_group[0].start
-        for i, rich_content in enumerate(current_rich_content_group):
-            if offset is not None and duration_per_rich_content is not None:
-                rich_content.start = offset + i * duration_per_rich_content
-                rich_content.end = offset + (i + 1) * duration_per_rich_content
+        if current_rich_content_group and next_text_group:
+            total_duration = (next_text_group[-1].end or 0) - (
+                next_text_group[0].start or 0
+            )
+            duration_per_rich_content = total_duration / (
+                len(current_rich_content_group) + 1
+            )
+            offset = next_text_group[0].start
+            for _i, rich_content in enumerate(current_rich_content_group):
+                rich_content.start = offset
+                rich_content.end = (offset + duration_per_rich_content) or 0
+                offset += duration_per_rich_content or 0
 
     return script_contents
 
@@ -207,7 +209,7 @@ def export_mp3(text_contents: List[Text], output_path: str) -> None:
             audio_segments.append(audio)
     if sample_rate is None:
         raise ValueError("Sample rate not found in the audio files.")
-    combined_audio = torch.cat(audio_segments, dim=1)
+    combined_audio = torch.cat([a.clone().detach() for a in audio_segments], dim=1)
     torchaudio.save(output_path, combined_audio, sample_rate)
 
 
