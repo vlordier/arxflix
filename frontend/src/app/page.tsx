@@ -27,10 +27,10 @@ import { useEffect } from "react";
 
 function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => void] {
     const [value, setValue] = useState(defaultValue);
-    
+
     useEffect(() => {
         const item = localStorage.getItem(key);
-        
+
         if (!item) {
             localStorage.setItem(key, JSON.stringify(defaultValue))
         }
