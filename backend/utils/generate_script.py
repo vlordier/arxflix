@@ -1,17 +1,18 @@
-from openai import OpenAI
-import requests
 import os
+
+import requests
+from openai import OpenAI
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 
 SYSTEM_PROMPT = r"""
-You're Arxflix an AI Researcher and Content Creator on Youtube who specializes in summarizing academic papers. 
+You're Arxflix an AI Researcher and Content Creator on Youtube who specializes in summarizing academic papers.
 
-I would like you to generate a script for a short video (5-6 minutes or less than 4000 words) on the following research paper. 
-The video will be uploaded on YouTube and is intended for a research-focused audience of academics, students, and professionals of the field of deep learning. 
-The script should be engaging, clear, and concise, effectively communicating the content of the paper. 
-The video should give a good overview of the paper in the least amount of time possible, with short sentences that fit well for a dynamic Youtube video. 
+I would like you to generate a script for a short video (5-6 minutes or less than 4000 words) on the following research paper.
+The video will be uploaded on YouTube and is intended for a research-focused audience of academics, students, and professionals of the field of deep learning.
+The script should be engaging, clear, and concise, effectively communicating the content of the paper.
+The video should give a good overview of the paper in the least amount of time possible, with short sentences that fit well for a dynamic Youtube video.
 
 The script sould be formated following the followings rules below:
 - You should follow this format for the script: \Text, \Figure, \Equation and \Headline
@@ -30,8 +31,6 @@ Here an example what you need to produce:
 """
 
 
-
-
 def correct_result_link(script: str, url: str) -> str:
     """Correct generated links in a research paper script.
 
@@ -46,51 +45,48 @@ def correct_result_link(script: str, url: str) -> str:
         The corrected script with valid image links.
     """
     # handle non-arXiv links
-    if 'ar5iv' not in url:
-        tmp_url = url.split('/')
+    if "ar5iv" not in url:
+        tmp_url = url.split("/")
         url = (
-            'https://ar5iv.labs.arxiv.org/html/' + tmp_url[-1]
-            if tmp_url[-1] != ''
-            else 'https://ar5iv.labs.arxiv.org/html/' + tmp_url[-2]
+            "https://ar5iv.labs.arxiv.org/html/" + tmp_url[-1]
+            if tmp_url[-1] != ""
+            else "https://ar5iv.labs.arxiv.org/html/" + tmp_url[-2]
         )
 
-    split_script = script.split('\n')
+    split_script = script.split("\n")
 
     for line_idx, line in enumerate(split_script):
         if "\Figure: " in line and not line.startswith("https"):
-            tmp_line = line.replace("\Figure: ", '')
+            tmp_line = line.replace("\Figure: ", "")
 
             # Construct the potential figure URL
-            if '/html/' in tmp_line:
-                modified_base_url = url.split('/html/')[0]
+            if "/html/" in tmp_line:
+                modified_base_url = url.split("/html/")[0]
                 figure_url = f"{modified_base_url}{tmp_line}"
             else:
-                figure_url = (
-                    f"{url if url.endswith('/') else url+'/'}{tmp_line if tmp_line[0] != '/' else tmp_line[1:]}"
-                )
+                figure_url = f"{url if url.endswith('/') else url+'/'}{tmp_line if tmp_line[0] != '/' else tmp_line[1:]}"
 
             try:
                 # Check if the URL leads to an image (PNG)
                 response = requests.head(figure_url)
-                if response.status_code == 200 and 'image/png' in response.headers.get('Content-Type', ''):
+                if response.status_code == 200 and "image/png" in response.headers.get(
+                    "Content-Type", ""
+                ):
                     split_script[line_idx] = f"\Figure: {figure_url}"
                 else:
                     # Remove "ar5iv.labs." and try again
-                    figure_url = figure_url.replace('ar5iv.labs.', '')
+                    figure_url = figure_url.replace("ar5iv.labs.", "")
                     response = requests.head(figure_url)
-                    if response.status_code == 200 and 'image/png' in response.headers.get('Content-Type', ''):
+                    if (
+                        response.status_code == 200
+                        and "image/png" in response.headers.get("Content-Type", "")
+                    ):
                         split_script[line_idx] = f"\Figure: {figure_url}"
             except requests.exceptions.RequestException:
                 # If the request fails, leave the link as is (or handle the error as you prefer)
                 pass
 
-    return '\n'.join(split_script)
-
-        
-
-
-                
-
+    return "\n".join(split_script)
 
 
 def process_script(paper: str, url: str) -> str:
@@ -101,7 +97,7 @@ def process_script(paper: str, url: str) -> str:
     paper : str
         A research paper in markdown format. (For the moment, it's HTML)
     url : str
-        The url of the paper 
+        The url of the paper
 
     Returns
     -------
@@ -125,5 +121,5 @@ def process_script(paper: str, url: str) -> str:
 
     if not result:
         raise ValueError("No result returned from OpenAI.")
-    script = correct_result_link(result,url)
+    script = correct_result_link(result, url)
     return script

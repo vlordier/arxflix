@@ -1,25 +1,26 @@
-from pathlib import Path
 import logging
 import os
+from pathlib import Path
+
+import fastapi
+import typer
 from dotenv import load_dotenv
 from pydantic import BaseModel
-import typer
-import fastapi
 
-from backend.utils.generate_video import process_video
+from backend.types import RichContent, Text
 from backend.utils.generate_assets import (
-    generate_audio_and_caption,
-    fill_rich_content_time,
     export_mp3,
-    export_srt,
     export_rich_content_json,
+    export_srt,
+    fill_rich_content_time,
+    generate_audio_and_caption,
     parse_script,
 )
 from backend.utils.generate_paper import process_article
 from backend.utils.generate_script import process_script
-from backend.types import Text, RichContent
+from backend.utils.generate_video import process_video
 
-PAPER_URL =''
+PAPER_URL = ""
 # Load logger
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,7 @@ def generate_script(paper: str, use_path: bool = True) -> str:
     if use_path:
         paper_path = paper
         paper = open(paper_path, "r").read()
-    script = process_script(paper,PAPER_URL)
+    script = process_script(paper, PAPER_URL)
     return script
 
 

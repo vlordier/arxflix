@@ -113,7 +113,7 @@ export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 								key={figures.map((f) => f.content).join('')}
 							/>
 						</div>
-						
+
 						<div className='row-span-1'>
 							<div
 								style={{ lineHeight: `${subtitlesLineHeight}px` }}

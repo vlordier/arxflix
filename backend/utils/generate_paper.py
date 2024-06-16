@@ -1,7 +1,8 @@
 import urllib.request
+from typing import Any
+
 from bs4 import BeautifulSoup
 from markdownify import MarkdownConverter
-from typing import Any
 
 
 def fetch_html(url: str) -> str:

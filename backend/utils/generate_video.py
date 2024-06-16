@@ -1,8 +1,8 @@
-import subprocess
-from pathlib import Path
-from dataclasses import dataclass, asdict, field
-from typing import Literal
 import json
+import subprocess
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
+from typing import Literal
 
 VIDEO_FPS = 30
 VIDEO_HEIGHT = 1080

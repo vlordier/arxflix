@@ -4244,7 +4244,7 @@ snapshots:
       tslib: 2.6.2
       uuid: 9.0.1
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-cognito-identity@3.583.0':
     dependencies:
@@ -4290,7 +4290,7 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-iam@3.583.0':
     dependencies:
@@ -4337,7 +4337,7 @@ snapshots:
       '@smithy/util-waiter': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-lambda@3.583.0':
     dependencies:
@@ -4388,7 +4388,7 @@ snapshots:
       '@smithy/util-waiter': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-s3@3.583.0':
     dependencies:
@@ -4451,7 +4451,7 @@ snapshots:
       '@smithy/util-waiter': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-service-quotas@3.583.0':
     dependencies:
@@ -4497,7 +4497,7 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-sso-oidc@3.583.0(@aws-sdk/client-sts@3.583.0)':
     dependencies:
@@ -4542,8 +4542,8 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@aws-sdk/client-sts'
-      - aws-crt
+    - '@aws-sdk/client-sts'
+    - aws-crt
 
   '@aws-sdk/client-sso@3.583.0':
     dependencies:
@@ -4586,7 +4586,7 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/client-sts@3.583.0':
     dependencies:
@@ -4631,7 +4631,7 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/core@3.582.0':
     dependencies:
@@ -4651,7 +4651,7 @@ snapshots:
       '@smithy/types': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-crt
+    - aws-crt
 
   '@aws-sdk/credential-provider-env@3.577.0':
     dependencies:
@@ -4686,8 +4686,8 @@ snapshots:
       '@smithy/types': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@aws-sdk/client-sso-oidc'
-      - aws-crt
+    - '@aws-sdk/client-sso-oidc'
+    - aws-crt
 
   '@aws-sdk/credential-provider-node@3.583.0(@aws-sdk/client-sso-oidc@3.583.0)(@aws-sdk/client-sts@3.583.0)':
     dependencies:
@@ -4704,9 +4704,9 @@ snapshots:
       '@smithy/types': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@aws-sdk/client-sso-oidc'
-      - '@aws-sdk/client-sts'
-      - aws-crt
+    - '@aws-sdk/client-sso-oidc'
+    - '@aws-sdk/client-sts'
+    - aws-crt
 
   '@aws-sdk/credential-provider-process@3.577.0':
     dependencies:
@@ -4726,8 +4726,8 @@ snapshots:
       '@smithy/types': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@aws-sdk/client-sso-oidc'
-      - aws-crt
+    - '@aws-sdk/client-sso-oidc'
+    - aws-crt
 
   '@aws-sdk/credential-provider-web-identity@3.577.0(@aws-sdk/client-sts@3.583.0)':
     dependencies:
@@ -4756,8 +4756,8 @@ snapshots:
       '@smithy/types': 3.0.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@aws-sdk/client-sso-oidc'
-      - aws-crt
+    - '@aws-sdk/client-sso-oidc'
+    - aws-crt
 
   '@aws-sdk/lib-storage@3.583.0(@aws-sdk/client-s3@3.583.0)':
     dependencies:
@@ -4982,8 +4982,8 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@csstools/cascade-layer-name-parser@1.0.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)':
-    dependencies:
+  ? '@csstools/cascade-layer-name-parser@1.0.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)'
+  : dependencies:
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-tokenizer': 2.3.1
 
@@ -4991,13 +4991,13 @@ snapshots:
 
   '@csstools/color-helpers@4.2.0': {}
 
-  '@csstools/css-calc@1.2.2(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)':
-    dependencies:
+  ? '@csstools/css-calc@1.2.2(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)'
+  : dependencies:
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-tokenizer': 2.3.1
 
-  '@csstools/css-color-parser@1.6.3(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)':
-    dependencies:
+  ? '@csstools/css-color-parser@1.6.3(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)'
+  : dependencies:
       '@csstools/color-helpers': 4.2.0
       '@csstools/css-calc': 1.2.2(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
@@ -5009,8 +5009,8 @@ snapshots:
 
   '@csstools/css-tokenizer@2.3.1': {}
 
-  '@csstools/media-query-list-parser@2.1.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)':
-    dependencies:
+  ? '@csstools/media-query-list-parser@2.1.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)'
+  : dependencies:
       '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
       '@csstools/css-tokenizer': 2.3.1
 
@@ -5318,7 +5318,7 @@ snapshots:
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@eslint/js@8.57.0': {}
 
@@ -5328,7 +5328,7 @@ snapshots:
       debug: 4.3.4
       minimatch: 3.1.2
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
@@ -5422,8 +5422,8 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.24.6
 
-  '@radix-ui/react-collapsible@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
+  ? '@radix-ui/react-collapsible@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)'
+  : dependencies:
       '@babel/runtime': 7.24.6
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.1)(react@18.3.1)
@@ -5472,8 +5472,8 @@ snapshots:
       '@types/react': 18.3.1
       '@types/react-dom': 18.3.0
 
-  '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
+  ? '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)'
+  : dependencies:
       '@babel/runtime': 7.24.6
       '@radix-ui/react-slot': 1.0.2(@types/react@18.3.1)(react@18.3.1)
       react: 18.3.1
@@ -5532,12 +5532,12 @@ snapshots:
       style-loader: 2.0.0(webpack@5.83.1(esbuild@0.18.6))
       webpack: 5.83.1(esbuild@0.18.6)
     transitivePeerDependencies:
-      - '@swc/core'
-      - bufferutil
-      - supports-color
-      - uglify-js
-      - utf-8-validate
-      - webpack-cli
+    - '@swc/core'
+    - bufferutil
+    - supports-color
+    - uglify-js
+    - utf-8-validate
+    - webpack-cli
 
   '@remotion/cli@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -5555,12 +5555,12 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       remotion: 4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
-      - '@swc/core'
-      - bufferutil
-      - supports-color
-      - uglify-js
-      - utf-8-validate
-      - webpack-cli
+    - '@swc/core'
+    - bufferutil
+    - supports-color
+    - uglify-js
+    - utf-8-validate
+    - webpack-cli
 
   '@remotion/compositor-darwin-arm64@4.0.166':
     optional: true
@@ -5593,26 +5593,26 @@ snapshots:
       eslint-plugin-react: 7.32.2(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.57.0)
     transitivePeerDependencies:
-      - supports-color
-      - typescript
+    - supports-color
+    - typescript
 
   '@remotion/eslint-plugin@4.0.166(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/utils': 5.19.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
     transitivePeerDependencies:
-      - supports-color
-      - typescript
+    - supports-color
+    - typescript
 
   '@remotion/google-fonts@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       remotion: 4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
-      - react
-      - react-dom
+    - react
+    - react-dom
 
-  '@remotion/lambda@4.0.166(@aws-sdk/client-sso-oidc@3.583.0)(@remotion/bundler@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
+  ? '@remotion/lambda@4.0.166(@aws-sdk/client-sso-oidc@3.583.0)(@remotion/bundler@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)'
+  : dependencies:
       '@aws-sdk/client-cloudwatch-logs': 3.583.0
       '@aws-sdk/client-iam': 3.583.0
       '@aws-sdk/client-lambda': 3.583.0
@@ -5630,16 +5630,16 @@ snapshots:
       remotion: 4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod: 3.22.3
     transitivePeerDependencies:
-      - '@aws-sdk/client-sso-oidc'
-      - '@swc/core'
-      - aws-crt
-      - bufferutil
-      - react
-      - react-dom
-      - supports-color
-      - uglify-js
-      - utf-8-validate
-      - webpack-cli
+    - '@aws-sdk/client-sso-oidc'
+    - '@swc/core'
+    - aws-crt
+    - bufferutil
+    - react
+    - react-dom
+    - supports-color
+    - uglify-js
+    - utf-8-validate
+    - webpack-cli
 
   '@remotion/media-utils@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -5673,9 +5673,9 @@ snapshots:
       '@remotion/compositor-linux-x64-musl': 4.0.166
       '@remotion/compositor-win32-x64-msvc': 4.0.166
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
+    - bufferutil
+    - supports-color
+    - utf-8-validate
 
   '@remotion/shapes@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -5696,21 +5696,21 @@ snapshots:
       semver: 7.5.3
       source-map: 0.7.3
     transitivePeerDependencies:
-      - '@swc/core'
-      - bufferutil
-      - react
-      - react-dom
-      - supports-color
-      - uglify-js
-      - utf-8-validate
-      - webpack-cli
+    - '@swc/core'
+    - bufferutil
+    - react
+    - react-dom
+    - supports-color
+    - uglify-js
+    - utf-8-validate
+    - webpack-cli
 
   '@remotion/studio-shared@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       remotion: 4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
-      - react
-      - react-dom
+    - react
+    - react-dom
 
   '@remotion/studio@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -5724,14 +5724,14 @@ snapshots:
       semver: 7.5.3
       source-map: 0.7.3
     transitivePeerDependencies:
-      - bufferutil
-      - react
-      - react-dom
-      - supports-color
-      - utf-8-validate
+    - bufferutil
+    - react
+    - react-dom
+    - supports-color
+    - utf-8-validate
 
-  '@remotion/tailwind@4.0.166(@remotion/bundler@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(ts-node@10.9.2(@types/node@18.7.23)(typescript@5.4.5))(typescript@5.4.5)(webpack@5.83.1)':
-    dependencies:
+  ? '@remotion/tailwind@4.0.166(@remotion/bundler@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(ts-node@10.9.2(@types/node@18.7.23)(typescript@5.4.5))(typescript@5.4.5)(webpack@5.83.1)'
+  : dependencies:
       '@remotion/bundler': 4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       autoprefixer: 10.4.19(postcss@8.4.38)
       css-loader: 5.2.7(webpack@5.83.1)
@@ -5741,17 +5741,17 @@ snapshots:
       style-loader: 2.0.0(webpack@5.83.1)
       tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@18.7.23)(typescript@5.4.5))
     transitivePeerDependencies:
-      - ts-node
-      - typescript
-      - webpack
+    - ts-node
+    - typescript
+    - webpack
 
   '@remotion/zod-types@4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.22.3)':
     dependencies:
       remotion: 4.0.166(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod: 3.22.3
     transitivePeerDependencies:
-      - react
-      - react-dom
+    - react
+    - react-dom
 
   '@rushstack/eslint-patch@1.10.3': {}
 
@@ -6151,8 +6151,8 @@ snapshots:
       '@types/node': 18.7.23
     optional: true
 
-  '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)':
-    dependencies:
+  ? '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)'
+  : dependencies:
       '@eslint-community/regexpp': 4.10.0
       '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
       '@typescript-eslint/scope-manager': 6.21.0
@@ -6169,7 +6169,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
@@ -6182,7 +6182,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@typescript-eslint/scope-manager@5.19.0':
     dependencies:
@@ -6204,7 +6204,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@typescript-eslint/types@5.19.0': {}
 
@@ -6222,7 +6222,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@typescript-eslint/typescript-estree@6.21.0(typescript@5.4.5)':
     dependencies:
@@ -6237,7 +6237,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   '@typescript-eslint/utils@5.19.0(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
@@ -6249,8 +6249,8 @@ snapshots:
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0(eslint@8.57.0)
     transitivePeerDependencies:
-      - supports-color
-      - typescript
+    - supports-color
+    - typescript
 
   '@typescript-eslint/utils@6.21.0(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
@@ -6263,8 +6263,8 @@ snapshots:
       eslint: 8.57.0
       semver: 7.6.2
     transitivePeerDependencies:
-      - supports-color
-      - typescript
+    - supports-color
+    - typescript
 
   '@typescript-eslint/visitor-keys@5.19.0':
     dependencies:
@@ -6296,8 +6296,8 @@ snapshots:
       remark-github-blockquote-alert: 1.2.1
       unist-util-visit: 5.0.0
     transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
+    - '@types/react'
+    - supports-color
 
   '@ungap/structured-clone@1.2.0': {}
 
@@ -6539,7 +6539,7 @@ snapshots:
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
-      - debug
+    - debug
 
   axobject-query@3.2.1:
     dependencies:
@@ -7020,8 +7020,8 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
-      - eslint-import-resolver-webpack
-      - supports-color
+    - eslint-import-resolver-webpack
+    - supports-color
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
@@ -7029,10 +7029,10 @@ snapshots:
       is-core-module: 2.13.1
       resolve: 1.22.8
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
-  eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0):
-    dependencies:
+  ? eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
+  : dependencies:
       debug: 4.3.4
       enhanced-resolve: 5.16.1
       eslint: 8.57.0
@@ -7043,13 +7043,13 @@ snapshots:
       is-core-module: 2.13.1
       is-glob: 4.0.3
     transitivePeerDependencies:
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-node
-      - eslint-import-resolver-webpack
-      - supports-color
+    - '@typescript-eslint/parser'
+    - eslint-import-resolver-node
+    - eslint-import-resolver-webpack
+    - supports-color
 
-  eslint-module-utils@2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
-    dependencies:
+  ? eslint-module-utils@2.8.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+  : dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
@@ -7057,15 +7057,15 @@ snapshots:
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   eslint-plugin-10x@1.5.2(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
       jsx-ast-utils: 2.4.1
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
-    dependencies:
+  ? eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+  : dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
       array.prototype.flat: 1.3.2
@@ -7087,9 +7087,9 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/parser': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
     transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
+    - eslint-import-resolver-typescript
+    - eslint-import-resolver-webpack
+    - supports-color
 
   eslint-plugin-jsx-a11y@6.8.0(eslint@8.57.0):
     dependencies:
@@ -7220,7 +7220,7 @@ snapshots:
       strip-ansi: 6.0.1
       text-table: 0.2.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   espree@9.6.1:
     dependencies:
@@ -7276,7 +7276,7 @@ snapshots:
     optionalDependencies:
       '@types/yauzl': 2.10.3
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   fast-deep-equal@3.1.3: {}
 
@@ -7565,7 +7565,7 @@ snapshots:
       unist-util-position: 5.0.0
       vfile-message: 4.0.2
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   hast-util-to-parse5@8.0.0:
     dependencies:
@@ -7903,7 +7903,7 @@ snapshots:
       micromark-util-types: 2.0.0
       unist-util-stringify-position: 4.0.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-gfm-autolink-literal@2.0.0:
     dependencies:
@@ -7921,7 +7921,7 @@ snapshots:
       mdast-util-to-markdown: 2.1.0
       micromark-util-normalize-identifier: 2.0.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-gfm-strikethrough@2.0.0:
     dependencies:
@@ -7929,7 +7929,7 @@ snapshots:
       mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-gfm-table@2.0.0:
     dependencies:
@@ -7939,7 +7939,7 @@ snapshots:
       mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-gfm-task-list-item@2.0.0:
     dependencies:
@@ -7948,7 +7948,7 @@ snapshots:
       mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-gfm@3.0.0:
     dependencies:
@@ -7960,7 +7960,7 @@ snapshots:
       mdast-util-gfm-task-list-item: 2.0.0
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-mdx-expression@2.0.0:
     dependencies:
@@ -7971,7 +7971,7 @@ snapshots:
       mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-mdx-jsx@3.1.2:
     dependencies:
@@ -7989,7 +7989,7 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-mdxjs-esm@2.0.1:
     dependencies:
@@ -8000,7 +8000,7 @@ snapshots:
       mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   mdast-util-phrasing@4.1.0:
     dependencies:
@@ -8231,7 +8231,7 @@ snapshots:
       micromark-util-symbol: 2.0.0
       micromark-util-types: 2.0.0
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   micromatch@4.0.7:
     dependencies:
@@ -8308,8 +8308,8 @@ snapshots:
       '@next/swc-win32-ia32-msvc': 13.5.6
       '@next/swc-win32-x64-msvc': 13.5.6
     transitivePeerDependencies:
-      - '@babel/core'
-      - babel-plugin-macros
+    - '@babel/core'
+    - babel-plugin-macros
 
   node-releases@2.0.14: {}
 
@@ -8587,7 +8587,7 @@ snapshots:
       semver: 7.6.2
       webpack: 5.83.1
     transitivePeerDependencies:
-      - typescript
+    - typescript
 
   postcss-logical@6.2.0(postcss@8.4.38):
     dependencies:
@@ -8798,7 +8798,7 @@ snapshots:
       unist-util-visit: 5.0.0
       vfile: 6.0.1
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   react-refresh@0.9.0: {}
 
@@ -8918,7 +8918,7 @@ snapshots:
       remark-stringify: 11.0.0
       unified: 11.0.4
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   remark-github-blockquote-alert@1.2.1:
     dependencies:
@@ -8931,7 +8931,7 @@ snapshots:
       micromark-util-types: 2.0.0
       unified: 11.0.4
     transitivePeerDependencies:
-      - supports-color
+    - supports-color
 
   remark-rehype@11.1.0:
     dependencies:
@@ -9225,7 +9225,7 @@ snapshots:
       resolve: 1.22.8
       sucrase: 3.35.0
     transitivePeerDependencies:
-      - ts-node
+    - ts-node
 
   tapable@2.2.1: {}
 
@@ -9493,9 +9493,9 @@ snapshots:
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
+    - '@swc/core'
+    - esbuild
+    - uglify-js
 
   webpack@5.83.1(esbuild@0.18.6):
     dependencies:
@@ -9524,9 +9524,9 @@ snapshots:
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
+    - '@swc/core'
+    - esbuild
+    - uglify-js
 
   whatwg-url@7.1.0:
     dependencies:

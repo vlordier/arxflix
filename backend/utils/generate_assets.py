@@ -1,18 +1,19 @@
+import logging
 import os
 import tempfile
+from datetime import timedelta
+from pathlib import Path
+
+import pandas as pd
+import srt
+import torch
+import torchaudio
+import whisper
 from dotenv import load_dotenv
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
-import pandas as pd
-import whisper
-import torch
-import torchaudio
-import srt
-from datetime import timedelta
-from pathlib import Path
-import logging
 
-from backend.types import Text, Caption, Figure, Equation, Headline, RichContent
+from backend.types import Caption, Equation, Figure, Headline, RichContent, Text
 
 logger = logging.getLogger(__name__)
 
