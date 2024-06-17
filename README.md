@@ -36,12 +36,17 @@ ArXFlix converts research papers into two minutes video summaries, with all the 
   pnpm install
   ```
 
-4. Run the Frontend App
+4. Init shadcn:
+``` shell
+npx shadcn-ui@latest init
+```
+
+5. Run the Frontend App
 
   ```shell
   pnpm dev
   ```
-5. Client App should be running on `PORT` 3000
+6. Client App should be running on `PORT` 3000
 
 ## Contributing
 

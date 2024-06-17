@@ -344,4 +344,4 @@ public/
 .aider*
 
 # Ruff files
-.ruff-cache/
+.ruff_cache/
