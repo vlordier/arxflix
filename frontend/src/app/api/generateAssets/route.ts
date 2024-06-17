@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     if (!script || !mp3_output || !srt_output || !rich_output) {
       return NextResponse.json({ error: 'Script, mp3_output, srt_output, and rich_output parameters are required' }, { status: 400 });
     }
-    
+
     const response = await axios.post('http://127.0.0.1:8000/generate_assets/', {
       script: script,
       mp3_output: mp3_output,
