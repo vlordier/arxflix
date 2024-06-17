@@ -49,7 +49,7 @@ export const defaultCompositionProps: z.infer<typeof CompositionProps> = {
     waveLinesToDisplay: 300,
     waveNumberOfSamples: '512', // This is string for Remotion controls and will be converted to a number
     mirrorWave: false,
-
+    
     // Metadata settings
     durationInSeconds: 5,
 };

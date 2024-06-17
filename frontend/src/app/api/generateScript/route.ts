@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     if (!paper) {
       return NextResponse.json({ error: 'Paper parameter is required' }, { status: 400 });
     }
-
+    
     const response = await axios.post('http://127.0.0.1:8000/generate_script/', {
       paper: paper,
       use_path: false,

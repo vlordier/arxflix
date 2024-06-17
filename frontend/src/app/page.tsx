@@ -27,10 +27,10 @@ import { useEffect } from "react";
 
 function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => void] {
     const [value, setValue] = useState(defaultValue);
-
+    
     useEffect(() => {
         const item = localStorage.getItem(key);
-
+        
         if (!item) {
             localStorage.setItem(key, JSON.stringify(defaultValue))
         }
@@ -248,12 +248,12 @@ export default function Home() {
 
           <Step label="Generate Video" description="Generate the video" icon={Video}>
             <div className="m-3 h-96 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
-              {/* <button onClick={() => {
+              <button onClick={() => {
                 alert("Folder: " + folder)
                 // setFolder(undefined)
                 setFolder(folder ? null : "3wbcwc")
               }}><ArrowRightIcon /
-                ></button> */}
+                ></button>
               {folder && (
                 <Player
                   component={ArxflixComposition}

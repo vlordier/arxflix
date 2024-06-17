@@ -40,7 +40,7 @@ export const CurrentFigure: React.FC<{
     transform: `scale(${scale})`,
     opacity,
   };
-
+	
 	if (!currentFigure) {
 		return null;
 	}
