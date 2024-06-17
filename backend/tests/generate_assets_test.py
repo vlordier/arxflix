@@ -51,13 +51,18 @@ def test_generate_audio_and_caption(
     mock_whisper_model: MagicMock,
     mock_torchaudio_load: MagicMock,
 ) -> None:
-    with mock.patch("utils.generate_assets.ElevenLabs") as MockElevenLabs, \
-         mock.patch("utils.generate_assets.ELEVENLABS_API_KEY", "fake_api_key"):
+    with mock.patch("utils.generate_assets.ElevenLabs") as MockElevenLabs, mock.patch(
+        "utils.generate_assets.ELEVENLABS_API_KEY", "fake_api_key"
+    ):
         mock_elevenlabs_client = MockElevenLabs.return_value
         mock_elevenlabs_client.generate.return_value = iter([b"fake_audio_data"])
-        mock_elevenlabs_client.save.side_effect = lambda audio, path: Path(path).write_bytes(b"fake_audio_data")
+        mock_elevenlabs_client.save.side_effect = lambda audio, path: Path(
+            path
+        ).write_bytes(b"fake_audio_data")
         mock_elevenlabs_client.convert.return_value = iter([b"fake_audio_data"])
-        mock_elevenlabs_client._client_wrapper.httpx_client.stream.return_value = iter([b"fake_audio_data"])
+        mock_elevenlabs_client._client_wrapper.httpx_client.stream.return_value = iter(
+            [b"fake_audio_data"]
+        )
 
         script_contents = parse_script(sample_script)
         result = generate_audio_and_caption(script_contents, Path(temp_dir_fixture))
@@ -88,7 +93,10 @@ def test_fill_rich_content_time() -> None:
 
 def test_export_mp3(temp_dir_fixture: str, mock_torchaudio_load: MagicMock) -> None:
     text_contents = [
-        Text(content="Sample Text", audio_path=os.path.join(temp_dir_fixture, "sample.wav"))
+        Text(
+            content="Sample Text",
+            audio_path=os.path.join(temp_dir_fixture, "sample.wav"),
+        )
     ]
     output_path = os.path.join(temp_dir_fixture, "output.mp3")
     export_mp3(text_contents, output_path)
@@ -96,7 +104,9 @@ def test_export_mp3(temp_dir_fixture: str, mock_torchaudio_load: MagicMock) -> N
 
 
 def test_export_srt(
-    temp_dir_fixture: str, mock_whisper_model: MagicMock, mock_torchaudio_load: MagicMock
+    temp_dir_fixture: str,
+    mock_whisper_model: MagicMock,
+    mock_torchaudio_load: MagicMock,
 ) -> None:
     full_audio_path = os.path.join(temp_dir_fixture, "full_audio.wav")
     output_path = os.path.join(temp_dir_fixture, "output.srt")

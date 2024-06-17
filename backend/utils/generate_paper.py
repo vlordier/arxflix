@@ -74,7 +74,12 @@ def convert_to_markdown(soup: BeautifulSoup, **options: Any) -> str:
     Returns:
         str: The converted Markdown string.
     """
-    return MarkdownConverter(**options).convert_soup(soup)
+
+    class CustomMarkdownConverter(MarkdownConverter):
+        def convert_h1(self, el, text, convert_as_inline):
+            return f"# {text}\n\n"
+
+    return CustomMarkdownConverter(**options).convert_soup(soup)
 
 
 def replace_math_tags(soup: BeautifulSoup) -> BeautifulSoup:

@@ -1,12 +1,48 @@
 import tempfile
 from unittest import mock
+from unittest.mock import MagicMock
 
 import pytest
 import torch
 
 
 @pytest.fixture
-def sample_script():
+def sample_url():
+    return "https://ar5iv.labs.arxiv.org/html/1234.5678"
+
+
+@pytest.fixture
+def test_script():
+    return """
+    This is a sample script.
+    \\Figure: /figures/sample1.png
+    Another line of text.
+    \\Figure: /figures/sample2.png
+    """
+
+
+@pytest.fixture
+def corrected_test_script():
+    return """
+    This is a sample script.
+    \\Figure: https://ar5iv.labs.arxiv.org/html/figures/sample1.png
+    Another line of text.
+    \\Figure: https://ar5iv.labs.arxiv.org/html/figures/sample2.png
+    """
+
+
+@pytest.fixture
+def mock_openai_response() -> MagicMock:
+    """Fixture to mock the OpenAI API response."""
+    mock_openai_client = MagicMock()
+    mock_response = MagicMock()
+    mock_response.choices = [MagicMock()]
+    mock_openai_client.chat.completions.create.return_value = mock_response
+    return mock_openai_client, mock_response
+
+
+@pytest.fixture
+def sample_script() -> str:
     """Fixture to create a sample script."""
     return (
         "\\Figure: Sample Figure\n"
@@ -15,13 +51,15 @@ def sample_script():
         "\\Headline: Sample Headline\n"
     )
 
+
 @pytest.fixture
-def sample_paper():
+def sample_paper() -> str:
     """Fixture to create a sample paper."""
     return "This is a sample paper content."
 
+
 @pytest.fixture
-def mock_whisper_model():
+def mock_whisper_model() -> MagicMock:
     """Fixture to mock the Whisper model."""
     with mock.patch("whisper.load_model") as mocked_load_model:
         mocked_model = mock.Mock()
@@ -40,7 +78,7 @@ def mock_whisper_model():
 
 
 @pytest.fixture
-def mock_torchaudio_load():
+def mock_torchaudio_load() -> MagicMock:
     """Fixture to mock the torchaudio.load function."""
     with mock.patch("torchaudio.load") as mocked_torchaudio_load:
         mocked_torchaudio_load.return_value = (torch.zeros(1, 16000), 16000)

@@ -7,9 +7,8 @@ from typing import Optional
 import fastapi
 import typer
 from dotenv import load_dotenv
-from pydantic import BaseModel
-
 from models import RichContent, Text
+from pydantic import BaseModel
 from utils.generate_assets import (
     export_mp3,
     export_rich_content_json,
@@ -231,7 +230,9 @@ def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
 
 @cli.command("generate_video")
 @api.post("/generate_video/")
-def generate_video(output_path: Optional[str] = None) -> fastapi.responses.JSONResponse:  # dead: disable
+def generate_video(
+    output_path: Optional[str] = None,
+) -> fastapi.responses.JSONResponse:  # dead: disable
     """Generate a video from the processed script.
 
     Args:
@@ -253,10 +254,14 @@ def generate_video(output_path: Optional[str] = None) -> fastapi.responses.JSONR
         process_video(
             output_path=output_path, composition_props=None
         )  # Add the missing argument 'composition_props'
-        return fastapi.responses.JSONResponse(content={"message": "Video generated successfully"}, status_code=200)
+        return fastapi.responses.JSONResponse(
+            content={"message": "Video generated successfully"}, status_code=200
+        )
     except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
         logger.exception("Error generating video: %s", inner_e)
-        return fastapi.responses.JSONResponse(content={"error": str(inner_e)}, status_code=500)
+        return fastapi.responses.JSONResponse(
+            content={"error": str(inner_e)}, status_code=500
+        )
 
 
 if __name__ == "__main__":

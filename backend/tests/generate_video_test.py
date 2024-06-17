@@ -5,13 +5,15 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-from utils.generate_video import CompositionProps, process_video
 
 # Constants
-VIDEO_FPS = 30
-REMOTION_ROOT_PATH = Path("frontend/remotion/index.ts")
-REMOTION_COMPOSITION_ID = "Arxflix"
-REMOTION_CONCURRENCY = 1
+from config import (
+    REMOTION_COMPOSITION_ID,
+    REMOTION_CONCURRENCY,
+    REMOTION_ROOT_PATH,
+    VIDEO_FPS,
+)
+from utils.generate_video import CompositionProps, process_video
 
 
 def test_composition_props_default() -> None:

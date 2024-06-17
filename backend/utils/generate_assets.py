@@ -21,7 +21,6 @@ from config import (
 )
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
-
 from models import Caption, Equation, Figure, Headline, RichContent, Text
 
 # Setup logging
