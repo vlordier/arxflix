@@ -108,7 +108,7 @@ def generate_audio_and_caption(
     if temp_dir is None:
         temp_dir = Path(tempfile.gettempdir())
 
-    elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
+    elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY or "fake_api_key")
     if not temp_dir.exists():
         temp_dir.mkdir(parents=True)
 
