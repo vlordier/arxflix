@@ -6,8 +6,8 @@ from unittest import mock
 # Add the root directory to the Python path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
-from backend.types import Equation, Figure, Headline, Text
-from backend.utils.generate_assets import (
+from models import Equation, Figure, Headline, Text
+from utils.generate_assets import (
     export_mp3,
     export_rich_content_json,
     export_srt,

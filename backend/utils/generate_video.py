@@ -3,7 +3,7 @@ import logging
 import subprocess
 from dataclasses import asdict
 from pathlib import Path
-from types import CompositionProps
+from models import CompositionProps
 from typing import Optional
 
 from config import REMOTION_COMPOSITION_ID, REMOTION_CONCURRENCY, REMOTION_ROOT_PATH

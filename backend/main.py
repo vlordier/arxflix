@@ -9,8 +9,8 @@ import typer
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
-from backend.types import RichContent, Text
-from backend.utils.generate_assets import (
+from models import RichContent, Text
+from utils.generate_assets import (
     export_mp3,
     export_rich_content_json,
     export_srt,
@@ -18,9 +18,9 @@ from backend.utils.generate_assets import (
     generate_audio_and_caption,
     parse_script,
 )
-from backend.utils.generate_paper import process_article
-from backend.utils.generate_script import process_script
-from backend.utils.generate_video import process_video
+from utils.generate_paper import process_article
+from utils.generate_script import process_script
+from utils.generate_video import process_video
 
 # Constants
 PAPER_URL = ""
@@ -231,16 +231,21 @@ def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
 
 @cli.command("generate_video")
 @api.post("/generate_video/")
-def generate_video(output_path: Optional[Path]) -> None:  # dead: disable
+def generate_video(output_path: Optional[str] = None) -> fastapi.responses.JSONResponse:  # dead: disable
     """Generate a video from the processed script.
 
     Args:
-        output_path (Path, optional): Path to save the output video file. Defaults to "public/output.mp4".
+        output_path (str, optional): Path to save the output video file. Defaults to "public/output.mp4".
+
+    Returns:
+        JSONResponse: A JSON response indicating success or failure.
 
     Raises:
         ValueError: If there is an error generating the video.
     """
-    if not output_path:
+    if output_path:
+        output_path = Path(output_path)
+    else:
         output_path = Path("public/output.mp4")
 
     logger.info("Generating video to %s", output_path)
@@ -248,9 +253,10 @@ def generate_video(output_path: Optional[Path]) -> None:  # dead: disable
         process_video(
             output_path=output_path, composition_props=None
         )  # Add the missing argument 'composition_props'
+        return fastapi.responses.JSONResponse(content={"message": "Video generated successfully"}, status_code=200)
     except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
         logger.exception("Error generating video: %s", inner_e)
-        raise ValueError(f"Error generating video to {output_path}") from inner_e
+        return fastapi.responses.JSONResponse(content={"error": str(inner_e)}, status_code=500)
 
 
 if __name__ == "__main__":
