@@ -12,16 +12,17 @@ import srt
 import torch
 import torchaudio
 import whisper
-from config import (
+from elevenlabs import Voice, VoiceSettings, save
+from elevenlabs.client import ElevenLabs
+
+from backend.config import (
     ELEVENLABS_API_KEY,
     ELEVENLABS_MODEL,
     ELEVENLABS_SIMILARITY_BOOST,
     ELEVENLABS_STABILITY,
     ELEVENLABS_VOICE_ID,
 )
-from elevenlabs import Voice, VoiceSettings, save
-from elevenlabs.client import ElevenLabs
-from models import Caption, Equation, Figure, Headline, RichContent, Text
+from backend.models import Caption, Equation, Figure, Headline, RichContent, Text
 
 # Setup logging
 logger = logging.getLogger(__name__)

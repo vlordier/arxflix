@@ -7,9 +7,10 @@ from typing import Optional
 import fastapi
 import typer
 from dotenv import load_dotenv
-from models import RichContent, Text
 from pydantic import BaseModel
-from utils.generate_assets import (
+
+from backend.models import RichContent, Text
+from backend.utils.generate_assets import (
     export_mp3,
     export_rich_content_json,
     export_srt,
@@ -17,9 +18,9 @@ from utils.generate_assets import (
     generate_audio_and_caption,
     parse_script,
 )
-from utils.generate_paper import process_article
-from utils.generate_script import process_script
-from utils.generate_video import process_video
+from backend.utils.generate_paper import process_article
+from backend.utils.generate_script import process_script
+from backend.utils.generate_video import process_video
 
 # Constants
 PAPER_URL = ""
@@ -73,8 +74,9 @@ class AssetsInput(BaseModel):
 
 @cli.command("generate_paper")
 @api.get("/generate_paper/")
-def generate_paper(url: str) -> str:  # dead: disable
-    """Generate a paper from a given URL.
+def generate_paper(url: str) -> str:
+    """
+    Generate a paper from a given URL.
 
     Args:
         url (str): The URL of the paper to process.
@@ -86,7 +88,7 @@ def generate_paper(url: str) -> str:  # dead: disable
         ValueError: If there is an error processing the article.
     """
     global PAPER_URL
-    PAPER_URL = url  # dead: disable
+    PAPER_URL = url
     logger.info("Generating paper from URL: %s", url)
     try:
         paper_content = process_article(url)
@@ -114,7 +116,7 @@ def generate_script(paper: str, use_path: bool = True) -> str:
     if use_path:
         try:
             paper_content = Path(paper).read_text()
-        except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+        except Exception as inner_e:
             logger.exception("Error reading paper from path %s: %s", paper, inner_e)
             raise ValueError(f"Error reading paper from path {paper}") from inner_e
     else:
@@ -123,13 +125,13 @@ def generate_script(paper: str, use_path: bool = True) -> str:
     try:
         script_content = process_script(paper_content, PAPER_URL)
         return script_content
-    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+    except Exception as inner_e:
         logger.exception("Error generating script: %s", inner_e)
         raise ValueError("Error generating script") from inner_e
 
 
 @api.post("/generate_script/")
-def generate_script_api(input: ScriptInput) -> str:  # dead: disable
+def generate_script_api(input: ScriptInput) -> str:
     """API endpoint to generate a script from a given paper.
 
     Args:
@@ -171,14 +173,14 @@ def generate_assets(
         Path(mp3_output).parent.mkdir(parents=True, exist_ok=True)
         Path(srt_output).parent.mkdir(parents=True, exist_ok=True)
         Path(rich_output).parent.mkdir(parents=True, exist_ok=True)
-    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+    except Exception as inner_e:
         logger.exception("Error creating directories for output files: %s", inner_e)
         raise ValueError("Error creating directories for output files") from inner_e
 
     if use_path:
         try:
             script_content = Path(script).read_text()
-        except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+        except Exception as inner_e:
             logger.exception("Error reading script from path %s: %s", script, inner_e)
             raise ValueError(f"Error reading script from path {script}") from inner_e
     else:
@@ -204,13 +206,13 @@ def generate_assets(
             else 0
         )
         return total_duration
-    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+    except Exception as inner_e:
         logger.exception("Error generating assets: %s", inner_e)
         raise ValueError("Error generating assets") from inner_e
 
 
 @api.post("/generate_assets/")
-def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
+def generate_assets_api(assets_input: AssetsInput) -> float:
     """API endpoint to generate assets from a script.
 
     Args:
@@ -230,34 +232,25 @@ def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
 
 @cli.command("generate_video")
 @api.post("/generate_video/")
-def generate_video(
-    output_path: Optional[str] = None,
-) -> fastapi.responses.JSONResponse:  # dead: disable
-    """Generate a video from the processed script.
+def generate_video(output_path: Optional[str] = None) -> fastapi.responses.JSONResponse:
+    """
+    Generate a video from the processed script.
 
     Args:
-        output_path (str, optional): Path to save the output video file. Defaults to "public/output.mp4".
+        output_path (Optional[str]): Path to save the output video file. Defaults to "public/output.mp4".
 
     Returns:
-        JSONResponse: A JSON response indicating success or failure.
-
-    Raises:
-        ValueError: If there is an error generating the video.
+        fastapi.responses.JSONResponse: A JSON response indicating success or failure.
     """
-    if output_path:
-        output_path = Path(output_path)
-    else:
-        output_path = Path("public/output.mp4")
+    output_path = str(Path(output_path)) if output_path else "public/output.mp4"
 
     logger.info("Generating video to %s", output_path)
     try:
-        process_video(
-            output_path=output_path, composition_props=None
-        )  # Add the missing argument 'composition_props'
+        process_video(output_path=Path(output_path), composition_props=None)
         return fastapi.responses.JSONResponse(
             content={"message": "Video generated successfully"}, status_code=200
         )
-    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
+    except Exception as inner_e:
         logger.exception("Error generating video: %s", inner_e)
         return fastapi.responses.JSONResponse(
             content={"error": str(inner_e)}, status_code=500

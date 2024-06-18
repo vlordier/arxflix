@@ -5,8 +5,12 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Optional
 
-from config import REMOTION_COMPOSITION_ID, REMOTION_CONCURRENCY, REMOTION_ROOT_PATH
-from models import CompositionProps
+from backend.config import (
+    REMOTION_COMPOSITION_ID,
+    REMOTION_CONCURRENCY,
+    REMOTION_ROOT_PATH,
+)
+from backend.models import CompositionProps
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)

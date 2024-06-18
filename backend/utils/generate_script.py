@@ -3,8 +3,9 @@
 import logging
 
 import requests  # type: ignore
-from config import OPENAI_API_KEY, OPENAI_MODEL, SYSTEM_PROMPT
 from openai import OpenAI
+
+from backend.config import OPENAI_API_KEY, OPENAI_MODEL, SYSTEM_PROMPT
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -41,9 +42,7 @@ def correct_result_link(script: str, url: str) -> str:
                 modified_base_url = url.split("/html/")[0]
                 figure_url = f"{modified_base_url}{tmp_line}"
             else:
-                figure_url = (
-                    f"{url if url.endswith('/') else url + '/'}{tmp_line.lstrip('/')}"
-                )
+                figure_url = f"{url.rstrip('/')}/{tmp_line.lstrip('/')}"
 
             try:
                 response = requests.head(figure_url)

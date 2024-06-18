@@ -76,7 +76,26 @@ def convert_to_markdown(soup: BeautifulSoup, **options: Any) -> str:
     """
 
     class CustomMarkdownConverter(MarkdownConverter):
-        def convert_h1(self, el, text, convert_as_inline):
+        """Custom MarkdownConverter class to override
+        convert_h1 method.
+
+        Args:
+            options (Any): Additional options for MarkdownConverter.
+
+        """
+
+        def convert_h1(self, el: Tag, text: str, convert_as_inline: bool) -> str:
+            """
+            Convert h1 tags to markdown.
+
+            Args:
+                el (Tag): The h1 tag.
+                text (str): The text content of the h1 tag.
+                convert_as_inline (bool): Whether to convert the h1 tag as inline.
+
+            Returns:
+                str: The converted markdown string.
+            """
             return f"# {text}\n\n"
 
     return CustomMarkdownConverter(**options).convert_soup(soup)

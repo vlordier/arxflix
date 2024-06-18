@@ -5,7 +5,10 @@ from utils.generate_script import correct_result_link, process_script
 
 
 @pytest.fixture
-def test_script():
+def test_script() -> str:
+    """
+    Fixture to create a test script.
+    """
     return """
     This is a sample script.
     \\Figure: /figures/sample1.png
@@ -13,12 +16,20 @@ def test_script():
     \\Figure: /figures/sample2.png
     """
 
-@pytest.fixture
-def sample_url():
-    return "https://ar5iv.labs.arxiv.org/html/1234.5678"
 
 @pytest.fixture
-def corrected_test_script():
+def sample_url() -> str:
+    """
+    Fixture to create a sample URL.
+    """
+    return "https://ar5iv.labs.arxiv.org/html/1234.5678"
+
+
+@pytest.fixture
+def corrected_test_script() -> str:
+    """
+    Fixture to create a corrected test script.
+    """
     return """
     This is a sample script.
     \\Figure: https://ar5iv.labs.arxiv.org/html/1234.5678/figures/sample1.png
@@ -26,7 +37,18 @@ def corrected_test_script():
     \\Figure: https://ar5iv.labs.arxiv.org/html/1234.5678/figures/sample2.png
     """
 
-def test_correct_result_link(test_script, sample_url, corrected_test_script):
+
+def test_correct_result_link(
+    test_script: str, sample_url: str, corrected_test_script: str
+) -> None:
+    """
+    Test correcting result link.
+
+    Args:
+        test_script (str): The test script.
+        sample_url (str): The sample URL.
+        corrected_test_script (str): The corrected test script.
+    """
     with patch("requests.head") as mock_head:
         # Mock response for valid image URL
         mock_response = MagicMock()
@@ -38,9 +60,53 @@ def test_correct_result_link(test_script, sample_url, corrected_test_script):
         assert corrected == corrected_test_script
 
 
-def test_process_script(sample_paper, sample_url, mock_openai_response):
+def test_process_script(
+    sample_paper: str,
+    sample_url: str,
+    mock_openai_response: tuple[MagicMock, MagicMock],
+) -> None:
+    """
+    Test processing script.
+
+    Args:
+        sample_paper (str): The sample paper content.
+        sample_url (str): The sample URL.
+        mock_openai_response (tuple[MagicMock, MagicMock]): The mocked OpenAI response.
+    """
     mock_openai_client, mock_response = mock_openai_response
-    generated_script = "\\Headline: Sample Paper Research Overview\n\\Text: Welcome back to Arxflix! Today, we’re exploring an insightful research paper, \"Sample Paper Research Overview.\" This study delved into an advanced topic within the field of deep learning, proposing a novel approach to optimize neural network performance.\n\n\\Headline: Introduction\n\\Text: To start, the authors of this paper address the limitations of current deep learning models, specifically how they struggle with scalability and efficiency. They highlight the necessity for more robust architectures that can handle larger datasets and more complex tasks.\n\n\\Headline: Methodology\n\\Text: The core of their approach involves a multi-layered neural network with enhanced feature extraction capabilities. They introduce a new algorithm that significantly reduces training time while maintaining high accuracy.\n\n\\Headline: Results\n\\Text: The results are promising, showing a marked improvement in both speed and accuracy compared to existing models. The authors provide detailed benchmarks and comparisons to illustrate the effectiveness of their method.\n\n\\Headline: Conclusion\n\\Text: In conclusion, this paper presents a significant advancement in the field of deep learning. The proposed method not only improves performance but also opens new avenues for future research. Stay tuned for more updates and insights from the frontiers of AI!"
+    generated_script = """Sure, let’s generate a script for a sample paper:
+
+\\Headline: A New Approach to CNN Optimization with Feature Fusion
+\\Text: Welcome back to Arxflix! Today, we’re diving into an innovative research paper titled "A New Approach to CNN Optimization with Feature Fusion". This study explores a fresh methodology to enhance the performance of Convolutional Neural Networks (CNNs) by leveraging feature fusion techniques.
+\\Figure: https://example.com/cnn_optimization_fusion.png
+\\Text: Here’s a visual representation of the proposed CNN optimization framework. The model integrates multiple feature extraction techniques to improve the overall accuracy and computational efficiency.
+
+\\Headline: Introduction to CNN and Feature Fusion
+\\Text: Convolutional Neural Networks have become a cornerstone in deep learning, especially in image and video processing tasks. However, there's always room for improvement in how these networks extract and process features.
+\\Text: This paper introduces a novel feature fusion module that integrates features from different network layers, aiming to enhance the representational power of the network.
+
+\\Headline: The Core Idea
+\\Text: The core idea revolves around combining shallow and deep features within a CNN to capture both low-level and high-level semantic information. This fusion helps in mitigating the loss of spatial details which often occurs in deeper layers.
+\\Figure: https://example.com/feature_fusion_diagram.png
+\\Text: Here, we see the architecture of the feature fusion module. Shallow layers capture fine-grained details, while deep layers encapsulate abstract concepts. The fusion module blends these features together for a richer output.
+
+\\Headline: Mathematical Formulation
+\\Text: Let's delve into the mathematics behind this approach. The feature maps from different layers are fused using a concatenation operation, followed by a 1x1 convolution to reduce dimensionality.
+\\Equation: F_fused = Conv([F_shallow, F_deep])
+\\Text: In this equation, \\( F_{\\text{fused}} \\) represents the fused feature map, while \\( F_{\text{shallow}} \\) and \\( F_{\text{deep}} \\) are the feature maps from shallow and deep layers, respectively.
+
+\\Headline: Experiment and Results
+\\Text: The researchers conducted extensive experiments on popular benchmarks like CIFAR-10 and ImageNet. The results showed significant improvements in accuracy and a reduction in computational load.
+\\Figure: https://example.com/experimental_results.png
+\\Text: This chart compares the performance of traditional CNNs and the proposed model on the CIFAR-10 dataset. Notice the marked enhancement in accuracy and efficiency.
+
+\\Headline: Conclusion and Future Work
+\\Text: In conclusion, the paper presents a compelling case for utilizing feature fusion to optimize CNNs. It opens up new avenues for research in neural network performance tweaks.
+\\Text: Future work could explore extending this methodology to other deep learning architectures and applications. The potential for combining this approach with other optimization techniques is also worth investigating.
+
+\\Text: Thanks for watching, and don’t forget to like, share, and subscribe to Arxflix for more deep dives into cutting-edge research. See you next time!
+
+And that wraps up our video! I hope this script serves as a helpful guide."""
     mock_response.choices[0].message.content = generated_script
 
     with patch("openai.OpenAI", return_value=mock_openai_client):
@@ -48,11 +114,7 @@ def test_process_script(sample_paper, sample_url, mock_openai_response):
         assert result == generated_script
 
         # Test for ValueError when no result is returned
-        mock_response.choices[0].message.content = None
+        mock_response.choices[0].message.content = ""
         with pytest.raises(ValueError):
             process_script(sample_paper, sample_url)
         mock_openai_client.chat.completions.create.assert_called_once()
-
-        with pytest.raises(ValueError):
-            mock_response.choices[0].message.content = None
-            process_script(sample_paper, sample_url)

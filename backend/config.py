@@ -21,8 +21,6 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 
 # Remotion configuration
 VIDEO_FPS = int(os.getenv("VIDEO_FPS", 30))
-VIDEO_HEIGHT = int(os.getenv("VIDEO_HEIGHT", 1080))
-VIDEO_WIDTH = int(os.getenv("VIDEO_WIDTH", 1920))
 REMOTION_ROOT_PATH = Path(os.getenv("REMOTION_ROOT_PATH", "frontend"))
 REMOTION_COMPOSITION_ID = os.getenv("REMOTION_COMPOSITION_ID", "composition")
 REMOTION_CONCURRENCY = int(os.getenv("REMOTION_CONCURRENCY", 1))
@@ -50,3 +48,6 @@ Here an example what you need to produce:
 \\Headline: The Problem with Traditional Scaling
 ...
 """
+# Configuration settings for the backend application
+
+VIDEO_FPS = 30  # Example configuration setting

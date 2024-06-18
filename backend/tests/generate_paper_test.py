@@ -14,7 +14,11 @@ from utils.generate_paper import (
 )
 
 
-def test_sanitize_url():
+def test_sanitize_url() -> None:
+    """
+    Test sanitizing URL.
+    """
+    """Test sanitizing URL."""
     assert sanitize_url("https://example.com?query=123") == "https://example.com"
     assert sanitize_url("https://example.com#section") == "https://example.com"
 
@@ -26,7 +30,14 @@ def test_sanitize_url():
 
 
 @patch("requests.get")
-def test_fetch_html(mock_get):
+def test_fetch_html(mock_get: Mock) -> None:
+    """
+    Test fetching HTML.
+
+    Args:
+        mock_get (Mock): Mock object for requests.get.
+    """
+    """Test fetching HTML."""
     mock_response = Mock()
     mock_response.status_code = 200
     mock_response.text = "<html></html>"
@@ -39,27 +50,43 @@ def test_fetch_html(mock_get):
         fetch_html("https://example.com")
 
 
-def test_convert_to_markdown():
+def test_convert_to_markdown() -> None:
+    """
+    Test converting to markdown.
+    """
+    """Test converting to markdown."""
     soup = BeautifulSoup("<h1>Title</h1><p>Paragraph</p>", "html.parser")
     markdown = convert_to_markdown(soup)
     assert "# Title\n\nParagraph" in markdown
 
 
-def test_replace_math_tags():
+def test_replace_math_tags() -> None:
+    """
+    Test replacing math tags.
+    """
+    """Test replacing math tags."""
     html_content = '<math display="inline" alttext="x+y">x+y</math>'
     soup = BeautifulSoup(html_content, "html.parser")
     soup = replace_math_tags(soup)
     assert "$x+y$" in str(soup)
 
 
-def test_remove_section_by_class():
+def test_remove_section_by_class() -> None:
+    """
+    Test removing section by class.
+    """
+    """Test removing section by class."""
     html_content = '<div class="ltx_bibliography">Bibliography</div>'
     soup = BeautifulSoup(html_content, "html.parser")
     soup = remove_section_by_class(soup, "ltx_bibliography")
     assert "Bibliography" not in str(soup)
 
 
-def test_strip_attributes():
+def test_strip_attributes() -> None:
+    """
+    Test stripping attributes.
+    """
+    """Test stripping attributes."""
     html_content = '<img src="image.jpg" alt="image" width="500">'
     soup = BeautifulSoup(html_content, "html.parser")
     soup = strip_attributes(soup)
@@ -69,7 +96,14 @@ def test_strip_attributes():
 
 
 @patch("utils.generate_paper.fetch_html")
-def test_process_article(mock_fetch_html):
+def test_process_article(mock_fetch_html: Mock) -> None:
+    """
+    Test processing article.
+
+    Args:
+        mock_fetch_html (Mock): Mock object for fetch_html.
+    """
+    """Test processing article."""
     mock_fetch_html.return_value = "<article><h1>Title</h1><p>Content</p></article>"
     url = "https://example.com"
     result = process_article(url)

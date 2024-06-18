@@ -45,7 +45,6 @@ def test_process_video_default(mock_subprocess_run: MagicMock) -> None:
 
     Args:
         mock_subprocess_run (MagicMock): Mock object for subprocess.run.
-
     """
     mock_subprocess_run.return_value = MagicMock()
 
@@ -79,7 +78,6 @@ def test_process_video_custom_path(mock_subprocess_run: MagicMock) -> None:
 
     Args:
         mock_subprocess_run (MagicMock): Mock object for subprocess.run.
-
     """
     mock_subprocess_run.return_value = MagicMock()
 
@@ -116,7 +114,6 @@ def test_process_video_exception(mock_subprocess_run: MagicMock) -> None:
 
     Raises:
         subprocess.CalledProcessError: If subprocess.run raises CalledProcessError.
-
     """
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(1, "cmd")
 

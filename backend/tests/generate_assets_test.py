@@ -1,11 +1,12 @@
+""" Tests for generate_assets module. """
+
 import os
 import sys
 from pathlib import Path
 from unittest import mock
 from unittest.mock import MagicMock
 
-# Add the root directory to the Python path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from models import Equation, Figure, Headline, Text
 from utils.generate_assets import (
@@ -20,6 +21,12 @@ from utils.generate_assets import (
 
 
 def test_parse_script(sample_script: str) -> None:
+    """
+    Test parsing script.
+
+    Args:
+        sample_script (str): The sample script to parse.
+    """
     contents = parse_script(sample_script)
     assert len(contents) == 4
     assert isinstance(contents[0], Figure)
@@ -29,6 +36,9 @@ def test_parse_script(sample_script: str) -> None:
 
 
 def test_make_caption() -> None:
+    """
+    Test making caption.
+    """
     result = {
         "segments": [
             {
@@ -51,6 +61,15 @@ def test_generate_audio_and_caption(
     mock_whisper_model: MagicMock,
     mock_torchaudio_load: MagicMock,
 ) -> None:
+    """
+    Test generating audio and caption.
+
+    Args:
+        sample_script (str): The sample script to process.
+        temp_dir_fixture (str): The temporary directory fixture.
+        mock_whisper_model (MagicMock): The mocked Whisper model.
+        mock_torchaudio_load (MagicMock): The mocked torchaudio.load function.
+    """
     with mock.patch("utils.generate_assets.ElevenLabs") as MockElevenLabs, mock.patch(
         "utils.generate_assets.ELEVENLABS_API_KEY", "fake_api_key"
     ):
@@ -78,6 +97,9 @@ def test_generate_audio_and_caption(
 
 
 def test_fill_rich_content_time() -> None:
+    """
+    Test filling rich content time.
+    """
     script_contents = [
         Figure(content="Sample Figure"),
         Text(content="Sample Text", start=0.0, end=1.0),
@@ -92,6 +114,13 @@ def test_fill_rich_content_time() -> None:
 
 
 def test_export_mp3(temp_dir_fixture: str, mock_torchaudio_load: MagicMock) -> None:
+    """
+    Test exporting MP3.
+
+    Args:
+        temp_dir_fixture (str): The temporary directory fixture.
+        mock_torchaudio_load (MagicMock): The mocked torchaudio.load function.
+    """
     text_contents = [
         Text(
             content="Sample Text",
@@ -108,19 +137,33 @@ def test_export_srt(
     mock_whisper_model: MagicMock,
     mock_torchaudio_load: MagicMock,
 ) -> None:
+    """
+    Test exporting SRT.
+
+    Args:
+        temp_dir_fixture (str): The temporary directory fixture.
+        mock_whisper_model (MagicMock): The mocked Whisper model.
+        mock_torchaudio_load (MagicMock): The mocked torchaudio.load function.
+    """
     full_audio_path = os.path.join(temp_dir_fixture, "full_audio.wav")
     output_path = os.path.join(temp_dir_fixture, "output.srt")
-    with open(full_audio_path, "wb") as f:
+    with open(full_audio_path, "wb", encoding="utf-8") as f:
         f.write(b"fake_audio_data")
     export_srt(full_audio_path, output_path)
     assert os.path.exists(output_path)
 
 
 def test_export_rich_content_json(temp_dir_fixture: str) -> None:
+    """
+    Test exporting rich content JSON.
+
+    Args:
+        temp_dir_fixture (str): The temporary directory fixture.
+    """
     rich_contents = [Figure(content="Sample Figure", start=0.0, end=1.0)]
     output_path = os.path.join(temp_dir_fixture, "output.json")
     export_rich_content_json(rich_contents, output_path)
     assert os.path.exists(output_path)
-    with open(output_path, "r") as f:
+    with open(output_path, "r", encoding="utf-8") as f:
         data = f.read()
     assert "Sample Figure" in data

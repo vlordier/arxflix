@@ -1,4 +1,5 @@
 import tempfile
+from typing import Generator
 from unittest import mock
 from unittest.mock import MagicMock
 
@@ -7,12 +8,12 @@ import torch
 
 
 @pytest.fixture
-def sample_url():
+def sample_url() -> str:
     return "https://ar5iv.labs.arxiv.org/html/1234.5678"
 
 
 @pytest.fixture
-def test_script():
+def test_script() -> str:
     return """
     This is a sample script.
     \\Figure: /figures/sample1.png
@@ -22,7 +23,7 @@ def test_script():
 
 
 @pytest.fixture
-def corrected_test_script():
+def corrected_test_script() -> str:
     return """
     This is a sample script.
     \\Figure: https://ar5iv.labs.arxiv.org/html/figures/sample1.png
@@ -32,7 +33,7 @@ def corrected_test_script():
 
 
 @pytest.fixture
-def mock_openai_response() -> MagicMock:
+def mock_openai_response() -> tuple[MagicMock, MagicMock]:
     """Fixture to mock the OpenAI API response."""
     mock_openai_client = MagicMock()
     mock_response = MagicMock()
@@ -43,6 +44,9 @@ def mock_openai_response() -> MagicMock:
 
 @pytest.fixture
 def sample_script() -> str:
+    """
+    Fixture to create a sample script.
+    """
     """Fixture to create a sample script."""
     return (
         "\\Figure: Sample Figure\n"
@@ -54,12 +58,15 @@ def sample_script() -> str:
 
 @pytest.fixture
 def sample_paper() -> str:
+    """
+    Fixture to create a sample paper.
+    """
     """Fixture to create a sample paper."""
     return "This is a sample paper content."
 
 
 @pytest.fixture
-def mock_whisper_model() -> MagicMock:
+def mock_whisper_model() -> Generator[MagicMock, None, None]:
     """Fixture to mock the Whisper model."""
     with mock.patch("whisper.load_model") as mocked_load_model:
         mocked_model = mock.Mock()
@@ -78,7 +85,7 @@ def mock_whisper_model() -> MagicMock:
 
 
 @pytest.fixture
-def mock_torchaudio_load() -> MagicMock:
+def mock_torchaudio_load() -> Generator[MagicMock, None, None]:
     """Fixture to mock the torchaudio.load function."""
     with mock.patch("torchaudio.load") as mocked_torchaudio_load:
         mocked_torchaudio_load.return_value = (torch.zeros(1, 16000), 16000)
@@ -86,7 +93,7 @@ def mock_torchaudio_load() -> MagicMock:
 
 
 @pytest.fixture
-def temp_dir_fixture() -> str:
+def temp_dir_fixture() -> Generator[str, None, None]:
     """Fixture to create a temporary directory."""
     with tempfile.TemporaryDirectory() as temporary_dir:
         yield temporary_dir

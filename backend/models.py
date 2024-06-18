@@ -3,7 +3,7 @@
 from dataclasses import dataclass, field
 from typing import Iterator, Literal
 
-from config import VIDEO_FPS
+from backend.config import VIDEO_FPS
 
 
 @dataclass
