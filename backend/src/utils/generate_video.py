@@ -5,19 +5,19 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Optional
 
-from backend.config import (
+from backend.src.config import (
     REMOTION_COMPOSITION_ID,
     REMOTION_CONCURRENCY,
     REMOTION_ROOT_PATH,
 )
-from backend.models import CompositionProps
+from backend.src.models import CompositionProps
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def process_video(
+def generate_video(
     output_path: Optional[Path],
     composition_props: Optional[CompositionProps],
 ) -> None:

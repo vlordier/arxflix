@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from backend.config import (
+from backend.src.config import (
     DEFAULT_MP3_OUTPUT_PATH,
     DEFAULT_RICH_OUTPUT_PATH,
     DEFAULT_SRT_OUTPUT_PATH,
