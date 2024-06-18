@@ -1,5 +1,6 @@
 """ Utility functions to generate audio, caption, and other assets. """
 
+import json
 import logging
 import os
 import tempfile
@@ -7,20 +8,25 @@ from datetime import timedelta
 from pathlib import Path
 from typing import List, Optional, Union
 
-import pandas as pd
 import srt
 import torch
 import torchaudio
 import whisper
+from dotenv import load_dotenv
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
 
+load_dotenv()
+
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+
+# Load the environment variables
 from backend.config import (
-    ELEVENLABS_API_KEY,
     ELEVENLABS_MODEL,
     ELEVENLABS_SIMILARITY_BOOST,
     ELEVENLABS_STABILITY,
     ELEVENLABS_VOICE_ID,
+    WHISPER_MODEL_NAME,
 )
 from backend.models import Caption, Equation, Figure, Headline, RichContent, Text
 
@@ -38,41 +44,72 @@ ELEVENLABS_VOICE = Voice(
 )
 
 
-def parse_script(script: str) -> List[Union[RichContent, Text]]:
-    """
-    Parse the script and return a list of RichContent or Text objects.
+def parse_script(
+    script: str,
+) -> List[Union[RichContent, Text, Figure, Equation, Headline]]:
+    """Parse the script and return a list of RichContent, Text, Figure, Equation, or Headline objects.
 
-    Args:
-        script (str): The script to parse as a string.
+    Parameters
+    ----------
+    script : str
+        The script to parse as a string
 
-    Returns:
-        List[Union[RichContent, Text]]: List of RichContent or Text objects.
+    Returns
+    -------
+    List[Union[RichContent, Text, Figure, Equation, Headline]]
+        List of RichContent, Text, Figure, Equation, or Headline objects
     """
     lines = script.split("\n")
-    content_list: List[Union[RichContent, Text, Figure, Equation, Headline]] = []
+    content: List[Union[RichContent, Text, Figure, Equation, Headline]] = []
+
+    # Mapping prefixes to their respective classes and any required additional arguments
+    content_mapping = {
+        "\\Figure:": Figure,
+        "\\Text:": Text,
+        "\\Equation:": Equation,
+        "\\Headline:": Headline,
+    }
+
     for line in lines:
-        if line.startswith("\\Figure: "):
-            figure_content = line.replace("\\Figure: ", "")
-            figure = Figure(content=figure_content)
-            content_list.append(figure)
-        elif line.startswith("\\Text: "):
-            text_content = line.replace("\\Text: ", "")
-            text = Text(content=text_content)
-            content_list.append(text)
-        elif line.startswith("\\Equation: "):
-            equation_content = line.replace("\\Equation: ", "")
-            equation = Equation(content=equation_content)
-            content_list.append(equation)
-        elif line.startswith("\\Headline: "):
-            headline_content = line.replace("\\Headline: ", "")
-            headline = Headline(content=headline_content)
-            content_list.append(headline)
+        if line.strip() == "":
+            continue
+        for prefix, cls in content_mapping.items():
+            if line.startswith(prefix):
+                content_value = line[
+                    len(prefix) :
+                ].strip()  # Strip any leading/trailing whitespace
+                if cls in [
+                    Figure,
+                    Equation,
+                ]:  # Add specific arguments for Figure and Equation
+                    content.append(
+                        cls(
+                            content=content_value,
+                            start=0.0,
+                            end=0.5,
+                            audio=None,
+                            captions=None,
+                        )
+                    )
+                else:
+                    content.append(cls(content=content_value))
+                break
         else:
-            logger.warning("Unknown line: %s", line)
-    return content_list
+            logger.warning(f"Unknown line: {line}")
+
+    return content
 
 
 def make_caption(result: dict) -> List[Caption]:
+    """
+    Create a list of Caption objects from the result of the Whisper model.
+
+    Args:
+        result (dict): Result dictionary from the Whisper model.
+
+    Returns:
+        List[Caption]: List of Caption objects.
+    """
     """
     Create a list of Caption objects from the result of the Whisper model.
 
@@ -95,6 +132,16 @@ def generate_audio_and_caption(
     script_contents: List[Union[RichContent, Text]],
     temp_dir: Optional[Path],
 ) -> List[Union[RichContent, Text]]:
+    """
+    Generate audio and caption for each text segment in the script.
+
+    Args:
+        script_contents (List[Union[RichContent, Text]]): List of RichContent or Text objects.
+        temp_dir (Path, optional): Temporary directory to store the audio files. Defaults to Path(tempfile.gettempdir()).
+
+    Returns:
+        List[Union[RichContent, Text]]: List of RichContent or Text objects with audio and caption.
+    """
     """
     Generate audio and caption for each text segment in the script.
 
@@ -175,28 +222,28 @@ def fill_rich_content_time(
             break
 
         if current_rich_content_group and next_text_group:
-            total_duration = (next_text_group[-1].end or 0) - (
-                next_text_group[0].start or 0
+            total_duration = (next_text_group[-1].end or 0.0) - (
+                next_text_group[0].start or 0.0
             )
             duration_per_rich_content = total_duration / (
                 len(current_rich_content_group) + 1
             )
-            offset = next_text_group[0].start
+            offset = next_text_group[0].start or 0.0
             for _i, rich_content in enumerate(current_rich_content_group):
                 rich_content.start = offset
-                rich_content.end = (offset + duration_per_rich_content) or 0
-                offset += duration_per_rich_content or 0
+                rich_content.end = offset + duration_per_rich_content
+                offset += duration_per_rich_content
 
     return script_contents
 
 
-def export_mp3(text_contents: List[Text], output_path: str) -> None:
+def export_mp3(text_contents: List[Text], output_path: Path) -> None:
     """
     Export the audio of the text contents to a single MP3 file.
 
     Args:
         text_contents (List[Text]): List of Text objects.
-        output_path (str): Path to save the MP3 file.
+        output_path (Path): Path to save the MP3 file.
 
     Raises:
         ValueError: Sample rate not found in the audio files.
@@ -213,15 +260,15 @@ def export_mp3(text_contents: List[Text], output_path: str) -> None:
     torchaudio.save(output_path, combined_audio, sample_rate)
 
 
-def export_srt(full_audio_path: str, output_path: str) -> None:
+def export_srt(full_audio_path: Path, output_path: Path) -> None:
     """
     Export the SRT file for the full audio using the Whisper model.
 
     Args:
-        full_audio_path (str): Path to the full audio file.
-        output_path (str): Path to save the SRT file.
+        full_audio_path (Path): Path to the full audio file.
+        output_path (Path): Path to save the SRT file.
     """
-    model = whisper.load_model("base.en")
+    model = whisper.load_model(WHISPER_MODEL_NAME)
     result = model.transcribe(full_audio_path, word_timestamps=True)
     captions = make_caption(result)
     subtitles = [
@@ -234,19 +281,19 @@ def export_srt(full_audio_path: str, output_path: str) -> None:
         for i, caption in enumerate(captions)
     ]
     srt_text = srt.compose(subtitles)
-    with open(output_path, "w") as file:
+    with open(output_path, "w", encoding="utf-8") as file:
         file.write(srt_text)
 
 
 def export_rich_content_json(
-    rich_contents: List[RichContent], output_path: str
+    rich_contents: List[RichContent], output_path: Path
 ) -> None:
     """
     Export the rich content to a JSON file.
 
     Args:
         rich_contents (List[RichContent]): List of RichContent objects.
-        output_path (str): Path to save the JSON file.
+        output_path (Path): Path to save the JSON file.
     """
     rich_content_dicts = [
         {
@@ -257,5 +304,5 @@ def export_rich_content_json(
         }
         for content in rich_contents
     ]
-    df = pd.DataFrame(rich_content_dicts)
-    df.to_json(output_path, orient="records")
+    with open(output_path, "w", encoding="utf-8") as file:
+        json.dump(rich_content_dicts, file, indent=4)

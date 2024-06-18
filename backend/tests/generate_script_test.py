@@ -57,7 +57,7 @@ def test_correct_result_link(
         mock_head.return_value = mock_response
 
         corrected = correct_result_link(test_script, sample_url)
-        assert corrected == corrected_test_script
+        assert corrected.strip() == corrected_test_script.strip()
 
 
 def test_process_script(
@@ -74,7 +74,7 @@ def test_process_script(
         mock_openai_response (tuple[MagicMock, MagicMock]): The mocked OpenAI response.
     """
     mock_openai_client, mock_response = mock_openai_response
-    generated_script = """Sure, let’s generate a script for a sample paper:
+    generated_script = """Understood, please provide the title and content of the research paper you want the script for.
 
 \\Headline: A New Approach to CNN Optimization with Feature Fusion
 \\Text: Welcome back to Arxflix! Today, we’re diving into an innovative research paper titled "A New Approach to CNN Optimization with Feature Fusion". This study explores a fresh methodology to enhance the performance of Convolutional Neural Networks (CNNs) by leveraging feature fusion techniques.

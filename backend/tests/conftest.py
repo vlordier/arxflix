@@ -1,3 +1,5 @@
+""" This module contains the fixtures for the tests. """
+
 import tempfile
 from typing import Generator
 from unittest import mock
@@ -9,11 +11,13 @@ import torch
 
 @pytest.fixture
 def sample_url() -> str:
+    """Fixture to create a sample URL."""
     return "https://ar5iv.labs.arxiv.org/html/1234.5678"
 
 
 @pytest.fixture
 def test_script() -> str:
+    """Fixture to create a test script."""
     return """
     This is a sample script.
     \\Figure: /figures/sample1.png
@@ -24,6 +28,7 @@ def test_script() -> str:
 
 @pytest.fixture
 def corrected_test_script() -> str:
+    """Fixture to create a corrected test script."""
     return """
     This is a sample script.
     \\Figure: https://ar5iv.labs.arxiv.org/html/figures/sample1.png
@@ -44,23 +49,17 @@ def mock_openai_response() -> tuple[MagicMock, MagicMock]:
 
 @pytest.fixture
 def sample_script() -> str:
-    """
-    Fixture to create a sample script.
-    """
     """Fixture to create a sample script."""
     return (
-        "\\Figure: Sample Figure\n"
-        "\\Text: Sample Text\n"
-        "\\Equation: E=mc^2\n"
-        "\\Headline: Sample Headline\n"
+        r"\Figure: Sample Figure\n"
+        r"\Text: Sample Text\n"
+        r"\Equation: E=mc^2\n"
+        r"\Headline: Sample Headline\n"
     )
 
 
 @pytest.fixture
 def sample_paper() -> str:
-    """
-    Fixture to create a sample paper.
-    """
     """Fixture to create a sample paper."""
     return "This is a sample paper content."
 

@@ -1,9 +1,44 @@
 """ This module contains the dataclasses used to represent the different types of content in the application. """
 
 from dataclasses import dataclass, field
-from typing import Iterator, Literal
+from typing import Literal
+
+from pydantic import BaseModel
 
 from backend.config import VIDEO_FPS
+
+
+class ScriptInput(BaseModel):
+    """
+    Input parameters for generating a script.
+
+    Attributes:
+        paper (str): The paper content or the path to the paper file.
+        use_path (bool, optional): Whether to treat `paper` as a file path. Defaults to False.
+
+    """
+
+    paper: str
+    use_path: bool = False
+
+
+class AssetsInput(BaseModel):
+    """
+    Input parameters for generating assets.
+
+    Attributes:
+        script (str): The script content or the path to the script file.
+        use_path (bool, optional): Whether to treat `script` as a file path. Defaults to False.
+        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "public/audio.wav".
+        srt_output (str, optional): Path to save the SRT output file. Defaults to "public/output.srt".
+        rich_output (str, optional): Path to save the rich content JSON file. Defaults to "public/output.json".
+    """
+
+    script: str
+    use_path: bool = False
+    mp3_output: str = "public/audio.wav"
+    srt_output: str = "public/output.srt"
+    rich_output: str = "public/output.json"
 
 
 @dataclass
@@ -54,7 +89,7 @@ class Figure(RichContent):
 
 
 @dataclass
-class Text:
+class Text(RichContent):
     """
     Text dataclass
 
@@ -69,7 +104,7 @@ class Text:
     """
 
     content: str
-    audio: bytes | Iterator[bytes] | None = None
+    audio: bytes | None = None
     audio_path: str | None = None
     captions: list[Caption] | None = None
     start: float | None = None

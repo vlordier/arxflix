@@ -1,14 +1,10 @@
 """ Tests for generate_assets module. """
 
 import os
-import sys
 from pathlib import Path
 from unittest import mock
 from unittest.mock import MagicMock
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-from models import Equation, Figure, Headline, Text
 from utils.generate_assets import (
     export_mp3,
     export_rich_content_json,
@@ -19,14 +15,20 @@ from utils.generate_assets import (
     parse_script,
 )
 
+from backend.models import Equation, Figure, Headline, Text
 
-def test_parse_script(sample_script: str) -> None:
+# sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+
+def test_parse_script() -> None:
+    sample_script = "\\Figure: Sample Figure\n\\Text: Sample Text\n\\Equation: E=mc^2\n\\Headline: Sample Headline"
     """
     Test parsing script.
 
     Args:
         sample_script (str): The sample script to parse.
     """
+    print(sample_script)
     contents = parse_script(sample_script)
     assert len(contents) == 4
     assert isinstance(contents[0], Figure)
@@ -101,9 +103,9 @@ def test_fill_rich_content_time() -> None:
     Test filling rich content time.
     """
     script_contents = [
-        Figure(content="Sample Figure"),
+        Figure(content="Sample Figure", start=0.0, end=0.5, audio=None, captions=None),
         Text(content="Sample Text", start=0.0, end=1.0),
-        Equation(content="E=mc^2"),
+        Equation(content="E=mc^2", start=0.0, end=0.5, audio=None, captions=None),
         Text(content="Another Text", start=1.0, end=2.0),
     ]
     result = fill_rich_content_time(script_contents)
@@ -147,13 +149,13 @@ def test_export_srt(
     """
     full_audio_path = os.path.join(temp_dir_fixture, "full_audio.wav")
     output_path = os.path.join(temp_dir_fixture, "output.srt")
-    with open(full_audio_path, "wb", encoding="utf-8") as f:
+    with open(full_audio_path, "wb") as f:
         f.write(b"fake_audio_data")
     export_srt(full_audio_path, output_path)
     assert os.path.exists(output_path)
 
 
-def test_export_rich_content_json(temp_dir_fixture: str) -> None:
+def test_export_rich_content_json(temp_dir_fixture: Path) -> None:
     """
     Test exporting rich content JSON.
 

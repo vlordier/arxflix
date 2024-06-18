@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 # Load .env file
 load_dotenv()
 
+PAPER_URL = ""  # dead: disable
+DEFAULT_TEMP_DIR = Path("./audio")
+LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
 # ElevenLabs configuration
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", default="lxYfHSkYm1EzQzGhdbfc")
@@ -51,3 +55,8 @@ Here an example what you need to produce:
 # Configuration settings for the backend application
 
 VIDEO_FPS = 30  # Example configuration setting
+DEFAULT_MP3_OUTPUT_PATH = Path("public/audio.wav")
+DEFAULT_SRT_OUTPUT_PATH = Path("public/output.srt")
+DEFAULT_RICH_OUTPUT_PATH = Path("public/output.json")
+DEFAULT_VIDEO_OUTPUT_PATH = Path("public/output.mp4")
+WHISPER_MODEL_NAME = "base.en"
