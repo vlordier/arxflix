@@ -5,7 +5,7 @@ import logging
 import requests  # type: ignore
 from openai import OpenAI
 
-from backend.src.config import OPENAI_API_KEY, OPENAI_MODEL, SYSTEM_PROMPT
+from backend.config import OPENAI_API_KEY, OPENAI_MODEL, SYSTEM_PROMPT
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -64,7 +64,7 @@ def correct_result_link(script: str, url: str) -> str:
     return "\n".join(split_script)
 
 
-def generate_script(paper: str, url: str) -> str:
+def process_script(paper: str, url: str) -> str:
     """
     Generate a video script for a research paper using OpenAI's GPT-4o model.
 

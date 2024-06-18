@@ -1,18 +1,11 @@
 """ This module contains the dataclasses used to represent the different types of content in the application. """
 
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel
 
-from backend.config import (
-    DEFAULT_MP3_OUTPUT_PATH,
-    DEFAULT_RICH_OUTPUT_PATH,
-    DEFAULT_SRT_OUTPUT_PATH,
-    VIDEO_FPS,
-    WAVE_COLOR,
-)
+from backend.config import VIDEO_FPS
 
 
 class ScriptInput(BaseModel):
@@ -25,8 +18,7 @@ class ScriptInput(BaseModel):
 
     """
 
-    paper_as_str: str = ""
-    path: Path = Path()
+    paper: str
     use_path: bool = False
 
 
@@ -37,16 +29,16 @@ class AssetsInput(BaseModel):
     Attributes:
         script (str): The script content or the path to the script file.
         use_path (bool, optional): Whether to treat `script` as a file path. Defaults to False.
-        mp3_output (Path, optional): Path to save the MP3 output file. Defaults to "public/audio.wav".
-        srt_output (Path, optional): Path to save the SRT output file. Defaults to "public/output.srt".
-        rich_output (Path, optional): Path to save the rich content JSON file. Defaults to "public/output.json".
+        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "public/audio.wav".
+        srt_output (str, optional): Path to save the SRT output file. Defaults to "public/output.srt".
+        rich_output (str, optional): Path to save the rich content JSON file. Defaults to "public/output.json".
     """
 
     script: str
     use_path: bool = False
-    mp3_output: Path = DEFAULT_MP3_OUTPUT_PATH
-    srt_output: Path = DEFAULT_SRT_OUTPUT_PATH
-    rich_output: Path = DEFAULT_RICH_OUTPUT_PATH
+    mp3_output: str = "public/audio.wav"
+    srt_output: str = "public/output.srt"
+    rich_output: str = "public/output.json"
 
 
 @dataclass
@@ -160,8 +152,8 @@ class CompositionProps:
         duration_in_seconds (int): The duration of the video in seconds.
         audio_offset_in_seconds (int): The offset of the audio in seconds.
         subtitles_file_name (str): The path to the subtitles file.
-        audio_file_name (Path): The path to the audio file.
-        rich_content_file_name (Path): The path to the rich content file.
+        audio_file_name (str): The path to the audio file.
+        rich_content_file_name (str): The path to the rich content file.
         wave_color (str): The color of the wave.
         subtitles_line_per_page (int): The number of lines per page.
         subtitles_line_height (int): The height of each line.
@@ -179,10 +171,10 @@ class CompositionProps:
 
     duration_in_seconds: int = 5
     audio_offset_in_seconds: int = 0
-    subtitles_file_name: Path = DEFAULT_SRT_OUTPUT_PATH
-    audio_file_name: Path = DEFAULT_MP3_OUTPUT_PATH
-    rich_content_file_name: Path = DEFAULT_RICH_OUTPUT_PATH
-    wave_color: str = WAVE_COLOR
+    subtitles_file_name: str = "frontend/public/output.srt"
+    audio_file_name: str = "frontend/public/audio.wav"
+    rich_content_file_name: str = "frontend/public/output.json"
+    wave_color: str = "#a3a5ae"
     subtitles_line_per_page: int = 2
     subtitles_line_height: int = 98
     subtitles_zoom_measurer_size: int = 10

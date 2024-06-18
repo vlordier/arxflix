@@ -38,6 +38,7 @@ def sanitize_url(url: str) -> str:
     url = url.split("?")[0].split("#")[0]
     return url
 
+
 def fetch_html(url: str) -> str:
     """
     Fetch HTML content from a given URL.
@@ -52,12 +53,6 @@ def fetch_html(url: str) -> str:
         ValueError: If there is an error fetching the HTML content.
     """
     sanitized_url = sanitize_url(url)
-
-    logger.info("Fetching HTML from %s", sanitized_url)
-
-    if 'arxiv.org/abs/' in sanitized_url:
-        sanitized_url = sanitized_url.replace('https://arxiv.org/abs/', 'https://ar5iv.labs.arxiv.org/html/')
-
 
     try:
         response = requests.get(sanitized_url)
@@ -147,7 +142,7 @@ def strip_attributes(soup: BeautifulSoup) -> BeautifulSoup:
     return soup
 
 
-def generate_paper(url: str) -> str:
+def process_article(url: str) -> str:
     """
     Process an article from a given URL and save it as a markdown file.
 

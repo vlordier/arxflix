@@ -38,15 +38,6 @@ types-requests = "*"
 [tool.poetry.scripts]
 main = "backend.main:main"
 
-[tool.poetry.scripts]
-main = "backend.main:main"
-
-[tool.poetry.scripts]
-main = "backend.main:main"
-
-[tool.poetry.env]
-PYTHONPATH = "backend"
-
 [[tool.poetry.source]]
 name = "torch_cpu"
 priority = "explicit"
