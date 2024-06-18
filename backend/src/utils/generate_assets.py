@@ -110,15 +110,6 @@ def make_caption(result: dict) -> List[Caption]:
     Returns:
         List[Caption]: List of Caption objects.
     """
-    """
-    Create a list of Caption objects from the result of the Whisper model.
-
-    Args:
-        result (dict): Result dictionary from the Whisper model.
-
-    Returns:
-        List[Caption]: List of Caption objects.
-    """
     captions = []
     for segment in result["segments"]:
         for word in segment["words"]:
@@ -132,16 +123,6 @@ def generate_audio_and_caption(
     script_contents: List[Union[RichContent, Text]],
     temp_dir: Optional[Path],
 ) -> List[Union[RichContent, Text]]:
-    """
-    Generate audio and caption for each text segment in the script.
-
-    Args:
-        script_contents (List[Union[RichContent, Text]]): List of RichContent or Text objects.
-        temp_dir (Path, optional): Temporary directory to store the audio files. Defaults to Path(tempfile.gettempdir()).
-
-    Returns:
-        List[Union[RichContent, Text]]: List of RichContent or Text objects with audio and caption.
-    """
     """
     Generate audio and caption for each text segment in the script.
 
