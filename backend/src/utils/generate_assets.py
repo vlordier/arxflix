@@ -12,16 +12,12 @@ import srt
 import torch
 import torchaudio
 import whisper
-from dotenv import load_dotenv
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
 
-load_dotenv()
-
-ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
-
 # Load the environment variables
 from backend.config import (
+    ELEVENLABS_API_KEY,
     ELEVENLABS_MODEL,
     ELEVENLABS_SIMILARITY_BOOST,
     ELEVENLABS_STABILITY,

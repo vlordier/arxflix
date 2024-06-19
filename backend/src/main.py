@@ -60,10 +60,10 @@ def generate_paper(url: str) -> None:  # dead: disable
         typer.echo(paper_content)
     except ValueError as ve:
         logger.error("ValueError: %s", ve)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from ve
     except Exception as e:
         logger.exception("Unexpected error generating paper from URL %s: %s", url, e)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from e
 
 
 @api.get("/generate_paper/", response_model=str)
@@ -86,7 +86,9 @@ def generate_paper_api(url: str) -> str:  # dead: disable
         return process_article(url)
     except Exception as e:
         logger.exception("Unexpected error generating paper from URL %s: %s", url, e)
-        raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e)
+        ) from e
 
 
 @cli.command("generate_script")
@@ -109,10 +111,10 @@ def generate_script(paper: str, use_path: bool = True) -> None:
         typer.echo(script_content)
     except FileNotFoundError as fnfe:
         logger.error("FileNotFoundError: %s", fnfe)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from fnfe
     except Exception as e:
         logger.exception("Unexpected error generating script: %s", e)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from e
 
 
 @api.post("/generate_script/", response_model=str)
@@ -134,7 +136,9 @@ def generate_script_api(input: ScriptInput) -> str:  # dead: disable
         return generate_script(input.paper, input.use_path)
     except Exception as e:
         logger.exception("Unexpected error generating script: %s", e)
-        raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e)
+        ) from e
 
 
 @cli.command("generate_assets")
@@ -188,10 +192,10 @@ def generate_assets(
         typer.echo(f"Total duration: {total_duration} seconds")
     except FileNotFoundError as fnfe:
         logger.error("FileNotFoundError: %s", fnfe)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from fnfe
     except Exception as e:
         logger.exception("Unexpected error generating assets: %s", e)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from e
 
 
 @api.post("/generate_assets/", response_model=float)
@@ -219,7 +223,9 @@ def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
         )
     except Exception as e:
         logger.exception("Unexpected error generating assets: %s", e)
-        raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e)
+        ) from e
 
 
 @cli.command("generate_video")
@@ -243,7 +249,7 @@ def generate_video(  # dead: disable
         typer.echo("Video generated successfully")
     except Exception as e:
         logger.exception("Unexpected error generating video: %s", e)
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from e
 
 
 @api.post("/generate_video/", response_model=dict)
@@ -270,7 +276,9 @@ def generate_video_api(  # dead: disable
         return {"message": "Video generated successfully"}
     except Exception as e:
         logger.exception("Unexpected error generating video: %s", e)
-        raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e)
+        ) from e
 
 
 def create_directories(paths: list[Path]) -> None:
