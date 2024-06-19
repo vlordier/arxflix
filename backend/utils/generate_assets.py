@@ -11,23 +11,24 @@ from typing import List, Optional, Union
 import srt
 import torch
 import torchaudio
+
 # import whisper
 import whisper_timestamped as whisper
-
 from dotenv import load_dotenv
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
 
+from backend.config import ELEVENLABS_API_KEY
 from backend.types import Caption, Equation, Figure, Headline, RichContent, Text
 
 # from pywhispercpp.model import Model
 
 # Set environment variables for OpenMP for whisper
-os.environ['OMP_NUM_THREADS'] = '1'
-os.environ['OMP_MAX_ACTIVE_LEVELS'] = '1'
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["OMP_MAX_ACTIVE_LEVELS"] = "1"
 
-# do the same with PYTORCH_ENABLE_MPS_FALLBACK=1
-os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = '1'
+# do the same with PYTORCH_ENABLE_MPS_FALLBACK=1
+os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
 # from transformers import pipeline
 # import torch
@@ -42,7 +43,6 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 # Load configuration
-from backend.config import ELEVENLABS_API_KEY
 
 # Load environment variables
 # ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
@@ -116,7 +116,6 @@ def make_caption(result: dict) -> List[Caption]:
         List[Caption]: List of Caption objects.
     """
     captions = []
-    print(result)
     for segment in result["segments"]:
         for word in segment["words"]:
             word_text = word["text"].lstrip()
@@ -235,13 +234,19 @@ def generate_audio_and_caption(
             # SAMPLE_RATE = 16000
             # audio = whisper.load_audio(audio_path, sr=SAMPLE_RATE)
 
-
             audio = whisper.load_audio(audio_path)
 
-
             # result = model.transcribe(audio, word_timestamps=True)
-            result = whisper.transcribe(model, audio, language="en", beam_size=5, best_of=5, vad=True, temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), detect_disfluencies=False)
-
+            result = whisper.transcribe(
+                model,
+                audio,
+                language="en",
+                beam_size=5,
+                best_of=5,
+                vad=True,
+                temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0),
+                detect_disfluencies=False,
+            )
 
             # result = pipe(audio_path, chunk_length_s=30, batch_size=24, return_timestamps=True)
             logger.info("Result: %s", result)
