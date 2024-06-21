@@ -7,10 +7,9 @@ from typing import Any
 
 import requests  # type: ignore
 from bs4 import BeautifulSoup, Tag  # type: ignore
-from markdownify import MarkdownConverter
+from markdownify import MarkdownConverter  # type: ignore
 
 # Setup logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 

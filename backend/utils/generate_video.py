@@ -1,3 +1,5 @@
+""" Module for generating a video using Remotion. """
+
 import json
 import logging
 import subprocess
@@ -5,13 +7,10 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Literal, Optional
 
-# Constants
-VIDEO_FPS = 30
-VIDEO_HEIGHT = 1080  # dead: disable
-VIDEO_WIDTH = 1920  # dead: disable
-REMOTION_ROOT_PATH = Path("frontend/remotion/index.ts")
-REMOTION_COMPOSITION_ID = "Arxflix"
-REMOTION_CONCURRENCY = 1
+from backend.settings import Settings
+
+settings = Settings()
+
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -46,9 +45,9 @@ class CompositionProps:
 
     duration_in_seconds: int = 5
     audio_offset_in_seconds: int = 0
-    subtitles_file_name: str = "frontend/public/output.srt"
-    audio_file_name: str = "frontend/public/audio.wav"
-    rich_content_file_name: str = "frontend/public/output.json"
+    subtitles_file_name: str = "public/output.srt"
+    audio_file_name: str = "public/audio.wav"
+    rich_content_file_name: str = "public/output.json"
     wave_color: str = "#a3a5ae"
     subtitles_line_per_page: int = 2
     subtitles_line_height: int = 98
@@ -64,7 +63,7 @@ class CompositionProps:
         """
         Post-initialization to calculate the duration in frames.
         """
-        self.duration_in_frames = self.duration_in_seconds * VIDEO_FPS
+        self.duration_in_frames = self.duration_in_seconds * settings.VIDEO_FPS
 
 
 def process_video(
@@ -88,20 +87,20 @@ def process_video(
         composition_props = CompositionProps()
 
     if output_path is None:
-        output_path = Path("frontend/public/output.mp4")
+        output_path = Path("public/output.mp4")
 
     try:
         command = [
             "npx",
             "remotion",
             "render",
-            REMOTION_ROOT_PATH.absolute().as_posix(),
+            settings.REMOTION_ROOT_PATH.absolute().as_posix(),
             "--props",
             json.dumps(asdict(composition_props)),
             "--compositionId",
-            REMOTION_COMPOSITION_ID,
+            settings.REMOTION_COMPOSITION_ID,
             "--concurrency",
-            str(REMOTION_CONCURRENCY),
+            str(settings.REMOTION_CONCURRENCY),
             "--output",
             output_path.absolute().as_posix(),
         ]

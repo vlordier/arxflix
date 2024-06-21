@@ -6,10 +6,10 @@ from typing import Optional
 
 import fastapi
 import typer
-from dotenv import load_dotenv
-from pydantic import BaseModel
 
-from backend.types import RichContent, Text
+# from backend.config import LOG_FORMAT, LOG_LEVEL, PAPER_URL, TEMP_DIR
+from backend.models import AssetsInput, RichContent, ScriptInput, Text
+from backend.settings import Settings
 from backend.utils.generate_assets import (
     export_mp3,
     export_rich_content_json,
@@ -22,58 +22,21 @@ from backend.utils.generate_paper import process_article
 from backend.utils.generate_script import process_script
 from backend.utils.generate_video import process_video
 
-# Constants
 PAPER_URL = ""
-TEMP_DIR = Path("./audio")
-LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+settings = Settings()
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+logging.basicConfig(level=settings.LOGGING.level, format=settings.LOGGING.format)
 logger = logging.getLogger(__name__)
-
-# Load environment variables
-load_dotenv()
 
 # Initialize CLI and API
 cli = typer.Typer()
-api = fastapi.FastAPI()
-
-
-class ScriptInput(BaseModel):
-    """
-    Input parameters for generating a script.
-
-    Attributes:
-        paper (str): The paper content or the path to the paper file.
-        use_path (bool, optional): Whether to treat `paper` as a file path. Defaults to False.
-
-    """
-
-    paper: str
-    use_path: bool = False
-
-
-class AssetsInput(BaseModel):
-    """
-    Input parameters for generating assets.
-
-    Attributes:
-        script (str): The script content or the path to the script file.
-        use_path (bool, optional): Whether to treat `script` as a file path. Defaults to False.
-        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "public/audio.wav".
-        srt_output (str, optional): Path to save the SRT output file. Defaults to "public/output.srt".
-        rich_output (str, optional): Path to save the rich content JSON file. Defaults to "public/output.json".
-    """
-
-    script: str
-    use_path: bool = False
-    mp3_output: str = "public/audio.wav"
-    srt_output: str = "public/output.srt"
-    rich_output: str = "public/output.json"
+app = fastapi.FastAPI()
 
 
 @cli.command("generate_paper")
-@api.get("/generate_paper/")
+@app.get("/generate_paper/")
 def generate_paper(url: str) -> str:  # dead: disable
     """Generate a paper from a given URL.
 
@@ -122,14 +85,14 @@ def generate_script(paper: str, use_path: bool = True) -> str:
         paper_content = paper
 
     try:
-        script_content = process_script(paper_content, PAPER_URL)
+        script_content = process_script(paper_content, settings.PAPER_URL)
         return script_content
     except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
         logger.exception("Error generating script: %s", inner_e)
         raise ValueError("Error generating script") from inner_e
 
 
-@api.post("/generate_script/")
+@app.post("/generate_script/")
 def generate_script_api(input: ScriptInput) -> str:  # dead: disable
     """API endpoint to generate a script from a given paper.
 
@@ -145,7 +108,7 @@ def generate_script_api(input: ScriptInput) -> str:  # dead: disable
 @cli.command("generate_assets")
 def generate_assets(
     script: str,
-    use_path: bool = True,
+    use_path: bool = False,
     mp3_output: str = "public/audio.wav",
     srt_output: str = "public/output.srt",
     rich_output: str = "public/output.json",
@@ -167,18 +130,17 @@ def generate_assets(
     """
     logger.info("Generating assets from script: %s", script)
 
-    try:
-        TEMP_DIR.mkdir(parents=True, exist_ok=True)
-        Path(mp3_output).parent.mkdir(parents=True, exist_ok=True)
-        Path(srt_output).parent.mkdir(parents=True, exist_ok=True)
-        Path(rich_output).parent.mkdir(parents=True, exist_ok=True)
-    except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
-        logger.exception("Error creating directories for output files: %s", inner_e)
-        raise ValueError("Error creating directories for output files") from inner_e
+    mp3_output, srt_output, rich_output = create_directories(
+        mp3_output, srt_output, rich_output
+    )
+
+    logger.info("MP3 output: %s", mp3_output)
+    logger.info("SRT output: %s", srt_output)
+    logger.info("Rich content output: %s", rich_output)
 
     if use_path:
         try:
-            script_content = Path(script).read_text()
+            script_content = Path(script).read_text(encoding="utf-8")
         except Exception as inner_e:  # Change variable name from 'e' to 'inner_e'
             logger.exception("Error reading script from path %s: %s", script, inner_e)
             raise ValueError(f"Error reading script from path {script}") from inner_e
@@ -187,7 +149,9 @@ def generate_assets(
 
     try:
         script_contents = parse_script(script_content)
-        script_contents = generate_audio_and_caption(script_contents, temp_dir=TEMP_DIR)
+        script_contents = generate_audio_and_caption(
+            script_contents, temp_dir=settings.TEMP_DIR
+        )
         script_contents = fill_rich_content_time(script_contents)
 
         rich_content_list = [
@@ -210,7 +174,39 @@ def generate_assets(
         raise ValueError("Error generating assets") from inner_e
 
 
-@api.post("/generate_assets/")
+def create_directories(mp3_output: str, srt_output: str, rich_output: str) -> tuple:
+    """
+    Create directories for output files and return the paths as Path objects.
+
+    Args:
+        mp3_output (str): Relative path for mp3 output directory.
+        srt_output (str): Relative path for srt output directory.
+        rich_output (str): Relative path for rich output directory.
+
+    Returns:
+        tuple: A tuple containing the Path objects for the mp3, srt, and rich directories.
+    """
+    # Base directory relative to this script
+    base_dir = Path(__file__).parent.parent.absolute()
+    logger.info("Base directory: %s", base_dir)
+
+    # Initialize a dictionary to hold the full paths
+    paths = {}
+
+    # Define the output paths
+    output_paths = {"mp3": mp3_output, "srt": srt_output, "rich": rich_output}
+
+    # Create directories and store the paths
+    for key, output_path in output_paths.items():
+        target_path = base_dir / output_path
+        target_path.mkdir(parents=True, exist_ok=True)
+        paths[key] = target_path
+
+    # Return the paths as a tuple
+    return (paths["mp3"], paths["srt"], paths["rich"])
+
+
+@app.post("/generate_assets/")
 def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
     """API endpoint to generate assets from a script.
 
@@ -230,7 +226,7 @@ def generate_assets_api(assets_input: AssetsInput) -> float:  # dead: disable
 
 
 @cli.command("generate_video")
-@api.post("/generate_video/")
+@app.post("/generate_video/")
 def generate_video(output_path: Optional[Path]) -> None:  # dead: disable
     """Generate a video from the processed script.
 

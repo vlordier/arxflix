@@ -160,9 +160,9 @@ export default function Home() {
       console.log("Calling generate assets with script:", script);
       const response = await axios.post('/api/generateAssets', {
         script: script,
-        mp3_output: "frontend/public/" + _folder + "/audio.wav",
-        srt_output: "frontend/public/" + _folder + "/subtitles.srt",
-        rich_output: "frontend/public/" + _folder + "/rich.json",
+        mp3_output: "public/" + _folder + "/audio.wav",
+        srt_output: "public/" + _folder + "/subtitles.srt",
+        rich_output: "public/" + _folder + "/rich.json",
       }, {
         headers: {
           'Accept': 'application/json'

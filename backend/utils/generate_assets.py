@@ -1,4 +1,6 @@
-""" Utility functions to generate audio, caption, and other assets. """
+"""
+Utility functions to generate audio, caption, and other assets.
+"""
 
 import json
 import logging
@@ -8,67 +10,51 @@ from datetime import timedelta
 from pathlib import Path
 from typing import List, Optional, Union
 
-import srt
+import srt  # type: ignore
 import torch
-import torchaudio
-
-# import whisper
-import whisper_timestamped as whisper
+import whisper_timestamped as whisper  # type: ignore
 from dotenv import load_dotenv
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
+from pydub import AudioSegment  # type: ignore
 
-from backend.config import ELEVENLABS_API_KEY
-from backend.types import Caption, Equation, Figure, Headline, RichContent, Text
+from backend.models import Caption, Equation, Figure, Headline, RichContent, Text
+from backend.settings import Settings
 
-# from pywhispercpp.model import Model
-
-# Set environment variables for OpenMP for whisper
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["OMP_MAX_ACTIVE_LEVELS"] = "1"
-
-# do the same with PYTORCH_ENABLE_MPS_FALLBACK=1
-os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
-
-# from transformers import pipeline
-# import torch
-# from transformers import pipeline
-# from transformers.utils import is_flash_attn_2_available
-
-
-# Setup logging
-logger = logging.getLogger(__name__)
-
-# Load .env file
+# Load environment variables
 load_dotenv()
 
 # Load configuration
+settings = Settings()
 
-# Load environment variables
-# ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+# Setup logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
-ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", default="EXAVITQu4vr4xnSDxMaL")
+# Load ElevenLabs API key
+ELEVENLABS_API_KEY = str(os.getenv("ELEVENLABS_API_KEY"))
+assert ELEVENLABS_API_KEY, "ELEVENLABS_API_KEY is not set."
 
-# ELEVENLABS_VOICE_NAME = os.getenv("ELEVENLABS_VOICE_NAME")
-
-if not ELEVENLABS_API_KEY:
-    logger.error("ELEVENLABS_API_KEY environment variable is not set.")
-    raise ValueError("ELEVENLABS_API_KEY environment variable is not set.")
-logger.error(
-    "Using ElevenLabs API key: %s",
-    ELEVENLABS_API_KEY[0:4] + "***" + ELEVENLABS_API_KEY[-4:],
-)
-
+# Configure ElevenLabs voice
 ELEVENLABS_VOICE = Voice(
-    voice_id=ELEVENLABS_VOICE_ID,
+    voice_id=settings.ELEVENLABS.voice_id,
     settings=VoiceSettings(
-        stability=float(os.getenv("ELEVENLABS_STABILITY", default="0.35")),
-        similarity_boost=float(os.getenv("ELEVENLABS_SIMILARITY_BOOST", default="0.8")),
+        stability=settings.ELEVENLABS.stability,
+        similarity_boost=settings.ELEVENLABS.similarity_boost,
         style=0.0,
         use_speaker_boost=True,
     ),
 )
-ELEVENLABS_MODEL = os.getenv("ELEVENLABS_MODEL", default="eleven_turbo_v2")
+logger.info("Using ElevenLabs voice: %s", settings.ELEVENLABS.voice_id)
+
+# Load Whisper model once
+device = "cuda" if torch.cuda.is_available() else "cpu"
+try:
+    WHISPER_MODEL = whisper.load_model(settings.WHISPER_MODEL, device=device)
+    logger.info("Whisper model loaded on device: %s", device)
+except Exception as e:
+    logger.error("Failed to load Whisper model: %s", e)
+    raise ValueError("Failed to load Whisper model.") from e
 
 
 def parse_script(script: str) -> List[Union[RichContent, Text]]:
@@ -81,27 +67,23 @@ def parse_script(script: str) -> List[Union[RichContent, Text]]:
     Returns:
         List[Union[RichContent, Text]]: List of RichContent or Text objects.
     """
-    lines = script.split("\n")
-    content_list: List[Union[RichContent, Text, Figure, Equation, Headline]] = []
-    for line in lines:
-        if line.startswith(r"\Figure: "):
-            figure_content = line.replace(r"\Figure: ", "")
-            figure = Figure(content=figure_content)
-            content_list.append(figure)
-        elif line.startswith(r"\Text: "):
-            text_content = line.replace(r"\Text: ", "")
-            text = Text(content=text_content)
-            content_list.append(text)
-        elif line.startswith(r"\Equation: "):
-            equation_content = line.replace(r"\Equation: ", "")
-            equation = Equation(content=equation_content)
-            content_list.append(equation)
-        elif line.startswith(r"\Headline: "):
-            headline_content = line.replace(r"\Headline: ", "")
-            headline = Headline(content=headline_content)
-            content_list.append(headline)
+    content_list: List[Union[RichContent, Text]] = []
+    type_map = {
+        Figure.identifier: Figure,
+        Text.identifier: Text,
+        Equation.identifier: Equation,
+        Headline.identifier: Headline,
+    }
+
+    for line in script.split("\n"):
+        for prefix, content_type in type_map.items():
+            if line.startswith(prefix):
+                content = line[len(prefix) :]
+                content_list.append(content_type(content))
+                break
         else:
-            logger.warning("Unknown line: %s", line)
+            logger.warning("Unknown line format: %s", line)
+
     return content_list
 
 
@@ -126,14 +108,16 @@ def make_caption(result: dict) -> List[Caption]:
 
 def generate_audio_and_caption(
     script_contents: List[Union[RichContent, Text]],
-    temp_dir: Optional[Path],
+    model: whisper.Whisper = WHISPER_MODEL,
+    temp_dir: Optional[Path] = None,
 ) -> List[Union[RichContent, Text]]:
     """
     Generate audio and caption for each text segment in the script.
 
     Args:
         script_contents (List[Union[RichContent, Text]]): List of RichContent or Text objects.
-        temp_dir (Path, optional): Temporary directory to store the audio files. Defaults to Path(tempfile.gettempdir()).
+        model: The Whisper model instance.
+        temp_dir (Optional[Path]): Temporary directory to store the audio files. Defaults to Path(tempfile.gettempdir()).
 
     Returns:
         List[Union[RichContent, Text]]: List of RichContent or Text objects with audio and caption.
@@ -141,62 +125,17 @@ def generate_audio_and_caption(
     Raises:
         ValueError: If the ElevenLabs API key is not set.
     """
-    if temp_dir is None:
-        temp_dir = Path(tempfile.gettempdir())
-
-    if not ELEVENLABS_API_KEY:
-        logger.error("ELEVENLABS_API_KEY environment variable is not set.")
-        raise ValueError("ELEVENLABS_API_KEY environment variable is not set.")
-    logger.error(
-        "Using ElevenLabs API key: %s...%s",
-        ELEVENLABS_API_KEY[:4],
-        ELEVENLABS_API_KEY[-4:],
-    )
-    logger.error("Using ElevenLabs voice: %s", ELEVENLABS_VOICE.name)
-    logger.error("Using ElevenLabs model: %s", ELEVENLABS_MODEL)
+    temp_dir = temp_dir or Path(tempfile.gettempdir())
+    temp_dir.mkdir(parents=True, exist_ok=True)
 
     try:
         elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
+        logger.info("Using ElevenLabs API key: ****%s", ELEVENLABS_API_KEY[-4:])
+        logger.info("Using ElevenLabs model: %s", settings.ELEVENLABS.model)
+        logger.info("Using ElevenLabs voice: %s", ELEVENLABS_VOICE.name)
     except Exception as e:
         logger.error("Failed to create ElevenLabs client: %s", e)
         raise ValueError("Failed to create ElevenLabs client.") from e
-
-    if not temp_dir.exists():
-        temp_dir.mkdir(parents=True)
-
-    # model = whisper.load_model("tiny.en", device="cpu")
-    model = whisper.load_model("tiny.en", device="cpu")
-
-    # model = Model('base.en', n_threads=6, )
-
-    # set to mps for Mac devices
-    # device = "cuda:0" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
-    # logger.info("Using device: %s", device)
-
-    # torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
-
-    # logger.info("Using torch dtype: %s", torch_dtype)
-
-    # model_id = "distil-whisper/distil-large-v3"
-
-    # pipe = pipeline(
-    #     "automatic-speech-recognition",
-    #     model=model_id,
-    #     torch_dtype=torch_dtype,
-    #     device=device,
-    #     max_new_tokens=128,
-    #     chunk_length_s=30,
-    #     batch_size=16,
-    #     # return_timestamps=True,
-    #     return_timestamps="word"
-    #     )
-    #     # model_kwargs={"attn_implementation": "flash_attention_2"} if is_flash_attn_2_available() else {"attn_implementation": "sdpa"},
-
-    if not model:
-        logger.error("Failed to load Whisper model.")
-        raise ValueError("Failed to load Whisper model.")
-
-    logger.info("Whisper model loaded.")
 
     for index, content in enumerate(script_contents):
         if isinstance(content, Text) and content.audio is None:
@@ -204,39 +143,25 @@ def generate_audio_and_caption(
                 logger.info("Skipping empty text segment %d", index)
                 continue
             logger.info("Generating audio for text segment %d", index)
-            logger.info("Text: %s", content.content)
-            audio_path = (temp_dir / f"audio_{index}.wav").absolute().as_posix()
+            audio_path = temp_dir / f"audio_{index}.wav"
             logger.info("Audio path: %s", audio_path)
-            if not os.path.exists(audio_path):
-                logger.info("Generating audio %d at %s", index, audio_path)
+
+            if not audio_path.exists():
                 content.audio = elevenlabs_client.generate(
                     text=content.content,
                     voice=ELEVENLABS_VOICE,
-                    model=ELEVENLABS_MODEL,
+                    model=settings.ELEVENLABS.model,
                 )
-                save(content.audio, audio_path)
+                save(content.audio, str(audio_path))
 
-            # Double check the audio file exists:
-            if not os.path.exists(audio_path):
-                logger.error("Audio file %s does not exist.", audio_path)
-                raise ValueError("Audio file does not exist.")
+            try:
+                audio = whisper.load_audio(str(audio_path))
+            except Exception as e:
+                logger.error("Failed to load audio file %s: %s", audio_path, e)
+                raise ValueError("Failed to load audio file.") from e
 
-            logger.info("Using audio %d at %s", index, audio_path)
+            logger.info("Transcribing audio %d at %s", index, audio_path)
 
-            #  Load the audio file:
-            # try:
-            #     audio, sample_rate = torchaudio.load(audio_path)
-            # except Exception as e:
-            #     logger.error("Failed to load audio file %s: %s", audio_path, e)
-            #     raise ValueError("Failed to load audio file.")
-            # audio, sample_rate = torchaudio.load(audio_path)
-
-            # SAMPLE_RATE = 16000
-            # audio = whisper.load_audio(audio_path, sr=SAMPLE_RATE)
-
-            audio = whisper.load_audio(audio_path)
-
-            # result = model.transcribe(audio, word_timestamps=True)
             result = whisper.transcribe(
                 model,
                 audio,
@@ -248,10 +173,8 @@ def generate_audio_and_caption(
                 detect_disfluencies=False,
             )
 
-            # result = pipe(audio_path, chunk_length_s=30, batch_size=24, return_timestamps=True)
-            logger.info("Result: %s", result)
             content.captions = make_caption(result)
-            content.audio_path = audio_path
+            content.audio_path = str(audio_path)
             content.end = len(audio) / whisper.audio.SAMPLE_RATE
 
     offset = 0.0
@@ -263,6 +186,7 @@ def generate_audio_and_caption(
             content.start = offset
             content.end = content.captions[-1].end
             offset = content.end
+
     return script_contents
 
 
@@ -305,7 +229,7 @@ def fill_rich_content_time(
         duration_per_rich_content = total_duration / len(current_rich_content_group)
         offset = next_text_group[0].start
         for i, rich_content in enumerate(current_rich_content_group):
-            if offset is not None and duration_per_rich_content is not None:
+            if offset is not None:
                 rich_content.start = offset + i * duration_per_rich_content
                 rich_content.end = offset + (i + 1) * duration_per_rich_content
 
@@ -321,30 +245,56 @@ def export_mp3(text_contents: List[Text], output_path: str) -> None:
         output_path (str): Path to save the MP3 file.
 
     Raises:
-        ValueError: Sample rate not found in the audio files.
+        ValueError: If the output path does not end with .mp3 or the directory does not exist.
     """
-    audio_segments = []
-    sample_rate = None
-    for text in text_contents:
-        if text.audio_path:
-            audio, sample_rate = torchaudio.load(text.audio_path)
-            audio_segments.append(audio)
-    if sample_rate is None:
-        raise ValueError("Sample rate not found in the audio files.")
-    combined_audio = torch.cat(audio_segments, dim=1)
-    torchaudio.save(output_path, combined_audio, sample_rate)
+    logger.info("Exporting to %s", output_path)
+
+    output_dir = Path(output_path).parent
+    if not output_dir.exists():
+        raise ValueError(f"Directory {output_dir} does not exist.")
+
+    if not str(output_path).endswith(".wav"):
+        raise ValueError("Output path must end with .wav")
+
+    audio_segments = [
+        AudioSegment.from_file(text.audio_path)
+        for text in text_contents
+        if text.audio_path
+    ]
+
+    combined_audio = AudioSegment.empty()
+    for audio in audio_segments:
+        combined_audio += audio
+
+    combined_audio.export(output_path, format="mp3")
 
 
-def export_srt(full_audio_path: str, output_path: str) -> None:
+def export_srt(
+    full_audio_path: str,
+    output_path: str,
+    model: whisper.Whisper = WHISPER_MODEL,
+) -> None:
     """
     Export the SRT file for the full audio using the Whisper model.
 
     Args:
         full_audio_path (str): Path to the full audio file.
         output_path (str): Path to save the SRT file.
+        model: The Whisper model instance.
     """
-    model = whisper.load_model("base.en")
-    result = model.transcribe(full_audio_path, word_timestamps=True)
+    audio = whisper.load_audio(full_audio_path)
+
+    result = whisper.transcribe(
+        model,
+        audio,
+        language="en",
+        beam_size=5,
+        best_of=5,
+        vad=True,
+        temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0),
+        detect_disfluencies=False,
+    )
+
     captions = make_caption(result)
     subtitles = [
         srt.Subtitle(
@@ -356,7 +306,7 @@ def export_srt(full_audio_path: str, output_path: str) -> None:
         for i, caption in enumerate(captions)
     ]
     srt_text = srt.compose(subtitles)
-    with open(output_path, "w") as file:
+    with open(output_path, "w", encoding="utf-8") as file:
         file.write(srt_text)
 
 
@@ -379,7 +329,5 @@ def export_rich_content_json(
         }
         for content in rich_contents
     ]
-    # df = pd.DataFrame(rich_content_dicts)
-    # df.to_json(output_path, orient="records")
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(rich_content_dicts, f)
+        json.dump(rich_content_dicts, f, ensure_ascii=False, indent=4)

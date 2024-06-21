@@ -345,3 +345,4 @@ public/
 
 # Ruff files
 .ruff_cache/
+*/.ruff_cache/
