@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 # Load environment variables
-from backend import prompts
-from backend.settings import settings
+from src import prompts
+from src.settings import settings
 
 load_dotenv()
 

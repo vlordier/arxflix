@@ -8,7 +8,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "backend.main:app",
+                "backend.src.main:app",
                 "--reload"
             ],
             "jinja": true

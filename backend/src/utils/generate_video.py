@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Literal, Optional
 
-from backend.settings import Settings
+from src.settings import Settings
 
 settings = Settings()
 

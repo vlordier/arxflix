@@ -6,8 +6,10 @@ import logging
 from typing import Any
 
 import requests  # type: ignore
+import tldextract
 from bs4 import BeautifulSoup, Tag  # type: ignore
 from markdownify import MarkdownConverter  # type: ignore
+from src.settings import settings  # type: ignore
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -27,6 +29,10 @@ def sanitize_url(url: str) -> str:
         ValueError: If the URL is not HTTPS or contains a file:// scheme.
     """
     url = url.strip()
+
+    domain = tldextract.extract(url).registered_domain
+    if domain not in settings.ALLOWED_DOMAINS:
+        raise ValueError(f"Domain {domain} is not allowed.")
 
     if url.startswith("file://"):
         raise ValueError("File URLs are not allowed.")
@@ -54,7 +60,7 @@ def fetch_html(url: str) -> str:
     sanitized_url = sanitize_url(url)
 
     try:
-        response = requests.get(sanitized_url)
+        response = requests.get(sanitized_url, timeout=settings.REQUESTS_TIMEOUT)
         response.raise_for_status()
         return response.text
     except requests.exceptions.RequestException as e:

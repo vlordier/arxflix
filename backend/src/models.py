@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import Iterator
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ScriptInput(BaseModel):
@@ -17,7 +17,7 @@ class ScriptInput(BaseModel):
     """
 
     paper: str
-    use_path: bool = False
+    use_path: bool = Field(default=False, json_schema_extra={"env": "USE_PATH"})
 
 
 class AssetsInput(BaseModel):
@@ -33,10 +33,16 @@ class AssetsInput(BaseModel):
     """
 
     script: str
-    use_path: bool = False
-    mp3_output: str = "public/audio.wav"
-    srt_output: str = "public/output.srt"
-    rich_output: str = "public/output.json"
+    use_path: bool = Field(default=False, json_schema_extra={"env": "USE_PATH"})
+    mp3_output: str = Field(
+        default="public/audio.wav", json_schema_extra={"env": "MP3_OUTPUT"}
+    )
+    srt_output: str = Field(
+        default="public/output.srt", json_schema_extra={"env": "SRT_OUTPUT"}
+    )
+    rich_output: str = Field(
+        default="public/output.json", json_schema_extra={"env": "RICH_OUTPUT"}
+    )
 
 
 @dataclass
@@ -84,7 +90,7 @@ class Figure(RichContent):
         identifier: str
     """
 
-    identifier: str = r"\Figure"
+    identifier: str = r"\Figure:"
 
 
 @dataclass
@@ -103,7 +109,7 @@ class Text:
 
     """
 
-    identifier: str = r"\Text"
+    identifier: str = r"\Text:"
     content: str = ""
     audio: bytes | Iterator[bytes] | None = None
     audio_path: str | None = None
@@ -122,7 +128,7 @@ class Equation(RichContent):
 
     """
 
-    identifier: str = r"\Equation"
+    identifier: str = r"\Equation:"
 
 
 @dataclass
@@ -135,7 +141,7 @@ class Headline(RichContent):
 
     """
 
-    identifier: str = r"\Headline"
+    identifier: str = r"\Headline:"
 
 
 @dataclass

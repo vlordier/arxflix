@@ -1,20 +1,24 @@
 """Configuration file for the backend."""
 
 from pathlib import Path
-from typing import Literal, Optional
+from typing import List, Literal, Optional
 
-# from dotenv import load_dotenv
 from pydantic import Field
 from pydantic_settings import BaseSettings
 
 # check that the .env file exists
-if not Path(".env").exists():
+
+# current file directory
+parent_dir = Path(__file__).resolve().parent.parent
+
+# .env file path in the current directory
+env_file_path = parent_dir / ".env"
+
+# check if the .env file exists
+if not env_file_path.exists():
     raise FileNotFoundError(
         ".env file not found, please create one and add your API keys."
     )
-
-# load the .env file
-# load_dotenv(".env")
 
 
 class ElevenLabsSettings(BaseSettings):
@@ -203,6 +207,7 @@ class Settings(BaseSettings):
         AUDIO (AudioSettings): Settings for audio processing.
         TIMEOUTS (TimeoutSettings): Timeout settings for various services.
         COMPOSITION_PROPS (CompositionPropsSettings): Settings for video composition properties.
+        ALLOWED_DOMAINS (List[str]): The list of allowed domains for the application.
     """
 
     # Load environment variables
@@ -251,20 +256,9 @@ class Settings(BaseSettings):
     # Composition properties
     COMPOSITION_PROPS: CompositionPropsSettings = CompositionPropsSettings()
 
-    # class Config:
-    #     """Configuration class for environment variables.
-
-    #     Attributes:
-    #         env_file (str): The path to the environment file.
-    #         env_file_encoding (str): The encoding of the environment file.
-    #         case_sensitive (bool): Whether to treat environment variables as case-sensitive.
-    #         env_nested_delimiter (str): The delimiter used to separate nested environment variables.
-    #     """
-
-    #     env_file = ".env"
-    #     env_file_encoding = "utf-8"
-    #     case_sensitive = True
-    #     env_nested_delimiter = "__"
+    ALLOWED_DOMAINS: List[str] = Field(
+        default_factory=lambda: ["arxiv.org", "ar5iv.labs.arxiv.org", "ar5iv.org"]
+    )
 
 
 settings = Settings(".env")
