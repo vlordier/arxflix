@@ -63,7 +63,7 @@ class CompositionProps:
         """
         Post-initialization to calculate the duration in frames.
         """
-        self.duration_in_frames = self.duration_in_seconds * settings.VIDEO_FPS
+        self.duration_in_frames = self.duration_in_seconds * settings.VIDEO.fps
 
 
 def process_video(
@@ -94,13 +94,13 @@ def process_video(
             "npx",
             "remotion",
             "render",
-            settings.REMOTION_ROOT_PATH.absolute().as_posix(),
+            Path(settings.REMOTION.root_path).absolute().as_posix(),
             "--props",
             json.dumps(asdict(composition_props)),
             "--compositionId",
-            settings.REMOTION_COMPOSITION_ID,
+            settings.REMOTION.composition_id,
             "--concurrency",
-            str(settings.REMOTION_CONCURRENCY),
+            str(settings.REMOTION.concurrency),
             "--output",
             output_path.absolute().as_posix(),
         ]

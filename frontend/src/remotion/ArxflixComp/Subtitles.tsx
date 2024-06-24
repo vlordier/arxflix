@@ -19,7 +19,19 @@ const useWindowedFrameSubs = (
 	const config = useVideoConfig();
 	const { fps } = config;
 
-	const parsed = useMemo(() => parseSRT(src), [src]);
+	// Ensure src is a non-empty string before attempting to parse it
+	const parsed = useMemo(() => {
+		if (!src) {
+			console.warn('src is undefined or empty');
+			return [];
+		}
+		try {
+			return parseSRT(src);
+		} catch (error) {
+			console.error('Error parsing SRT:', error);
+			return [];
+		}
+	}, [src]);
 
 	return useMemo(() => {
 		return parsed
@@ -106,7 +118,6 @@ export const PaginatedSubtitles: React.FC<{
 		subtitlesLineHeight,
 		subtitlesZoomMeasurerSize,
 	]);
-
 
 	const currentFrameSentences = currentAndFollowingSentences.filter((word) => {
 		return word.start < frame;

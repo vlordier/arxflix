@@ -8,25 +8,21 @@ import pytest
 from src.models import AssetsInput, ScriptInput
 from src.settings import Settings
 
-# from assets_input import AssetsInput
-
-# from script_input import ScriptInput
-# from assets_input import AssetsInput
-
-
 # Add the backend directory to the PYTHONPATH
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 
 @pytest.fixture
 def script_input() -> ScriptInput:
+    """This fixture returns a sample ScriptInput object"""
     return ScriptInput(paper="This is a sample paper content", use_path=False)
 
 
 @pytest.fixture
 def assets_input() -> AssetsInput:
+    """This fixture returns a sample AssetsInput object"""
     return AssetsInput(
-        script="This is a sample script content",
+        script=r"\Headline Headline\n\n \Figure Figure \n\Paragraph Paragraph\n \Equation Equation \n \Text Text\n",
         use_path=False,
         mp3_output="test_audio.wav",
         srt_output="test_output.srt",
@@ -36,6 +32,7 @@ def assets_input() -> AssetsInput:
 
 @pytest.fixture
 def mock_settings() -> Mock:
+    """This fixture returns a mock Settings object"""
     return Settings(
         ELEVENLABS={
             "voice_id": "test_voice_id",
@@ -49,6 +46,7 @@ def mock_settings() -> Mock:
 
 @pytest.fixture
 def mock_whisper_model() -> Mock:
+    """This fixture returns a mock Whisper model"""
     model = Mock()
     model.transcribe = Mock(
         return_value={

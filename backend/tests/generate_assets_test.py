@@ -1,4 +1,6 @@
-""" Tests for the generate_assets module """
+"""
+Tests for the generate_assets module
+"""
 
 import tempfile
 from pathlib import Path
@@ -24,15 +26,6 @@ from src.utils.generate_assets import (
     transcribe_audio,
     update_text_content_with_captions,
 )
-
-# def test_parse_script():
-#     script = r"\Figure: Test figure\n\Text: Test text\n\Equation: Test equation\n\Headline: Test headline"
-#     parsed_script = parse_script(script)
-#     assert len(parsed_script) == 4
-#     assert isinstance(parsed_script[0], Figure)
-#     assert isinstance(parsed_script[1], Text)
-#     assert isinstance(parsed_script[2], Equation)
-#     assert isinstance(parsed_script[3], Headline)
 
 
 @pytest.mark.parametrize(
@@ -66,6 +59,7 @@ from src.utils.generate_assets import (
     ],
 )
 def test_parse_script(script, expected_classes) -> None:
+    """Test the parse_script function."""
     parsed_script = parse_script(script)
     assert len(parsed_script) == len(expected_classes)
     for parsed_obj, expected_class in zip(
@@ -77,6 +71,7 @@ def test_parse_script(script, expected_classes) -> None:
 
 
 def test_make_caption() -> None:
+    """Test the make_caption function."""
     result = {"segments": [{"words": [{"text": "test", "start": 0.0, "end": 1.0}]}]}
     captions = make_caption(result)
     assert len(captions) == 1
@@ -99,6 +94,7 @@ def test_generate_audio_and_caption(
     mock_settings: Mock,
     mock_whisper_model: Mock,
 ) -> None:
+    """Test the generate_audio_and_caption function."""
     mock_elevenlabs.generate.return_value = b"audio data"
     mock_create_elevenlabs_client.return_value = mock_elevenlabs
     mock_generate_audio_for_text.return_value = "audio_path"
@@ -115,6 +111,7 @@ def test_generate_audio_and_caption(
 
 
 def test_fill_rich_content_time() -> None:
+    """Test the fill_rich_content_time function."""
     script_contents = [
         Figure(content="Test figure"),
         Text(content="Test text", start=0.0, end=5.0),
@@ -128,6 +125,7 @@ def test_fill_rich_content_time() -> None:
 
 @patch("src.utils.generate_assets.whisper")
 def test_export_mp3(mock_whisper_model) -> None:
+    """Test the export_mp3 function."""
     mock_whisper_model.transcribe.return_value = {
         "segments": [{"words": [{"text": "test", "start": 0.0, "end": 1.0}]}]
     }
@@ -149,6 +147,7 @@ def test_export_mp3(mock_whisper_model) -> None:
 
 @patch("src.utils.generate_assets.whisper")
 def test_export_srt(mock_whisper_model) -> None:
+    """Test the export_srt function."""
     with tempfile.TemporaryDirectory() as tempdir:
         full_audio_path = Path(tempdir) / "full_audio.wav"
         output_path = Path(tempdir) / "output.srt"
@@ -159,6 +158,7 @@ def test_export_srt(mock_whisper_model) -> None:
 
 
 def test_export_rich_content_json() -> None:
+    """Test the export_rich_content_json function."""
     with tempfile.TemporaryDirectory() as tempdir:
         output_path = Path(tempdir) / "output.json"
         rich_contents = [Figure(content="Test figure"), Text(content="Test text")]
@@ -167,6 +167,7 @@ def test_export_rich_content_json() -> None:
 
 
 def test_create_elevenlabs_client() -> None:
+    """Test the create_elevenlabs_client function."""
     client = create_elevenlabs_client("test_api_key")
     assert isinstance(client, ElevenLabs)
 
@@ -179,6 +180,7 @@ def mock_elevenlabs() -> ElevenLabs:
 
 @patch("src.utils.generate_assets.save")
 def test_generate_audio_for_text(mock_save, mock_elevenlabs) -> None:
+    """Test the generate_audio_for_text function."""
     mock_elevenlabs.generate.return_value = b"audio data"
     with tempfile.TemporaryDirectory() as tempdir:
         text_content = Text(content="Test text")
@@ -195,6 +197,7 @@ def test_generate_audio_for_text(mock_save, mock_elevenlabs) -> None:
 
 @patch("src.utils.generate_assets.whisper")
 def test_transcribe_audio(mock_whisper_model) -> None:
+    """Test the transcribe_audio function."""
     with tempfile.TemporaryDirectory() as tempdir:
         audio_path = Path(tempdir) / "audio.wav"
         silent_audio = AudioSegment.silent(duration=1000)  # 1 second of silence
@@ -207,6 +210,7 @@ def test_transcribe_audio(mock_whisper_model) -> None:
 
 
 def test_update_text_content_with_captions() -> None:
+    """Test the update_text_content_with_captions function."""
     text_content = Text(content="Test text")
     captions = [Caption(word="test", start=0.0, end=1.0)]
     update_text_content_with_captions(text_content, captions, 1.0)
@@ -214,6 +218,7 @@ def test_update_text_content_with_captions() -> None:
 
 
 def test_combine_audio_segments() -> None:
+    """Test the combine_audio_segments function."""
     with tempfile.TemporaryDirectory() as tempdir:
         output_path = Path(tempdir) / "output.mp3"
         segment = AudioSegment.silent(duration=1000)
@@ -222,6 +227,7 @@ def test_combine_audio_segments() -> None:
 
 
 def test_process_audio_files() -> None:
+    """Test the process_audio_files function."""
     with tempfile.TemporaryDirectory() as tempdir:
         audio_path = Path(tempdir) / "audio.wav"
         silent_audio = AudioSegment.silent(duration=1000)  # 1 second of silence

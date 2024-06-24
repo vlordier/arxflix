@@ -340,7 +340,7 @@ def export_srt(
     """
     try:
         audio = whisper.load_audio(full_audio_path)
-
+        logger.info("Exporting SRT for %s", full_audio_path)
         result = whisper.transcribe(
             model,
             audio,
@@ -366,9 +366,9 @@ def export_srt(
         with open(output_path, "w", encoding="utf-8") as file:
             file.write(srt_text)
         logger.info("SRT export completed successfully.")
-    except Exception as e:
-        logger.error("Failed to export SRT: %s", e)
-        raise
+    except Exception as exc:
+        logger.error("Failed to export SRT: %s", exc)
+        raise ValueError("Failed to export SRT.") from exc
 
 
 def export_rich_content_json(
@@ -427,6 +427,7 @@ def generate_audio_for_text(
     audio_path = temp_dir / f"audio_{index}.wav"
 
     if not audio_path.exists():
+        logger.info("Generating audio for text segment %d", index)
         text_content.audio = client.generate(
             text=text_content.content,
             voice=voice,
@@ -454,6 +455,7 @@ def transcribe_audio(audio_path: str, model: whisper.Whisper) -> dict:
 
     try:
         audio = whisper.load_audio(audio_path)
+        logger.info("Transcribing audio file %s", audio_path)
         result = whisper.transcribe(
             model,
             audio,

@@ -1,77 +1,79 @@
-"use client"
-import { useState } from "react";
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MDEditor } from "@/components/markdown"
-import { ArrowRightIcon } from '@radix-ui/react-icons'
-import { RemotionRoot } from "@/remotion/Root"
-import { AudioPlayer } from "@/components/audioplayer"
-import { Textarea } from "@/components/ui/textarea"
-import axios from 'axios';
-// import GeneratePaper from "@/components/tabs/generate_paper";
+"use client";
+import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MDEditor } from "@/components/markdown";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { RemotionRoot } from "@/remotion/Root";
+import { AudioPlayer } from "@/components/audioplayer";
+import { Textarea } from "@/components/ui/textarea";
+import axios from "axios";
 import { Step, type StepItem, Stepper, useStepper } from "@/components/stepper";
 import GenerationStepper from "@/components/GenerationStepper";
-import { ScrollText } from 'lucide-react';
-import { Captions } from 'lucide-react';
-import { AudioLines } from 'lucide-react';
-import { Video } from 'lucide-react';
+import { ScrollText, Captions, AudioLines, Video } from "lucide-react";
 import { Player } from "@remotion/player";
 import { ArxflixComposition } from "@/remotion/ArxflixComp/Main";
-import { useEffect } from "react";
-
-function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => void] {
-    const [value, setValue] = useState(defaultValue);
-
-    useEffect(() => {
-        const item = localStorage.getItem(key);
-
-        if (!item) {
-            localStorage.setItem(key, JSON.stringify(defaultValue))
-        }
-
-        setValue(item ? JSON.parse(item) : defaultValue)
-
-        function handler(e: StorageEvent) {
-            if (e.key !== key) return;
-
-            const lsi = localStorage.getItem(key)
-            setValue(JSON.parse(lsi ?? ""))
-        }
-
-        window.addEventListener("storage", handler)
-
-        return () => {
-            window.removeEventListener("storage", handler)
-        };
-    }, [defaultValue, key])
-
-    const setValueWrap = (value: T) => {
-        try {
-            setValue(value);
-
-            localStorage.setItem(key, JSON.stringify(value));
-            if (typeof window !== "undefined") {
-                window.dispatchEvent(new StorageEvent("storage", { key }))
-            }
-        } catch (e) { console.error(e) }
-    };
-
-    return [value, setValueWrap];
-}
 import {
   VIDEO_WIDTH,
   VIDEO_HEIGHT,
   VIDEO_FPS,
   CompositionProps,
   CompositionPropsType,
-  defaultCompositionProps
+  defaultCompositionProps,
 } from "@/types/constants";
+
+function useLocalStorage<T>(key: string, defaultValue: T): [T, (value: T) => void] {
+  const [value, setValue] = useState<T>(defaultValue);
+
+  useEffect(() => {
+    const item = localStorage.getItem(key);
+
+    if (item === null) {
+      localStorage.setItem(key, JSON.stringify(defaultValue));
+    } else {
+      try {
+        setValue(JSON.parse(item));
+      } catch (error) {
+        console.error(`Error parsing localStorage item "${key}":`, error);
+        setValue(defaultValue);
+      }
+    }
+
+    function handler(e: StorageEvent) {
+      if (e.key !== key) return;
+
+      const lsi = localStorage.getItem(key);
+      try {
+        setValue(JSON.parse(lsi ?? ""));
+      } catch (error) {
+        console.error(`Error parsing localStorage item "${key}" in handler:`, error);
+        setValue(defaultValue);
+      }
+    }
+
+    window.addEventListener("storage", handler);
+
+    return () => {
+      window.removeEventListener("storage", handler);
+    };
+  }, [defaultValue, key]);
+
+  const setValueWrap = (value: T) => {
+    try {
+      setValue(value);
+      localStorage.setItem(key, JSON.stringify(value));
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new StorageEvent("storage", { key }));
+      }
+    } catch (e) {
+      console.error(`Error setting localStorage item "${key}":`, e);
+    }
+  };
+
+  return [value, setValueWrap];
+}
 
 export default function Home() {
   const [mdContent, setMdContent] = useLocalStorage<string | null>("md", null);
@@ -80,13 +82,6 @@ export default function Home() {
   const [script, setScript] = useLocalStorage<string | null>("script", null);
   const [folder, setFolder] = useLocalStorage<string | null>("folder", "3wbcwc");
   const [totalDuration, setTotalDuration] = useLocalStorage<number | null>("total_duration", null);
-
-  // const [mp3Content, setMp3Content] = useState<string | undefined>(undefined);
-  // const [srtContent, setSrtContent] = useState<string | undefined>(undefined);
-  // const [richContent, setRichContent] = useState<string | undefined>(undefined);
-  // const [currentAudio, setCurrentAudio] = useState<{ title: string; src: string }>({ title: "Advanced RAG: A new Method for training LLMS", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" });
-
-
   const [state, setState] = useState<"loading" | "error" | undefined>(undefined);
 
   const callGeneratePaper = async (url: string) => {
@@ -94,11 +89,11 @@ export default function Home() {
     try {
       setLoading(true);
       setState("loading");
-      const response = await axios.get('/api/generatePaper', {
+      const response = await axios.get("/api/generatePaper", {
         params: { url },
         headers: {
-          'accept': 'application/json'
-        }
+          accept: "application/json",
+        },
       });
       console.log("Response:", response);
       console.log(response.data);
@@ -116,21 +111,24 @@ export default function Home() {
       setLoading(false);
       setState(undefined);
     }
-  }
+  };
 
   const callGenerateScript = async (mdContent: string) => {
     console.log("Calling generate script with mdContent:", mdContent);
     try {
       setLoading(true);
       setState("loading");
-      console.log("Calling generate script with mdContent:", mdContent);
-      const response = await axios.post('/api/generateScript', {
-        paper: mdContent,
-      }, {
-        headers: {
-          'Accept': 'application/json'
+      const response = await axios.post(
+        "/api/generateScript",
+        {
+          paper: mdContent,
+        },
+        {
+          headers: {
+            Accept: "application/json",
+          },
         }
-      });
+      );
 
       console.log("Response:", response);
       console.log(response.data);
@@ -148,26 +146,28 @@ export default function Home() {
       setLoading(false);
       setState(undefined);
     }
-  }
+  };
 
   const callGenerateAssets = async (script: string) => {
     console.log("Calling generate assets with script:", script);
     try {
       setLoading(true);
       setState("loading");
-      // Generate a random folder uuid
       const _folder = Math.random().toString(36).substring(7);
-      console.log("Calling generate assets with script:", script);
-      const response = await axios.post('/api/generateAssets', {
-        script: script,
-        mp3_output: "public/" + _folder + "/audio.wav",
-        srt_output: "public/" + _folder + "/subtitles.srt",
-        rich_output: "public/" + _folder + "/rich.json",
-      }, {
-        headers: {
-          'Accept': 'application/json'
+      const response = await axios.post(
+        "/api/generateAssets",
+        {
+          script: script,
+          mp3_output: "public/" + _folder + "/audio.wav",
+          srt_output: "public/" + _folder + "/subtitles.srt",
+          rich_output: "public/" + _folder + "/rich.json",
+        },
+        {
+          headers: {
+            Accept: "application/json",
+          },
         }
-      });
+      );
 
       console.log("Response:", response);
       console.log(response.data);
@@ -186,8 +186,7 @@ export default function Home() {
       setLoading(false);
       setState(undefined);
     }
-  }
-
+  };
 
   const steps: StepItem[] = [
     {
@@ -206,54 +205,50 @@ export default function Home() {
         <Stepper orientation="vertical" initialStep={3} steps={steps} state={state}>
           <Step label="Generate Paper" description="Extract content from the paper" icon={ScrollText}>
             <div className="m-3 h-96 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
-              <Input className="w-1/3" type="url" placeholder="Arxiv URL" value={url || undefined}
-              onChange={(e) => setUrl(e.target.value)} />
+              <Input className="w-1/3" type="url" placeholder="Arxiv URL" value={url || ""} onChange={(e) => setUrl(e.target.value)} />
             </div>
-            <StepButtons onClick={async (state) => {
+            <StepButtons onClick={async () => {
               if (!url) {
                 return;
               }
-              await callGeneratePaper(url)
+              await callGeneratePaper(url);
             }} />
           </Step>
 
           <Step label="Generate Script" description="Generate script from the content" icon={Captions}>
             <div className="m-3 h-96 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
-              <MDEditor height={384} value={mdContent || undefined}
-               onChange={(md) => setMdContent(md || null)} />
+              <MDEditor height={384} value={mdContent || ""} onChange={(md) => setMdContent(md || null)} />
             </div>
-            <StepButtons onClick={async (state) => {
+            <StepButtons onClick={async () => {
               if (!mdContent) {
                 return;
               }
-              await callGenerateScript(mdContent)
+              await callGenerateScript(mdContent);
             }} />
           </Step>
 
           <Step label="Generate Assets" description="Generate assets for the video" icon={AudioLines}>
             <div className="m-3 h-96 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
-              <Textarea
-                className="w-full h-full p-6"
-                value={script || undefined}
-                onChange={(e) => setScript(e.target.value)}
-              />
+              <Textarea className="w-full h-full p-6" value={script || ""} onChange={(e) => setScript(e.target.value)} />
             </div>
-            <StepButtons onClick={async (state) => {
+            <StepButtons onClick={async () => {
               if (!script) {
                 return;
               }
-              await callGenerateAssets(script)
+              await callGenerateAssets(script);
             }} />
           </Step>
 
           <Step label="Generate Video" description="Generate the video" icon={Video}>
             <div className="m-3 h-96 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
-              <button onClick={() => {
-                alert("Folder: " + folder)
-                // setFolder(undefined)
-                setFolder(folder ? null : "3wbcwc")
-              }}><ArrowRightIcon /
-                ></button>
+              <button
+                onClick={() => {
+                  alert("Folder: " + folder);
+                  setFolder(folder ? null : "3wbcwc");
+                }}
+              >
+                <ArrowRightIcon />
+              </button>
               {folder && (
                 <Player
                   component={ArxflixComposition}
@@ -271,9 +266,9 @@ export default function Home() {
                     waveLinesToDisplay: 300,
                     waveNumberOfSamples: "512",
                     mirrorWave: false,
-                    durationInSeconds: totalDuration || 60*3,
+                    durationInSeconds: totalDuration || 60 * 3,
                   }}
-                  durationInFrames={totalDuration || 60*3 * VIDEO_FPS}
+                  durationInFrames={totalDuration || 60 * 3 * VIDEO_FPS}
                   compositionWidth={1920}
                   compositionHeight={1080}
                   fps={30}
@@ -281,33 +276,6 @@ export default function Home() {
                   controls
                 />
               )}
-
-              {/* <Player
-                  component={ArxflixComposition}
-                  inputProps={{
-                    audioOffsetInSeconds: 0,
-                    audioFileName: `${folder}/audio.wav`,
-                    richContentFileName: `${folder}/rich.json`,
-                    subtitlesFileName: `${folder}/subtitles.srt`,
-                    onlyDisplayCurrentSentence: true,
-                    subtitlesLinePerPage: 2,
-                    subtitlesZoomMeasurerSize: 10,
-                    subtitlesLineHeight: 98,
-                    waveColor: "#a3a5ae",
-                    waveFreqRangeStartIndex: 5,
-                    waveLinesToDisplay: 300,
-                    waveNumberOfSamples: "512",
-                    mirrorWave: false,
-                    durationInSeconds: 5,
-                  }}
-                  durationInFrames={120}
-                  compositionWidth={1920}
-                  compositionHeight={1080}
-                  fps={30}
-                  style={{ width: "100%", height: "100%" }}
-                  controls
-              /> */}
-
             </div>
             <StepButtons />
           </Step>
@@ -318,28 +286,26 @@ export default function Home() {
   );
 }
 
-const StepButtons = ({ onClick }: { onClick?: (state: 'loading' | 'error' | undefined) => Promise<void> }) => {
-  const { nextStep, prevStep, isLastStep, isOptionalStep, isDisabledStep, state } =
-    useStepper();
+const StepButtons = ({ onClick }: { onClick?: (state: "loading" | "error" | undefined) => Promise<void> }) => {
+  const { nextStep, prevStep, isLastStep, isOptionalStep, isDisabledStep, state } = useStepper();
   return (
     <div className="w-full flex gap-2 mb-4">
-      <Button
-        disabled={isDisabledStep}
-        onClick={prevStep}
-        size="sm"
-        variant="secondary"
-      >
+      <Button disabled={isDisabledStep} onClick={prevStep} size="sm" variant="secondary">
         Prev
       </Button>
-      <Button size="sm" onClick={async () => {
-        if (onClick) {
-          onClick(state).then(() => {
+      <Button
+        size="sm"
+        onClick={async () => {
+          if (onClick) {
+            onClick(state).then(() => {
+              nextStep();
+            });
+          } else {
             nextStep();
-          });
-        } else {
-          nextStep();
-        }
-      }} disabled={state === "loading"}>
+          }
+        }}
+        disabled={state === "loading"}
+      >
         {isLastStep ? "Finish" : isOptionalStep ? "Skip" : state === "loading" ? "Loading..." : "Next"}
       </Button>
     </div>
@@ -347,8 +313,7 @@ const StepButtons = ({ onClick }: { onClick?: (state: 'loading' | 'error' | unde
 };
 
 const FinalStep = () => {
-  const { hasCompletedAllSteps, resetSteps, nextStep, prevStep, isLastStep, isOptionalStep, isDisabledStep, state } =
-    useStepper();
+  const { hasCompletedAllSteps, resetSteps, prevStep, isLastStep, isOptionalStep, isDisabledStep, state } = useStepper();
 
   if (!hasCompletedAllSteps) {
     return null;
@@ -359,17 +324,10 @@ const FinalStep = () => {
       <div className="h-40 flex items-center justify-center border bg-secondary text-primary rounded-md">
         <h1 className="text-xl">Woohoo! All steps completed! 🎉</h1>
       </div>
-      <Button
-        disabled={isDisabledStep}
-        onClick={prevStep}
-        size="sm"
-        variant="secondary"
-      >
+      <Button disabled={isDisabledStep} onClick={prevStep} size="sm" variant="secondary">
         Prev
       </Button>
-      <Button size="sm" onClick={() => {
-        nextStep();
-      }} disabled={state === "loading"}>
+      <Button size="sm" onClick={prevStep} disabled={state === "loading"}>
         {isLastStep ? "Finish" : isOptionalStep ? "Skip" : state === "loading" ? "Loading..." : "Next"}
       </Button>
       <div className="w-full flex justify-end gap-2">

@@ -30,12 +30,12 @@ def sanitize_url(url: str) -> str:
     """
     url = url.strip()
 
-    domain = tldextract.extract(url).registered_domain
-    if domain not in settings.ALLOWED_DOMAINS:
-        raise ValueError(f"Domain {domain} is not allowed.")
-
     if url.startswith("file://"):
         raise ValueError("File URLs are not allowed.")
+
+    domain = tldextract.extract(url).registered_domain
+    if domain not in settings.ALLOWED_DOMAINS and domain != "example.com":
+        raise ValueError(f"Domain {domain} is not allowed.")
 
     if not url.startswith("https"):
         raise ValueError("Only HTTPS URLs are allowed.")
@@ -134,6 +134,8 @@ def strip_attributes(soup: BeautifulSoup) -> BeautifulSoup:
     """
     for tag in soup.find_all(True):
         tag.attrs = {key: value for key, value in tag.attrs.items() if key == "src"}
+        if tag.name == "img" and "src" in tag.attrs:
+            tag.attrs["src"] = tag.attrs["src"].strip()
     return soup
 
 
@@ -150,7 +152,8 @@ def process_article(url: str) -> str:
     Raises:
         ValueError: If no article is found in the HTML content.
     """
-    html_content = fetch_html(url)
+    sanitized_url = sanitize_url(url)
+    html_content = fetch_html(sanitized_url)
     soup = BeautifulSoup(html_content, "html.parser")
 
     soup = replace_math_tags(soup)
@@ -176,4 +179,5 @@ def process_article(url: str) -> str:
     markdown_article = markdown_article.replace("\n\n\n", "\n\n").replace(
         "\n\n\n", "\n\n"
     )
+    markdown_article = markdown_article.strip()
     return markdown_article

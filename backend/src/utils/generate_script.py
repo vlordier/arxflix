@@ -57,13 +57,8 @@ def correct_result_link(script: str, url: str) -> str:
             tmp_line = line.replace("\\Figure: ", "")
 
             # Construct the potential figure URL
-            if "/html/" in tmp_line:
-                modified_base_url = url.split("/html/")[0]
-                figure_url = f"{modified_base_url}{tmp_line}"
-            else:
-                figure_url = (
-                    f"{url if url.endswith('/') else url + '/'}{tmp_line.lstrip('/')}"
-                )
+            modified_base_url = url.split("/html/")[0]
+            figure_url = f"{modified_base_url}/images/{tmp_line.split('/images/')[-1]}"
 
             try:
                 figure_url = (

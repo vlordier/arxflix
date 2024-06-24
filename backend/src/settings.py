@@ -33,11 +33,21 @@ class ElevenLabsSettings(BaseSettings):
         similarity_boost (float): The similarity boost parameter for the ElevenLabs service.
     """
 
-    api_key: Optional[str] = Field(default=None, env="ELEVENLABS_API_KEY")
-    model: str = Field(default="eleven_turbo_v2", env="ELEVENLABS_MODEL")
-    voice_id: str = Field(default="nkeeZ3vWAgNFBIYCA5JO", env="ELEVENLABS_VOICE_ID")
-    stability: float = Field(default=0.35, env="ELEVENLABS_STABILITY")
-    similarity_boost: float = Field(default=0.8, env="ELEVENLABS_SIMILARITY_BOOST")
+    api_key: Optional[str] = Field(
+        default=None, json_schema_extra={"env": "ELEVENLABS_API_KEY"}
+    )
+    model: str = Field(
+        default="eleven_turbo_v2", json_schema_extra={"env": "ELEVENLABS_MODEL"}
+    )
+    voice_id: str = Field(
+        default="nkeeZ3vWAgNFBIYCA5JO", json_schema_extra={"env": "ELEVENLABS_VOICE_ID"}
+    )
+    stability: float = Field(
+        default=0.35, json_schema_extra={"env": "ELEVENLABS_STABILITY"}
+    )
+    similarity_boost: float = Field(
+        default=0.8, json_schema_extra={"env": "ELEVENLABS_SIMILARITY_BOOST"}
+    )
 
 
 class OpenAISettings(BaseSettings):
@@ -49,8 +59,10 @@ class OpenAISettings(BaseSettings):
         model (str): The model name for the OpenAI service.
     """
 
-    api_key: Optional[str] = Field(default=None, env="OPENAI_API_KEY")
-    model: str = Field(default="gpt-4o", env="OPENAI_MODEL")
+    api_key: Optional[str] = Field(
+        default=None, json_schema_extra={"env": "OPENAI_API_KEY"}
+    )
+    model: str = Field(default="gpt-4o", json_schema_extra={"env": "OPENAI_MODEL"})
 
 
 class RemotionSettings(BaseSettings):
@@ -64,10 +76,17 @@ class RemotionSettings(BaseSettings):
     """
 
     root_path: Path = Field(
-        default=Path("frontend/remotion/index.ts"), env="REMOTION_ROOT_PATH"
+        # Current file directory / frontend/remotion/index.ts
+        default=parent_dir.parent / "frontend/remotion/index.ts",
+        json_schema_extra={"env": "REMOTION_ROOT_PATH"},
     )
-    composition_id: str = Field(default="Arxflix", env="REMOTION_COMPOSITION_ID")
-    concurrency: int = Field(default=1, env="REMOTION_CONCURRENCY")
+
+    composition_id: str = Field(
+        default="Arxflix", json_schema_extra={"env": "REMOTION_COMPOSITION_ID"}
+    )
+    concurrency: int = Field(
+        default=1, json_schema_extra={"env": "REMOTION_CONCURRENCY"}
+    )
 
 
 class LoggingSettings(BaseSettings):
@@ -80,9 +99,10 @@ class LoggingSettings(BaseSettings):
     """
 
     format: str = Field(
-        default="%(asctime)s - %(name)s - %(levelname)s - %(message)s", env="LOG_FORMAT"
+        default="%(asctime)s - %(name)s - %(levellevel)s - %(message)s",
+        json_schema_extra={"env": "LOG_FORMAT"},
     )
-    level: str = Field(default="INFO", env="LOG_LEVEL")
+    level: str = Field(default="INFO", json_schema_extra={"env": "LOG_LEVEL"})
 
 
 class VideoSettings(BaseSettings):
@@ -95,9 +115,9 @@ class VideoSettings(BaseSettings):
         width (int): The width of the video.
     """
 
-    fps: int = Field(default=30, env="VIDEO_FPS")
-    height: int = Field(default=1080, env="VIDEO_HEIGHT")
-    width: int = Field(default=1920, env="VIDEO_WIDTH")
+    fps: int = Field(default=30, json_schema_extra={"env": "VIDEO_FPS"})
+    height: int = Field(default=1080, json_schema_extra={"env": "VIDEO_HEIGHT"})
+    width: int = Field(default=1920, json_schema_extra={"env": "VIDEO_WIDTH"})
 
 
 class AudioSettings(BaseSettings):
@@ -110,9 +130,11 @@ class AudioSettings(BaseSettings):
         format (str): The format for audio processing.
     """
 
-    sample_rate: int = Field(default=44100, env="AUDIO_SAMPLE_RATE")
-    channels: int = Field(default=2, env="AUDIO_CHANNELS")
-    format: str = Field(default="wav", env="AUDIO_FORMAT")
+    sample_rate: int = Field(
+        default=44100, json_schema_extra={"env": "AUDIO_SAMPLE_RATE"}
+    )
+    channels: int = Field(default=2, json_schema_extra={"env": "AUDIO_CHANNELS"})
+    format: str = Field(default="wav", json_schema_extra={"env": "AUDIO_FORMAT"})
 
 
 class TimeoutSettings(BaseSettings):
@@ -124,8 +146,8 @@ class TimeoutSettings(BaseSettings):
         elevenlabs (int): The timeout for ElevenLabs service.
     """
 
-    whisper: int = Field(default=300, env="WHISPER_TIMEOUT")
-    elevenlabs: int = Field(default=60, env="ELEVENLABS_TIMEOUT")
+    whisper: int = Field(default=300, json_schema_extra={"env": "WHISPER_TIMEOUT"})
+    elevenlabs: int = Field(default=60, json_schema_extra={"env": "ELEVENLABS_TIMEOUT"})
 
 
 class CompositionPropsSettings(BaseSettings):
@@ -149,41 +171,52 @@ class CompositionPropsSettings(BaseSettings):
         wave_number_of_samples (str): The number of samples for the wave.
     """
 
-    duration_in_seconds: int = Field(default=5, env="COMPOSITION_DURATION_IN_SECONDS")
+    duration_in_seconds: int = Field(
+        default=5, json_schema_extra={"env": "COMPOSITION_DURATION_IN_SECONDS"}
+    )
     audio_offset_in_seconds: int = Field(
-        default=0, env="COMPOSITION_AUDIO_OFFSET_IN_SECONDS"
+        default=0, json_schema_extra={"env": "COMPOSITION_AUDIO_OFFSET_IN_SECONDS"}
     )
     subtitles_file_name: str = Field(
-        default="public/output.srt", env="COMPOSITION_SUBTITLES_FILE_NAME"
+        default="public/output.srt",
+        json_schema_extra={"env": "COMPOSITION_SUBTITLES_FILE_NAME"},
     )
     audio_file_name: str = Field(
-        default="public/audio.wav", env="COMPOSITION_AUDIO_FILE_NAME"
+        default="public/audio.wav",
+        json_schema_extra={"env": "COMPOSITION_AUDIO_FILE_NAME"},
     )
     rich_content_file_name: str = Field(
-        default="public/output.json", env="COMPOSITION_RICH_CONTENT_FILE_NAME"
+        default="public/output.json",
+        json_schema_extra={"env": "COMPOSITION_RICH_CONTENT_FILE_NAME"},
     )
-    wave_color: str = Field(default="#a3a5ae", env="COMPOSITION_WAVE_COLOR")
+    wave_color: str = Field(
+        default="#a3a5ae", json_schema_extra={"env": "COMPOSITION_WAVE_COLOR"}
+    )
     subtitles_line_per_page: int = Field(
-        default=2, env="COMPOSITION_SUBTITLES_LINE_PER_PAGE"
+        default=2, json_schema_extra={"env": "COMPOSITION_SUBTITLES_LINE_PER_PAGE"}
     )
     subtitles_line_height: int = Field(
-        default=98, env="COMPOSITION_SUBTITLES_LINE_HEIGHT"
+        default=98, json_schema_extra={"env": "COMPOSITION_SUBTITLES_LINE_HEIGHT"}
     )
     subtitles_zoom_measurer_size: int = Field(
-        default=10, env="COMPOSITION_SUBTITLES_ZOOM_MEASURER_SIZE"
+        default=10,
+        json_schema_extra={"env": "COMPOSITION_SUBTITLES_ZOOM_MEASURER_SIZE"},
     )
     only_display_current_sentence: bool = Field(
-        default=True, env="COMPOSITION_ONLY_DISPLAY_CURRENT_SENTENCE"
+        default=True,
+        json_schema_extra={"env": "COMPOSITION_ONLY_DISPLAY_CURRENT_SENTENCE"},
     )
-    mirror_wave: bool = Field(default=False, env="COMPOSITION_MIRROR_WAVE")
+    mirror_wave: bool = Field(
+        default=False, json_schema_extra={"env": "COMPOSITION_MIRROR_WAVE"}
+    )
     wave_lines_to_display: int = Field(
-        default=300, env="COMPOSITION_WAVE_LINES_TO_DISPLAY"
+        default=300, json_schema_extra={"env": "COMPOSITION_WAVE_LINES_TO_DISPLAY"}
     )
     wave_freq_range_start_index: int = Field(
-        default=5, env="COMPOSITION_WAVE_FREQ_RANGE_START_INDEX"
+        default=5, json_schema_extra={"env": "COMPOSITION_WAVE_FREQ_RANGE_START_INDEX"}
     )
     wave_number_of_samples: Literal["32", "64", "128", "256", "512"] = Field(
-        default="512", env="COMPOSITION_WAVE_NUMBER_OF_SAMPLES"
+        default="512", json_schema_extra={"env": "COMPOSITION_WAVE_NUMBER_OF_SAMPLES"}
     )
 
 
@@ -214,14 +247,17 @@ class Settings(BaseSettings):
     # model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     # Application settings
-    APP_NAME: str = Field(default="Arxflix", env="APP_NAME")
-    APP_VERSION: str = Field(default="0.1.0", env="APP_VERSION")
+    APP_NAME: str = Field(default="Arxflix", json_schema_extra={"env": "APP_NAME"})
+    APP_VERSION: str = Field(default="0.1.0", json_schema_extra={"env": "APP_VERSION"})
     APP_DESCRIPTION: str = Field(
-        default="A research paper summarizer", env="APP_DESCRIPTION"
+        default="A research paper summarizer",
+        json_schema_extra={"env": "APP_DESCRIPTION"},
     )
 
     # Whisper settings
-    WHISPER_MODEL: str = Field(default="tiny.en", env="WHISPER_MODEL")
+    WHISPER_MODEL: str = Field(
+        default="tiny.en", json_schema_extra={"env": "WHISPER_MODEL"}
+    )
 
     # ElevenLabs settings
     ELEVENLABS: ElevenLabsSettings = ElevenLabsSettings()
@@ -233,13 +269,17 @@ class Settings(BaseSettings):
     LOGGING: LoggingSettings = LoggingSettings()
 
     # Temporary directory
-    TEMP_DIR: Path = Field(default=Path("./audio"), env="TEMP_DIR")
+    TEMP_DIR: Path = Field(
+        default=Path("./audio"), json_schema_extra={"env": "TEMP_DIR"}
+    )
 
     # Paper URL
-    PAPER_URL: str = Field(default="", env="PAPER_URL")
+    PAPER_URL: str = Field(default="", json_schema_extra={"env": "PAPER_URL"})
 
     # Requests
-    REQUESTS_TIMEOUT: int = Field(default=10, env="REQUESTS_TIMEOUT")
+    REQUESTS_TIMEOUT: int = Field(
+        default=10, json_schema_extra={"env": "REQUESTS_TIMEOUT"}
+    )
 
     # Video settings
     VIDEO: VideoSettings = VideoSettings()
@@ -257,8 +297,9 @@ class Settings(BaseSettings):
     COMPOSITION_PROPS: CompositionPropsSettings = CompositionPropsSettings()
 
     ALLOWED_DOMAINS: List[str] = Field(
-        default_factory=lambda: ["arxiv.org", "ar5iv.labs.arxiv.org", "ar5iv.org"]
+        default_factory=lambda: ["arxiv.org", "ar5iv.labs.arxiv.org", "ar5iv.org"],
+        json_schema_extra={"env": "ALLOWED_DOMAINS"},
     )
 
 
-settings = Settings(".env")
+settings = Settings()

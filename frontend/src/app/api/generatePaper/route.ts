@@ -1,30 +1,63 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
+import logger from '../logger';
+import { BASE_URL, HEADERS } from '../baseConfig';
+import { GENERATE_PAPER_ENDPOINT } from './endpointConfig';
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const url = searchParams.get('url');
-  console.log("URL:", url);
-  if (!url) {
-    return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
+interface ApiResponse {
+    status: string;
+    data?: any;
+    error?: string;
   }
 
-  try {
-    const response = await axios.get('http://127.0.0.1:8000/generate_paper/', {
-      params: { url },
-      headers: {
-        'accept': 'application/json'
-      }
-    });
+/**
+ * Handles GET requests to generate a paper from a URL.
+ *
+ * @param {Request} request - The incoming request object.
+ * @returns {Promise<NextResponse>} - The response object.
+ */
+export async function GET(request: Request): Promise<NextResponse> {
+    try {
+        const url = getUrlFromRequest(request);
+        validateUrl(url);
 
-    if (response.data.status === 'ERR') {
-      console.error("Error in response:", response.data);
-      return NextResponse.json({ error: 'Error fetching the paper data.' }, { status: 500 });
+        const response = await fetchPaperFromApi(url);
+
+        return handleApiResponse(response);
+    } catch (error) {
+        logger.error(`Error in GET handler: ${error.message}`);
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
+}
 
-    return NextResponse.json(response.data);
-  } catch (error) {
-    console.error("Error fetching the paper data:", error);
-    return NextResponse.json({ error: 'Error fetching the paper data.' }, { status: 500 });
-  }
+function getUrlFromRequest(request: Request): string | null {
+    const { searchParams } = new URL(request.url);
+    return searchParams.get('url');
+}
+
+function validateUrl(url: string | null): void {
+    if (!url) {
+        throw new Error('URL parameter is required');
+    }
+}
+
+async function fetchPaperFromApi(url: string): Promise<ApiResponse> {
+    try {
+        const response = await axios.get<ApiResponse>(`${BASE_URL}${GENERATE_PAPER_ENDPOINT}`, {
+            params: { url },
+            headers: HEADERS,
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch data from API');
+    }
+}
+
+function handleApiResponse(response: ApiResponse): NextResponse {
+    if (response.status === 'ERR') {
+        const error: string = response.error as string;
+        logger.error(`API responded with an error: ${error}`);
+        throw new Error('Error fetching the paper data.');
+    }
+    return NextResponse.json(response);
 }
