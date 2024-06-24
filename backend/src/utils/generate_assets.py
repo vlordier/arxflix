@@ -19,13 +19,10 @@ from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
 from pydub import AudioSegment  # type: ignore
 from src.models import Caption, Equation, Figure, Headline, RichContent, Text
-from src.settings import Settings
+from src.settings import settings
 
 # Load environment variables
 load_dotenv()
-
-# Load configuration
-settings = Settings()
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -57,47 +54,6 @@ except Exception as e:
 
 
 def parse_script(script: str) -> List[Union[RichContent, Text]]:
-    # """
-    # Parse the script and return a list of RichContent or Text objects.
-
-    # Args:
-    #     script (str): The script to parse as a string.
-
-    # Returns:
-    #     List[Union[RichContent, Text]]: List of RichContent or Text objects.
-    # """
-    # content_list: List[Union[RichContent, Text]] = []
-    # logger.warning("Parsing script %s", script)
-
-    # type_map = {
-    #     r"\Figure:": Figure,
-    #     r"\Text:": Text,
-    #     r"\Equation:": Equation,
-    #     r"\Headline:": Headline,
-    # }
-
-    # lines = []
-    # # Split the script string into lines using \n, then remove empty lines
-    # for line in script.split("\n"):
-    #     if line.strip() != "":
-    #         lines.append(line)
-    #         logger.warning("Parsing line: %s", line)
-    #     else:
-    #         logger.warning("Skipping empty line: %s", line)
-
-    # for line in lines:
-    #     logger.warning("Parsing line: %s", line)
-    #     for prefix, content_type in type_map.items():
-    #         if line.startswith(prefix):
-    #             content = line[len(prefix) :]
-    #             content_list.append(content_type(content))
-    #             break
-    #     else:
-    #         logger.warning("Unknown line format: %s", line)
-
-    # return content_list
-
-    # def parse_script(script: str):
     """
     Parse the LaTeX-like script into respective classes.
 
@@ -146,90 +102,6 @@ def make_caption(result: dict) -> List[Caption]:
     return captions
 
 
-# def generate_audio_and_caption(
-#     script_contents: List[Union[RichContent, Text]],
-#     model: whisper.Whisper = WHISPER_MODEL,
-#     temp_dir: Optional[Path] = None,
-# ) -> List[Union[RichContent, Text]]:
-#     """
-#     Generate audio and caption for each text segment in the script.
-
-#     Args:
-#         script_contents (List[Union[RichContent, Text]]): List of RichContent or Text objects.
-#         model: The Whisper model instance.
-#         temp_dir (Optional[Path]): Temporary directory to store the audio files. Defaults to Path(tempfile.gettempdir()).
-
-#     Returns:
-#         List[Union[RichContent, Text]]: List of RichContent or Text objects with audio and caption.
-#     """
-
-#     temp_dir = temp_dir or Path(tempfile.gettempdir())
-#     temp_dir.mkdir(parents=True, exist_ok=True)
-
-#     try:
-#         elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
-#         logger.info("Using ElevenLabs API key: ****%s", ELEVENLABS_API_KEY[-4:])
-#         logger.info("Using ElevenLabs model: %s", settings.ELEVENLABS.model)
-#     except Exception as exc:
-#         logger.error("Failed to create ElevenLabs client: %s", exc)
-#         raise ValueError("Failed to create ElevenLabs client.") from exc
-
-#     for index, content in enumerate(script_contents):
-#         logger.debug("Processing content: %s", content)
-#         if isinstance(content, Text) and content.audio is None:
-#             if content.content.strip() == "":
-#                 logger.debug("Skipping empty text segment %d", index)
-#                 continue
-
-#             audio_path = temp_dir / f"audio_{index}.wav"
-
-#             if not audio_path.exists():
-#                 content.audio = elevenlabs_client.generate(
-#                     text=content.content,
-#                     voice=ELEVENLABS_VOICE,
-#                     model=settings.ELEVENLABS.model,
-#                 )
-#                 save(content.audio, str(audio_path))
-#                 logger.info("Saved audio to %s", audio_path)
-#             else:
-#                 logger.debug("Audio already exists at %s", audio_path)
-
-#             try:
-#                 audio = whisper.load_audio(str(audio_path))
-#             except Exception as exc:
-#                 logger.error("Failed to load audio file %s: %s", audio_path, exc)
-#                 raise ValueError("Failed to load audio file.") from exc
-
-#             logger.debug("Transcribing audio %d at %s", index, audio_path)
-
-#             result = whisper.transcribe(
-#                 model,
-#                 audio,
-#                 language="en",
-#                 beam_size=5,
-#                 best_of=5,
-#                 vad=True,
-#                 temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0),
-#                 detect_disfluencies=False,
-#             )
-
-#             content.captions = make_caption(result)
-#             content.audio_path = str(audio_path)
-#             content.end = len(audio) / whisper.audio.SAMPLE_RATE
-
-#     offset = 0.0
-#     for content in script_contents:
-#         if isinstance(content, Text) and content.captions:
-#             for caption in content.captions:
-#                 caption.start += offset
-#                 caption.end += offset
-#             content.start = offset
-#             content.end = content.captions[-1].end
-#             offset = content.end
-
-#     return script_contents
-
-
 def fill_rich_content_time(
     script_contents: List[Union[RichContent, Text]]
 ) -> List[Union[RichContent, Text]]:
@@ -275,54 +147,6 @@ def fill_rich_content_time(
                 rich_content.end = offset + (i + 1) * duration_per_rich_content
 
     return script_contents
-
-
-# def export_mp3(text_contents: List[Text], output_path: str) -> None:
-# """
-# Export the audio of the text contents to a single MP3 file.
-
-# Args:
-#     text_contents (List[Text]): List of Text objects.
-#     output_path (str): Path to save the MP3 file.
-
-# Raises:
-#     ValueError: If the output path does not end with .mp3 or the directory does not exist.
-#     FileNotFoundError: If the audio file is not found.
-# """
-# logger.info("Exporting to %s", output_path)
-
-# output_dir = Path(output_path).parent
-# if not output_dir.exists():
-#     raise ValueError(f"Directory {output_dir} does not exist.")
-
-# if not str(output_path).endswith(".mp3"):
-#     raise ValueError("Output path must end with .mp3")
-
-# try:
-#     audio_segments = []
-#     for text in text_contents:
-#         if text.audio_path:
-#             logger.info("Processing audio file: %s", text.audio_path)
-#             try:
-#                 audio_segment = AudioSegment.from_file(text.audio_path)
-#                 audio_segments.append(audio_segment)
-#             except FileNotFoundError as fnf_error:
-#                 logger.error("File not found: %s", text.audio_path)
-#                 raise (fnf_error)
-#             except Exception as exc:
-#                 logger.error("Error processing file %s: %s", text.audio_path, exc)
-#                 raise (exc)
-
-#     combined_audio = AudioSegment.empty()
-#     for audio in audio_segments:
-#         combined_audio += audio
-
-#     logger.info("Exporting to %s", output_path)
-#     combined_audio.export(output_path, format="mp3")
-#     logger.info("Export completed successfully.")
-# except Exception as e:
-#     logger.error("An unexpected error occurred: %s", e)
-#     raise
 
 
 def export_srt(
@@ -397,12 +221,24 @@ def export_rich_content_json(
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(rich_content_dicts, f, ensure_ascii=False, indent=4)
         logger.info("Rich content JSON export completed successfully.")
-    except Exception as e:
-        logger.error("Failed to export rich content JSON: %s", e)
+    except Exception as inner_e:
+        logger.error("Failed to export rich content JSON: %s", inner_e)
         raise
 
 
 def create_elevenlabs_client(api_key: str) -> ElevenLabs:
+    """
+    Create an ElevenLabs client with the provided API key.
+
+    Args:
+        api_key (str): ElevenLabs API key.
+
+    Returns:
+        ElevenLabs client.
+
+    Raises:
+        ValueError: If the ElevenLabs client creation fails.
+    """
     try:
         client = ElevenLabs(api_key=api_key)
         logger.info("ElevenLabs client created with API key: ****%s", api_key[-4:])
@@ -420,6 +256,21 @@ def generate_audio_for_text(
     temp_dir: Path,
     index: int,
 ) -> str:
+    """
+    Generate audio for the given text content using the ElevenLabs client.
+
+    Args:
+        text_content (Text): Text content object.
+        client (ElevenLabs): ElevenLabs client.
+        voice (Voice): Voice object.
+        model (str): Model name.
+        temp_dir (Path): Temporary directory.
+        index (int): Index of the text content.
+
+    Returns:
+        str: Path to the generated audio file.
+    """
+
     if text_content.content.strip() == "":
         logger.debug("Skipping empty text segment %d", index)
         return ""
@@ -454,6 +305,14 @@ def transcribe_audio(audio_path: str, model: whisper.Whisper) -> dict:
     """
 
     try:
+        transcript_file_path = audio_path.replace(".wav", ".json")
+        if os.path.exists(transcript_file_path):
+            with open(transcript_file_path, "r", encoding="utf-8") as f:
+                result = json.load(f)
+                logger.info("Loaded transcription from %s", transcript_file_path)
+                return result
+
+        logger.info("Transcribing audio file %s", audio_path)
         audio = whisper.load_audio(audio_path)
         logger.info("Transcribing audio file %s", audio_path)
         result = whisper.transcribe(
@@ -466,6 +325,10 @@ def transcribe_audio(audio_path: str, model: whisper.Whisper) -> dict:
             temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0),
             detect_disfluencies=False,
         )
+        # save the result to a file with the same name as the audio file but with a .json extension
+        with open(transcript_file_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=4)
+
         return result
     except Exception as exc:
         logger.error("Failed to transcribe audio file %s: %s", audio_path, exc)

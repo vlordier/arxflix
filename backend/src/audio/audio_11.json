@@ -1,0 +1,398 @@
+{
+    "text": " RB modulation leverages stochastic optimal control to personalize content and style without training. The method integrates style features into the controller's terminal cost, modulating the drift field in reverse diffusion dynamics. This approach ensures high fidelity to both the reference style and the given text prompt.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.04,
+            "end": 7.36,
+            "text": " RB modulation leverages stochastic optimal control to personalize content and style without training.",
+            "tokens": [
+                50363,
+                17986,
+                39007,
+                17124,
+                1095,
+                3995,
+                354,
+                3477,
+                16586,
+                1630,
+                284,
+                2614,
+                1096,
+                2695,
+                290,
+                3918,
+                1231,
+                3047,
+                13,
+                50763
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1724801744733538,
+            "compression_ratio": 1.565217391304348,
+            "no_speech_prob": 0.0006272965110838413,
+            "confidence": 0.855,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 0.04,
+                    "end": 0.64,
+                    "confidence": 0.596
+                },
+                {
+                    "text": "modulation",
+                    "start": 0.64,
+                    "end": 1.48,
+                    "confidence": 0.912
+                },
+                {
+                    "text": "leverages",
+                    "start": 1.48,
+                    "end": 2.32,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "stochastic",
+                    "start": 2.32,
+                    "end": 3.12,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "optimal",
+                    "start": 3.12,
+                    "end": 3.58,
+                    "confidence": 0.869
+                },
+                {
+                    "text": "control",
+                    "start": 3.58,
+                    "end": 4.24,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "to",
+                    "start": 4.24,
+                    "end": 4.62,
+                    "confidence": 0.65
+                },
+                {
+                    "text": "personalize",
+                    "start": 4.62,
+                    "end": 5.4,
+                    "confidence": 0.864
+                },
+                {
+                    "text": "content",
+                    "start": 5.4,
+                    "end": 5.88,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "and",
+                    "start": 5.88,
+                    "end": 6.14,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "style",
+                    "start": 6.14,
+                    "end": 6.52,
+                    "confidence": 0.943
+                },
+                {
+                    "text": "without",
+                    "start": 6.52,
+                    "end": 6.92,
+                    "confidence": 0.885
+                },
+                {
+                    "text": "training.",
+                    "start": 6.92,
+                    "end": 7.36,
+                    "confidence": 0.629
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 8.1,
+            "end": 16.4,
+            "text": " The method integrates style features into the controller's terminal cost, modulating the drift field in reverse diffusion dynamics.",
+            "tokens": [
+                50763,
+                383,
+                2446,
+                48105,
+                3918,
+                3033,
+                656,
+                262,
+                10444,
+                338,
+                12094,
+                1575,
+                11,
+                953,
+                8306,
+                262,
+                24260,
+                2214,
+                287,
+                9575,
+                44258,
+                17262,
+                13,
+                51213
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1724801744733538,
+            "compression_ratio": 1.565217391304348,
+            "no_speech_prob": 0.0006272965110838413,
+            "confidence": 0.861,
+            "words": [
+                {
+                    "text": "The",
+                    "start": 8.1,
+                    "end": 8.54,
+                    "confidence": 0.749
+                },
+                {
+                    "text": "method",
+                    "start": 8.54,
+                    "end": 9.0,
+                    "confidence": 0.897
+                },
+                {
+                    "text": "integrates",
+                    "start": 9.0,
+                    "end": 9.72,
+                    "confidence": 0.934
+                },
+                {
+                    "text": "style",
+                    "start": 9.72,
+                    "end": 10.12,
+                    "confidence": 0.903
+                },
+                {
+                    "text": "features",
+                    "start": 10.12,
+                    "end": 10.58,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "into",
+                    "start": 10.58,
+                    "end": 10.9,
+                    "confidence": 0.965
+                },
+                {
+                    "text": "the",
+                    "start": 10.9,
+                    "end": 11.04,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "controller's",
+                    "start": 11.04,
+                    "end": 11.6,
+                    "confidence": 0.793
+                },
+                {
+                    "text": "terminal",
+                    "start": 11.6,
+                    "end": 12.04,
+                    "confidence": 0.954
+                },
+                {
+                    "text": "cost,",
+                    "start": 12.04,
+                    "end": 12.76,
+                    "confidence": 0.874
+                },
+                {
+                    "text": "modulating",
+                    "start": 13.14,
+                    "end": 13.74,
+                    "confidence": 0.641
+                },
+                {
+                    "text": "the",
+                    "start": 13.74,
+                    "end": 13.96,
+                    "confidence": 0.851
+                },
+                {
+                    "text": "drift",
+                    "start": 13.96,
+                    "end": 14.28,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "field",
+                    "start": 14.28,
+                    "end": 14.62,
+                    "confidence": 0.764
+                },
+                {
+                    "text": "in",
+                    "start": 14.62,
+                    "end": 14.9,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "reverse",
+                    "start": 14.9,
+                    "end": 15.26,
+                    "confidence": 0.804
+                },
+                {
+                    "text": "diffusion",
+                    "start": 15.26,
+                    "end": 15.8,
+                    "confidence": 0.932
+                },
+                {
+                    "text": "dynamics.",
+                    "start": 15.8,
+                    "end": 16.4,
+                    "confidence": 0.915
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 17.04,
+            "end": 22.8,
+            "text": " This approach ensures high fidelity to both the reference style and the given text prompt.",
+            "tokens": [
+                51213,
+                770,
+                3164,
+                19047,
+                1029,
+                37744,
+                284,
+                1111,
+                262,
+                4941,
+                3918,
+                290,
+                262,
+                1813,
+                2420,
+                6152,
+                13,
+                51513
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1724801744733538,
+            "compression_ratio": 1.565217391304348,
+            "no_speech_prob": 0.0006272965110838413,
+            "confidence": 0.945,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 17.04,
+                    "end": 17.48,
+                    "confidence": 0.798
+                },
+                {
+                    "text": "approach",
+                    "start": 17.48,
+                    "end": 18.02,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "ensures",
+                    "start": 18.02,
+                    "end": 18.48,
+                    "confidence": 0.981
+                },
+                {
+                    "text": "high",
+                    "start": 18.48,
+                    "end": 18.86,
+                    "confidence": 0.984
+                },
+                {
+                    "text": "fidelity",
+                    "start": 18.86,
+                    "end": 19.34,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "to",
+                    "start": 19.34,
+                    "end": 19.62,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "both",
+                    "start": 19.62,
+                    "end": 19.9,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "the",
+                    "start": 19.9,
+                    "end": 20.04,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "reference",
+                    "start": 20.04,
+                    "end": 20.48,
+                    "confidence": 0.927
+                },
+                {
+                    "text": "style",
+                    "start": 20.48,
+                    "end": 21.0,
+                    "confidence": 0.941
+                },
+                {
+                    "text": "and",
+                    "start": 21.0,
+                    "end": 21.66,
+                    "confidence": 0.817
+                },
+                {
+                    "text": "the",
+                    "start": 21.66,
+                    "end": 21.8,
+                    "confidence": 0.951
+                },
+                {
+                    "text": "given",
+                    "start": 21.8,
+                    "end": 22.08,
+                    "confidence": 0.949
+                },
+                {
+                    "text": "text",
+                    "start": 22.08,
+                    "end": 22.48,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "prompt.",
+                    "start": 22.48,
+                    "end": 22.8,
+                    "confidence": 0.962
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 23.066125
+        }
+    ]
+}

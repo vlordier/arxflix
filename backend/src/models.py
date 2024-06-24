@@ -3,7 +3,41 @@
 from dataclasses import dataclass
 from typing import Iterator
 
-from pydantic import BaseModel, Field
+import tiktoken
+from pydantic import BaseModel, Field, validator
+from src.settings import settings
+
+
+class Prompt(BaseModel):
+    """Prompt model
+    Attributes:
+        system_prompt: str
+        user_prompt: str
+    """
+
+    system_prompt: str
+    user_prompt: str
+
+    @validator("system_prompt", "user_prompt")
+    def check_token_limit(cls, v, values):
+        """Validates that the token count is below the maximum allowed tokens."""
+        encoder = tiktoken.get_encoding("cl100k_base")  # Choose appropriate encoding
+
+        # Tokenize the prompts
+        system_tokens = (
+            encoder.encode(values["system_prompt"]) if "system_prompt" in values else []
+        )
+        user_tokens = encoder.encode(v)
+
+        total_tokens = len(system_tokens) + len(user_tokens)
+
+        if total_tokens > settings.OPENAI.max_tokens:
+            raise ValueError(
+                f"Total token count exceeds the maximum limit of {settings.OPENAI.max_tokens}. "
+                f"Found {total_tokens} tokens."
+            )
+
+        return v
 
 
 class ScriptInput(BaseModel):

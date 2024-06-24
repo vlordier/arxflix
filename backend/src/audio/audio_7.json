@@ -1,0 +1,238 @@
+{
+    "text": " Diffusion models entail two key processes, a noisy process modeled by a stochastic differential equation, SDE, and a denoising process following reverse SDE.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.16,
+            "end": 2.92,
+            "text": " Diffusion models entail two key processes,",
+            "tokens": [
+                50363,
+                10631,
+                4241,
+                4981,
+                39793,
+                734,
+                1994,
+                7767,
+                11,
+                50515
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2531079548161204,
+            "compression_ratio": 1.3418803418803418,
+            "no_speech_prob": 0.02786225825548172,
+            "confidence": 0.799,
+            "words": [
+                {
+                    "text": "Diffusion",
+                    "start": 0.16,
+                    "end": 0.78,
+                    "confidence": 0.896
+                },
+                {
+                    "text": "models",
+                    "start": 0.78,
+                    "end": 1.18,
+                    "confidence": 0.922
+                },
+                {
+                    "text": "entail",
+                    "start": 1.18,
+                    "end": 1.64,
+                    "confidence": 0.7
+                },
+                {
+                    "text": "two",
+                    "start": 1.64,
+                    "end": 1.96,
+                    "confidence": 0.924
+                },
+                {
+                    "text": "key",
+                    "start": 1.96,
+                    "end": 2.22,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "processes,",
+                    "start": 2.22,
+                    "end": 2.92,
+                    "confidence": 0.59
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 3.14,
+            "end": 7.94,
+            "text": " a noisy process modeled by a stochastic differential equation, SDE,",
+            "tokens": [
+                50515,
+                257,
+                31210,
+                1429,
+                29563,
+                416,
+                257,
+                3995,
+                354,
+                3477,
+                22577,
+                16022,
+                11,
+                311,
+                7206,
+                11,
+                50771
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2531079548161204,
+            "compression_ratio": 1.3418803418803418,
+            "no_speech_prob": 0.02786225825548172,
+            "confidence": 0.633,
+            "words": [
+                {
+                    "text": "a",
+                    "start": 3.14,
+                    "end": 3.46,
+                    "confidence": 0.075
+                },
+                {
+                    "text": "noisy",
+                    "start": 3.46,
+                    "end": 3.74,
+                    "confidence": 0.268
+                },
+                {
+                    "text": "process",
+                    "start": 3.74,
+                    "end": 4.44,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "modeled",
+                    "start": 4.44,
+                    "end": 4.88,
+                    "confidence": 0.754
+                },
+                {
+                    "text": "by",
+                    "start": 4.88,
+                    "end": 5.08,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "a",
+                    "start": 5.08,
+                    "end": 5.28,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "stochastic",
+                    "start": 5.28,
+                    "end": 5.84,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "differential",
+                    "start": 5.84,
+                    "end": 6.42,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "equation,",
+                    "start": 6.42,
+                    "end": 7.1,
+                    "confidence": 0.643
+                },
+                {
+                    "text": "SDE,",
+                    "start": 7.18,
+                    "end": 7.94,
+                    "confidence": 0.579
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 8.22,
+            "end": 11.28,
+            "text": " and a denoising process following reverse SDE.",
+            "tokens": [
+                50771,
+                290,
+                257,
+                2853,
+                78,
+                1710,
+                1429,
+                1708,
+                9575,
+                311,
+                7206,
+                13,
+                50939
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2531079548161204,
+            "compression_ratio": 1.3418803418803418,
+            "no_speech_prob": 0.02786225825548172,
+            "confidence": 0.898,
+            "words": [
+                {
+                    "text": "and",
+                    "start": 8.22,
+                    "end": 8.56,
+                    "confidence": 0.817
+                },
+                {
+                    "text": "a",
+                    "start": 8.56,
+                    "end": 8.7,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "denoising",
+                    "start": 8.7,
+                    "end": 9.18,
+                    "confidence": 0.92
+                },
+                {
+                    "text": "process",
+                    "start": 9.18,
+                    "end": 9.76,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "following",
+                    "start": 9.76,
+                    "end": 10.18,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "reverse",
+                    "start": 10.18,
+                    "end": 10.74,
+                    "confidence": 0.93
+                },
+                {
+                    "text": "SDE.",
+                    "start": 10.74,
+                    "end": 11.28,
+                    "confidence": 0.817
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 11.650625
+        }
+    ]
+}

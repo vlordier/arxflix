@@ -64,6 +64,10 @@ class OpenAISettings(BaseSettings):
     )
     model: str = Field(default="gpt-4o", json_schema_extra={"env": "OPENAI_MODEL"})
 
+    max_tokens: int = Field(
+        default=8192, json_schema_extra={"env": "OPENAI_MAX_TOKENS"}
+    )
+
 
 class RemotionSettings(BaseSettings):
     """

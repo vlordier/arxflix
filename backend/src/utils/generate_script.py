@@ -47,10 +47,8 @@ def correct_result_link(script: str, url: str) -> str:
     #         else "https://ar5iv.labs.arxiv.org/html/" + tmp_url[-2]
     #     )
 
-    split_script = script.split("\n")
-
     # remove empty lines
-    split_script = [line for line in split_script if line.strip()]
+    split_script = [line for line in script.split("\n") if line.strip()]
 
     for line_idx, line in enumerate(split_script):
         if "\\Figure: " in line and not line.startswith("https"):
@@ -118,8 +116,8 @@ def process_script(paper: str, url: str) -> str:
     response = openai_client.chat.completions.create(
         model=settings.OPENAI.model,
         messages=[
-            {"role": "system", "content": prompts.SYSTEM_PROMPT},
-            {"role": "user", "content": paper},
+            {"role": "system", "content": prompts.prompt_summary.system_prompt},
+            {"role": "user", "content": prompts.prompt_summary.format(paper)},
         ],
     )
     result = response.choices[0].message.content

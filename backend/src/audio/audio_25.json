@@ -1,0 +1,118 @@
+{
+    "text": " The optimal controller effectively personalizes the diffusion models in a training-free manner.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 5.42,
+            "text": " The optimal controller effectively personalizes the diffusion models in a training-free manner.",
+            "tokens": [
+                50363,
+                383,
+                16586,
+                10444,
+                6840,
+                2614,
+                4340,
+                262,
+                44258,
+                4981,
+                287,
+                257,
+                3047,
+                12,
+                5787,
+                5642,
+                13,
+                50643
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2350813213147615,
+            "compression_ratio": 1.1176470588235294,
+            "no_speech_prob": 0.004786540754139423,
+            "confidence": 0.899,
+            "words": [
+                {
+                    "text": "The",
+                    "start": 0.12,
+                    "end": 0.38,
+                    "confidence": 0.916
+                },
+                {
+                    "text": "optimal",
+                    "start": 0.38,
+                    "end": 0.9,
+                    "confidence": 0.97
+                },
+                {
+                    "text": "controller",
+                    "start": 0.9,
+                    "end": 1.48,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "effectively",
+                    "start": 1.48,
+                    "end": 2.12,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "personalizes",
+                    "start": 2.12,
+                    "end": 2.94,
+                    "confidence": 0.732
+                },
+                {
+                    "text": "the",
+                    "start": 2.94,
+                    "end": 3.24,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "diffusion",
+                    "start": 3.24,
+                    "end": 3.72,
+                    "confidence": 0.956
+                },
+                {
+                    "text": "models",
+                    "start": 3.72,
+                    "end": 4.16,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "in",
+                    "start": 4.16,
+                    "end": 4.36,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "a",
+                    "start": 4.36,
+                    "end": 4.5,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "training-free",
+                    "start": 4.5,
+                    "end": 5.16,
+                    "confidence": 0.773
+                },
+                {
+                    "text": "manner.",
+                    "start": 5.16,
+                    "end": 5.42,
+                    "confidence": 0.963
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 5.7469375
+        }
+    ]
+}

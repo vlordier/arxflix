@@ -1,0 +1,258 @@
+{
+    "text": " RB modulation offers a plug-and-play solution for stylization and content-style composition while maintaining sample diversity and prompt alignment. Here's a quick overview of how it works.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.0,
+            "end": 5.64,
+            "text": " RB modulation offers a plug-and-play solution for stylization and content-style composition",
+            "tokens": [
+                50363,
+                17986,
+                39007,
+                4394,
+                257,
+                6107,
+                12,
+                392,
+                12,
+                1759,
+                4610,
+                329,
+                22152,
+                1634,
+                290,
+                2695,
+                12,
+                7635,
+                11742,
+                50641
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.24636984980383583,
+            "compression_ratio": 1.3216783216783217,
+            "no_speech_prob": 0.003911824431270361,
+            "confidence": 0.825,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 0.0,
+                    "end": 0.5,
+                    "confidence": 0.617
+                },
+                {
+                    "text": "modulation",
+                    "start": 0.5,
+                    "end": 1.18,
+                    "confidence": 0.841
+                },
+                {
+                    "text": "offers",
+                    "start": 1.18,
+                    "end": 1.58,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "a",
+                    "start": 1.58,
+                    "end": 1.76,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "plug-and-play",
+                    "start": 1.76,
+                    "end": 2.3,
+                    "confidence": 0.809
+                },
+                {
+                    "text": "solution",
+                    "start": 2.3,
+                    "end": 2.8,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "for",
+                    "start": 2.8,
+                    "end": 3.04,
+                    "confidence": 0.934
+                },
+                {
+                    "text": "stylization",
+                    "start": 3.04,
+                    "end": 3.86,
+                    "confidence": 0.764
+                },
+                {
+                    "text": "and",
+                    "start": 3.86,
+                    "end": 4.24,
+                    "confidence": 0.725
+                },
+                {
+                    "text": "content-style",
+                    "start": 4.24,
+                    "end": 4.98,
+                    "confidence": 0.784
+                },
+                {
+                    "text": "composition",
+                    "start": 4.98,
+                    "end": 5.64,
+                    "confidence": 0.974
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.64,
+            "end": 8.82,
+            "text": " while maintaining sample diversity and prompt alignment.",
+            "tokens": [
+                50641,
+                981,
+                10941,
+                6291,
+                9573,
+                290,
+                6152,
+                19114,
+                13,
+                50831
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.24636984980383583,
+            "compression_ratio": 1.3216783216783217,
+            "no_speech_prob": 0.003911824431270361,
+            "confidence": 0.936,
+            "words": [
+                {
+                    "text": "while",
+                    "start": 5.64,
+                    "end": 5.9,
+                    "confidence": 0.744
+                },
+                {
+                    "text": "maintaining",
+                    "start": 5.9,
+                    "end": 6.46,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "sample",
+                    "start": 6.46,
+                    "end": 6.88,
+                    "confidence": 0.953
+                },
+                {
+                    "text": "diversity",
+                    "start": 6.88,
+                    "end": 7.58,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "and",
+                    "start": 7.58,
+                    "end": 7.92,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "prompt",
+                    "start": 7.92,
+                    "end": 8.22,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "alignment.",
+                    "start": 8.22,
+                    "end": 8.82,
+                    "confidence": 0.935
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 9.2,
+            "end": 11.3,
+            "text": " Here's a quick overview of how it works.",
+            "tokens": [
+                50831,
+                3423,
+                338,
+                257,
+                2068,
+                16700,
+                286,
+                703,
+                340,
+                2499,
+                13,
+                50931
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.24636984980383583,
+            "compression_ratio": 1.3216783216783217,
+            "no_speech_prob": 0.003911824431270361,
+            "confidence": 0.94,
+            "words": [
+                {
+                    "text": "Here's",
+                    "start": 9.2,
+                    "end": 9.66,
+                    "confidence": 0.823
+                },
+                {
+                    "text": "a",
+                    "start": 9.66,
+                    "end": 9.76,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "quick",
+                    "start": 9.76,
+                    "end": 9.98,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "overview",
+                    "start": 9.98,
+                    "end": 10.4,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "of",
+                    "start": 10.4,
+                    "end": 10.62,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "how",
+                    "start": 10.62,
+                    "end": 10.74,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "it",
+                    "start": 10.74,
+                    "end": 10.9,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "works.",
+                    "start": 10.9,
+                    "end": 11.3,
+                    "confidence": 0.914
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 11.598375
+        }
+    ]
+}

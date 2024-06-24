@@ -1,0 +1,435 @@
+{
+    "text": " Welcome to Oxflix. Today we're exploring an innovative paper titled RB Modulation, Training Free Personalization of Diffusion Models, Using Stochastic Optimal Control. This research delves into a novel method for training free personalization of diffusion models addressing several limitations of existing approaches. Let's dive in.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 4.74,
+            "text": " Welcome to Oxflix. Today we're exploring an innovative paper titled",
+            "tokens": [
+                50363,
+                19134,
+                284,
+                10736,
+                2704,
+                844,
+                13,
+                6288,
+                356,
+                821,
+                13504,
+                281,
+                13097,
+                3348,
+                11946,
+                50595
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2772913752375422,
+            "compression_ratio": 1.5159817351598173,
+            "no_speech_prob": 0.007115863263607025,
+            "confidence": 0.727,
+            "words": [
+                {
+                    "text": "Welcome",
+                    "start": 0.12,
+                    "end": 0.58,
+                    "confidence": 0.925
+                },
+                {
+                    "text": "to",
+                    "start": 0.58,
+                    "end": 0.82,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "Oxflix.",
+                    "start": 0.82,
+                    "end": 1.6,
+                    "confidence": 0.413
+                },
+                {
+                    "text": "Today",
+                    "start": 1.86,
+                    "end": 2.22,
+                    "confidence": 0.753
+                },
+                {
+                    "text": "we're",
+                    "start": 2.22,
+                    "end": 2.56,
+                    "confidence": 0.794
+                },
+                {
+                    "text": "exploring",
+                    "start": 2.56,
+                    "end": 3.0,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "an",
+                    "start": 3.0,
+                    "end": 3.22,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "innovative",
+                    "start": 3.22,
+                    "end": 3.66,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "paper",
+                    "start": 3.66,
+                    "end": 4.04,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "titled",
+                    "start": 4.04,
+                    "end": 4.74,
+                    "confidence": 0.985
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 4.8,
+            "end": 9.58,
+            "text": " RB Modulation, Training Free Personalization of Diffusion Models,",
+            "tokens": [
+                50595,
+                17986,
+                3401,
+                1741,
+                11,
+                13614,
+                3232,
+                15644,
+                1634,
+                286,
+                10631,
+                4241,
+                32329,
+                11,
+                50847
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2772913752375422,
+            "compression_ratio": 1.5159817351598173,
+            "no_speech_prob": 0.007115863263607025,
+            "confidence": 0.56,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 4.8,
+                    "end": 5.32,
+                    "confidence": 0.448
+                },
+                {
+                    "text": "Modulation,",
+                    "start": 5.32,
+                    "end": 6.3,
+                    "confidence": 0.291
+                },
+                {
+                    "text": "Training",
+                    "start": 6.62,
+                    "end": 7.02,
+                    "confidence": 0.433
+                },
+                {
+                    "text": "Free",
+                    "start": 7.02,
+                    "end": 7.32,
+                    "confidence": 0.532
+                },
+                {
+                    "text": "Personalization",
+                    "start": 7.32,
+                    "end": 8.18,
+                    "confidence": 0.936
+                },
+                {
+                    "text": "of",
+                    "start": 8.18,
+                    "end": 8.42,
+                    "confidence": 0.958
+                },
+                {
+                    "text": "Diffusion",
+                    "start": 8.42,
+                    "end": 8.92,
+                    "confidence": 0.907
+                },
+                {
+                    "text": "Models,",
+                    "start": 8.92,
+                    "end": 9.58,
+                    "confidence": 0.552
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 9.74,
+            "end": 16.14,
+            "text": " Using Stochastic Optimal Control. This research delves into a novel method for training free",
+            "tokens": [
+                50847,
+                8554,
+                520,
+                5374,
+                3477,
+                13123,
+                4402,
+                6779,
+                13,
+                770,
+                2267,
+                1619,
+                1158,
+                656,
+                257,
+                5337,
+                2446,
+                329,
+                3047,
+                1479,
+                51159
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2772913752375422,
+            "compression_ratio": 1.5159817351598173,
+            "no_speech_prob": 0.007115863263607025,
+            "confidence": 0.628,
+            "words": [
+                {
+                    "text": "Using",
+                    "start": 9.74,
+                    "end": 10.24,
+                    "confidence": 0.054
+                },
+                {
+                    "text": "Stochastic",
+                    "start": 10.24,
+                    "end": 11.0,
+                    "confidence": 0.468
+                },
+                {
+                    "text": "Optimal",
+                    "start": 11.0,
+                    "end": 11.54,
+                    "confidence": 0.823
+                },
+                {
+                    "text": "Control.",
+                    "start": 11.54,
+                    "end": 12.28,
+                    "confidence": 0.772
+                },
+                {
+                    "text": "This",
+                    "start": 12.98,
+                    "end": 13.22,
+                    "confidence": 0.179
+                },
+                {
+                    "text": "research",
+                    "start": 13.22,
+                    "end": 13.76,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "delves",
+                    "start": 13.76,
+                    "end": 14.18,
+                    "confidence": 0.962
+                },
+                {
+                    "text": "into",
+                    "start": 14.18,
+                    "end": 14.4,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "a",
+                    "start": 14.4,
+                    "end": 14.54,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "novel",
+                    "start": 14.54,
+                    "end": 14.72,
+                    "confidence": 0.942
+                },
+                {
+                    "text": "method",
+                    "start": 14.72,
+                    "end": 15.12,
+                    "confidence": 0.935
+                },
+                {
+                    "text": "for",
+                    "start": 15.12,
+                    "end": 15.34,
+                    "confidence": 0.883
+                },
+                {
+                    "text": "training",
+                    "start": 15.34,
+                    "end": 15.74,
+                    "confidence": 0.849
+                },
+                {
+                    "text": "free",
+                    "start": 15.74,
+                    "end": 16.14,
+                    "confidence": 0.649
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "seek": 0,
+            "start": 16.14,
+            "end": 21.24,
+            "text": " personalization of diffusion models addressing several limitations of existing approaches.",
+            "tokens": [
+                51159,
+                2614,
+                1634,
+                286,
+                44258,
+                4981,
+                13593,
+                1811,
+                11247,
+                286,
+                4683,
+                10581,
+                13,
+                51427
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2772913752375422,
+            "compression_ratio": 1.5159817351598173,
+            "no_speech_prob": 0.007115863263607025,
+            "confidence": 0.812,
+            "words": [
+                {
+                    "text": "personalization",
+                    "start": 16.14,
+                    "end": 17.06,
+                    "confidence": 0.479
+                },
+                {
+                    "text": "of",
+                    "start": 17.06,
+                    "end": 17.3,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "diffusion",
+                    "start": 17.3,
+                    "end": 17.72,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "models",
+                    "start": 17.72,
+                    "end": 18.24,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "addressing",
+                    "start": 18.24,
+                    "end": 18.72,
+                    "confidence": 0.6
+                },
+                {
+                    "text": "several",
+                    "start": 18.72,
+                    "end": 19.12,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "limitations",
+                    "start": 19.12,
+                    "end": 19.88,
+                    "confidence": 0.95
+                },
+                {
+                    "text": "of",
+                    "start": 19.88,
+                    "end": 20.1,
+                    "confidence": 0.959
+                },
+                {
+                    "text": "existing",
+                    "start": 20.1,
+                    "end": 20.52,
+                    "confidence": 0.957
+                },
+                {
+                    "text": "approaches.",
+                    "start": 20.52,
+                    "end": 21.24,
+                    "confidence": 0.856
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "seek": 0,
+            "start": 21.38,
+            "end": 22.34,
+            "text": " Let's dive in.",
+            "tokens": [
+                51427,
+                3914,
+                338,
+                15647,
+                287,
+                13,
+                51499
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2772913752375422,
+            "compression_ratio": 1.5159817351598173,
+            "no_speech_prob": 0.007115863263607025,
+            "confidence": 0.905,
+            "words": [
+                {
+                    "text": "Let's",
+                    "start": 21.38,
+                    "end": 21.78,
+                    "confidence": 0.926
+                },
+                {
+                    "text": "dive",
+                    "start": 21.78,
+                    "end": 22.12,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "in.",
+                    "start": 22.12,
+                    "end": 22.34,
+                    "confidence": 0.844
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 22.6481875
+        }
+    ]
+}
