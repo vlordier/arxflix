@@ -14,8 +14,10 @@ import { AudioViz } from './AudioViz';
 import { CurrentFigure, RichContent } from './RichContent';
 import { loadFont, fontFamily } from "@remotion/google-fonts/Inter";
 
+// Load Google font
 loadFont();
 
+// Schema definition using Zod for validation
 export const ArxflixSchema = z.object({
 	durationInSeconds: z.number().positive(),
 	audioOffsetInSeconds: z.number().min(0),
@@ -39,8 +41,10 @@ export const ArxflixSchema = z.object({
 	waveNumberOfSamples: z.enum(['32', '64', '128', '256', '512']),
 });
 
+// Type for ArxflixComposition props
 export type ArxflixCompositionSchemaType = z.infer<typeof ArxflixSchema>;
 
+// Main component for ArxflixComposition
 export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 	subtitlesFileName,
 	audioFileName,
@@ -58,11 +62,13 @@ export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 }) => {
 	const { durationInFrames, fps } = useVideoConfig();
 
+	// State and ref initialization
 	const [handle] = useState(() => delayRender());
 	const [subtitles, setSubtitles] = useState<string | null>(null);
 	const [richContent, setRichContent] = useState<RichContent[]>([]);
 	const ref = useRef<HTMLDivElement>(null);
 
+	// Effect to fetch subtitles
 	useEffect(() => {
 		fetch(subtitlesFileName)
 			.then((res) => res.text())
@@ -75,6 +81,7 @@ export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 			});
 	}, [handle, subtitlesFileName]);
 
+	// Effect to fetch rich content
 	useEffect(() => {
 		fetch(richContentFileName)
 			.then((res) => res.json())
@@ -87,11 +94,12 @@ export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 			});
 	}, [handle, richContentFileName]);
 
+	// Return null if subtitles are not loaded yet
 	if (!subtitles) {
 		return null;
 	}
 
-	const figures: RichContent[] = [];
+	// Calculate audio offset in frames
 	const audioOffsetInFrames = Math.round(audioOffsetInSeconds * fps);
 
 	return (
@@ -99,7 +107,6 @@ export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 			<AbsoluteFill>
 				<Sequence from={-audioOffsetInFrames}>
 					<Audio src={audioFileName} />
-
 					<div
 						className="grid grid-cols-1 grid-rows-5 w-full h-full text-white p-5 bg-orange-50"
 						style={{
@@ -110,10 +117,9 @@ export const ArxflixComposition: React.FC<ArxflixCompositionSchemaType> = ({
 							<CurrentFigure
 								richContent={richContent}
 								transitionFrames={2}
-								key={figures.map((f) => f.content).join('')}
+								key={richContent.map((f) => f.content).join('')}
 							/>
 						</div>
-
 						<div className='row-span-1'>
 							<div
 								style={{ lineHeight: `${subtitlesLineHeight}px` }}

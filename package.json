@@ -1,0 +1,17 @@
+{
+	"devDependencies": {
+		"lint-staged": "^15.2.7"
+	},
+	"lint-staged": {
+		"*.{js,ts,tsx}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.{md,json}": [
+			"prettier -w"
+		]
+	},
+	"scripts": {
+		"prepare": "husky"
+	}
+}

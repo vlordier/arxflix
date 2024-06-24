@@ -8,18 +8,17 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-
 import { Word } from './Word';
 
+// Custom hook to get windowed frame subtitles
 const useWindowedFrameSubs = (
 	src: string,
 	options: { windowStart: number; windowEnd: number },
 ) => {
 	const { windowStart, windowEnd } = options;
-	const config = useVideoConfig();
-	const { fps } = config;
+	const { fps } = useVideoConfig();
 
-	// Ensure src is a non-empty string before attempting to parse it
+	// Parse SRT only if src is valid
 	const parsed = useMemo(() => {
 		if (!src) {
 			console.warn('src is undefined or empty');
@@ -33,6 +32,7 @@ const useWindowedFrameSubs = (
 		}
 	}, [src]);
 
+	// Filter and map subtitles to frames within the specified window
 	return useMemo(() => {
 		return parsed
 			.map((item) => {
@@ -40,19 +40,16 @@ const useWindowedFrameSubs = (
 				const end = Math.floor(item.end * fps);
 				return { item, start, end };
 			})
-			.filter(({ start }) => {
-				return start >= windowStart && start <= windowEnd;
-			})
-			.map<SubtitleItem>(({ item, start, end }) => {
-				return {
-					...item,
-					start,
-					end,
-				};
-			}, []);
+			.filter(({ start }) => start >= windowStart && start <= windowEnd)
+			.map<SubtitleItem>(({ item, start, end }) => ({
+				...item,
+				start,
+				end,
+			}));
 	}, [fps, parsed, windowEnd, windowStart]);
 };
 
+// Component to render paginated subtitles
 export const PaginatedSubtitles: React.FC<{
 	subtitles: string;
 	startFrame: number;
@@ -82,13 +79,13 @@ export const PaginatedSubtitles: React.FC<{
 	const [lineOffset, setLineOffset] = useState(0);
 
 	const currentAndFollowingSentences = useMemo(() => {
-		// If we don't want to only display the current sentence, return all the words
+		// Return all words if not restricted to current sentence
 		if (!onlyDisplayCurrentSentence) return windowedFrameSubs;
 
+		// Find the last index of the sentence ending before the current frame
 		const indexOfCurrentSentence =
 			windowedFrameSubs.findLastIndex((w, i) => {
 				const nextWord = windowedFrameSubs[i + 1];
-
 				return (
 					nextWord &&
 					(w.text.endsWith('?') ||
@@ -101,6 +98,7 @@ export const PaginatedSubtitles: React.FC<{
 		return windowedFrameSubs.slice(indexOfCurrentSentence);
 	}, [frame, onlyDisplayCurrentSentence, windowedFrameSubs]);
 
+	// Calculate the line offset based on the zoom and rendered lines
 	useEffect(() => {
 		const zoom =
 			(zoomMeasurer.current?.getBoundingClientRect().height as number) /
@@ -119,14 +117,10 @@ export const PaginatedSubtitles: React.FC<{
 		subtitlesZoomMeasurerSize,
 	]);
 
-	const currentFrameSentences = currentAndFollowingSentences.filter((word) => {
-		return word.start < frame;
-	});
+	const currentFrameSentences = currentAndFollowingSentences.filter((word) => word.start < frame);
 
 	return (
-		<div
-			className="relative overflow-hidden px-10"
-		>
+		<div className="relative overflow-hidden px-10">
 			<div
 				ref={windowRef}
 				style={{
@@ -135,16 +129,9 @@ export const PaginatedSubtitles: React.FC<{
 			>
 				{currentFrameSentences.map((item) => (
 					<span key={item.id} id={String(item.id)}>
-						{
-							// If don't start with a - or a space, add a space
-							item.text.startsWith('-') || item.text.startsWith(' ')
-								? ''
-								: ' '
-						}
-						<Word
-							frame={frame}
-							item={item}
-						/>
+						{/* Add space before the word if it doesn't start with '-' or a space */}
+						{item.text.startsWith('-') || item.text.startsWith(' ') ? '' : ' '}
+						<Word frame={frame} item={item} />
 					</span>
 				))}
 			</div>
@@ -159,6 +146,7 @@ export const PaginatedSubtitles: React.FC<{
 	);
 };
 
+// TypeScript declaration for findLastIndex
 declare global {
 	interface Array<T> {
 		findLastIndex(

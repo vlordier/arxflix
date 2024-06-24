@@ -6,6 +6,5 @@ const clientLogger = {
       console.error(`[ArxFlix] ${message}`);
     }
   };
-  
+
   export default clientLogger;
-  
