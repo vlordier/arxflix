@@ -1,6 +1,6 @@
 """ This module contains the prompts """
 
-from src.models import Prompt
+from models import Prompt
 
 prompt_summary = Prompt(
     system_prompt=r"""You are Arxflix, an AI Researcher and Content Creator on Youtube who specializes in summarizing academic papers published on ArXiv.
@@ -25,7 +25,7 @@ prompt_summary = Prompt(
     \Headline: The Problem with Traditional Scaling
     ...
     """,
-    user_prompt="Here is a summary of the paper:",
+    user_prompt="Below is the paper: ",
 )
 
 prompt_qa = Prompt(
@@ -38,5 +38,5 @@ prompt_qa = Prompt(
     "Ask at least 10 different and very diverse questions. "
     "The questions must cover intuition, main idea and technical details, among others. "
     "Be extremely specific and ask about details presented in the paper, no generic or abstract questions. ",
-    user_prompt="Below is the student arxiv paper about which the questions needs to be asked: {}",
+    user_prompt="Below is the student arxiv paper about which the questions needs to be asked: ",
 )

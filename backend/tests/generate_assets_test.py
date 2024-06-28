@@ -9,9 +9,9 @@ from unittest.mock import Mock, patch
 import pytest
 from elevenlabs import Voice
 from elevenlabs.client import ElevenLabs
+from models import Caption, Equation, Figure, Headline, Text
 from pydub import AudioSegment
-from src.models import Caption, Equation, Figure, Headline, Text
-from src.utils.generate_assets import (
+from utils.generate_assets import (
     combine_audio_segments,
     create_elevenlabs_client,
     export_mp3,
@@ -81,16 +81,15 @@ def test_make_caption() -> None:
 
 
 @patch("elevenlabs.client.ElevenLabs")
-@patch("src.utils.generate_assets.create_elevenlabs_client")
-@patch("src.utils.generate_assets.generate_audio_for_text")
-@patch("src.utils.generate_assets.transcribe_audio")
-@patch("src.utils.generate_assets.make_caption")
+@patch("utils.generate_assets.create_elevenlabs_client")
+@patch("utils.generate_assets.generate_audio_for_text")
+@patch("utils.generate_assets.transcribe_audio")
+@patch("utils.generate_assets.make_caption")
 def test_generate_audio_and_caption(
     mock_make_caption: Mock,
     mock_transcribe_audio: Mock,
     mock_generate_audio_for_text: Mock,
     mock_create_elevenlabs_client: Mock,
-    mock_elevenlabs: Mock,
     mock_settings: Mock,
     mock_whisper_model: Mock,
 ) -> None:
@@ -123,8 +122,8 @@ def test_fill_rich_content_time() -> None:
     assert filled_script[0].end is not None
 
 
-@patch("src.utils.generate_assets.whisper")
-def test_export_mp3(mock_whisper_model) -> None:
+@patch("utils.generate_assets.whisper")
+def test_export_mp3(mock_whisper_model: Mock) -> None:
     """Test the export_mp3 function."""
     mock_whisper_model.transcribe.return_value = {
         "segments": [{"words": [{"text": "test", "start": 0.0, "end": 1.0}]}]
@@ -145,8 +144,8 @@ def test_export_mp3(mock_whisper_model) -> None:
         assert output_path.suffix == ".mp3"
 
 
-@patch("src.utils.generate_assets.whisper")
-def test_export_srt(mock_whisper_model) -> None:
+@patch("utils.generate_assets.whisper")
+def test_export_srt(mock_whisper_model: Mock) -> None:
     """Test the export_srt function."""
     with tempfile.TemporaryDirectory() as tempdir:
         full_audio_path = Path(tempdir) / "full_audio.wav"
@@ -178,8 +177,8 @@ def mock_elevenlabs() -> ElevenLabs:
     return Mock(spec=ElevenLabs)
 
 
-@patch("src.utils.generate_assets.save")
-def test_generate_audio_for_text(mock_save, mock_elevenlabs) -> None:
+@patch("utils.generate_assets.save")
+def test_generate_audio_for_text(mock_save: Mock, mock_elevenlabs: Mock) -> None:
     """Test the generate_audio_for_text function."""
     mock_elevenlabs.generate.return_value = b"audio data"
     with tempfile.TemporaryDirectory() as tempdir:
@@ -195,7 +194,7 @@ def test_generate_audio_for_text(mock_save, mock_elevenlabs) -> None:
         assert audio_path.endswith(".wav")
 
 
-@patch("src.utils.generate_assets.whisper")
+@patch("utils.generate_assets.whisper")
 def test_transcribe_audio(mock_whisper_model) -> None:
     """Test the transcribe_audio function."""
     with tempfile.TemporaryDirectory() as tempdir:

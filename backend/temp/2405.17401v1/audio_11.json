@@ -1,0 +1,290 @@
+{
+    "text": " This is where stochastic optimal control comes in. RB modulation formulates the reverse dynamics of diffusion models as a stochastic optimal control problem with a terminal cost to encode style attributes.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 3.88,
+            "text": " This is where stochastic optimal control comes in.",
+            "tokens": [
+                50363,
+                770,
+                318,
+                810,
+                3995,
+                354,
+                3477,
+                16586,
+                1630,
+                2058,
+                287,
+                13,
+                50555
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18260040283203124,
+            "compression_ratio": 1.5073529411764706,
+            "no_speech_prob": 0.01106850616633892,
+            "confidence": 0.923,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 0.14,
+                    "end": 0.44,
+                    "confidence": 0.901
+                },
+                {
+                    "text": "is",
+                    "start": 0.44,
+                    "end": 0.68,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "where",
+                    "start": 0.68,
+                    "end": 0.84,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "stochastic",
+                    "start": 0.84,
+                    "end": 1.6,
+                    "confidence": 0.97
+                },
+                {
+                    "text": "optimal",
+                    "start": 1.6,
+                    "end": 2.16,
+                    "confidence": 0.953
+                },
+                {
+                    "text": "control",
+                    "start": 2.16,
+                    "end": 2.7,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "comes",
+                    "start": 2.7,
+                    "end": 3.08,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "in.",
+                    "start": 3.08,
+                    "end": 3.88,
+                    "confidence": 0.736
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 4.0,
+            "end": 8.68,
+            "text": " RB modulation formulates the reverse dynamics of diffusion models",
+            "tokens": [
+                50555,
+                17986,
+                39007,
+                1296,
+                15968,
+                262,
+                9575,
+                17262,
+                286,
+                44258,
+                4981,
+                50799
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18260040283203124,
+            "compression_ratio": 1.5073529411764706,
+            "no_speech_prob": 0.01106850616633892,
+            "confidence": 0.801,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 4.0,
+                    "end": 4.58,
+                    "confidence": 0.162
+                },
+                {
+                    "text": "modulation",
+                    "start": 4.58,
+                    "end": 5.36,
+                    "confidence": 0.913
+                },
+                {
+                    "text": "formulates",
+                    "start": 5.36,
+                    "end": 6.06,
+                    "confidence": 0.922
+                },
+                {
+                    "text": "the",
+                    "start": 6.06,
+                    "end": 6.3,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "reverse",
+                    "start": 6.3,
+                    "end": 6.64,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "dynamics",
+                    "start": 6.64,
+                    "end": 7.3,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "of",
+                    "start": 7.3,
+                    "end": 7.54,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "diffusion",
+                    "start": 7.54,
+                    "end": 8.0,
+                    "confidence": 0.97
+                },
+                {
+                    "text": "models",
+                    "start": 8.0,
+                    "end": 8.68,
+                    "confidence": 0.982
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 8.84,
+            "end": 14.46,
+            "text": " as a stochastic optimal control problem with a terminal cost to encode style attributes.",
+            "tokens": [
+                50799,
+                355,
+                257,
+                3995,
+                354,
+                3477,
+                16586,
+                1630,
+                1917,
+                351,
+                257,
+                12094,
+                1575,
+                284,
+                37773,
+                3918,
+                12608,
+                13,
+                51107
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18260040283203124,
+            "compression_ratio": 1.5073529411764706,
+            "no_speech_prob": 0.01106850616633892,
+            "confidence": 0.928,
+            "words": [
+                {
+                    "text": "as",
+                    "start": 8.84,
+                    "end": 9.12,
+                    "confidence": 0.8
+                },
+                {
+                    "text": "a",
+                    "start": 9.12,
+                    "end": 9.24,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "stochastic",
+                    "start": 9.24,
+                    "end": 9.9,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "optimal",
+                    "start": 9.9,
+                    "end": 10.38,
+                    "confidence": 0.947
+                },
+                {
+                    "text": "control",
+                    "start": 10.38,
+                    "end": 10.84,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "problem",
+                    "start": 10.84,
+                    "end": 11.32,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "with",
+                    "start": 11.32,
+                    "end": 11.74,
+                    "confidence": 0.669
+                },
+                {
+                    "text": "a",
+                    "start": 11.74,
+                    "end": 11.88,
+                    "confidence": 0.949
+                },
+                {
+                    "text": "terminal",
+                    "start": 11.88,
+                    "end": 12.26,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "cost",
+                    "start": 12.26,
+                    "end": 12.76,
+                    "confidence": 0.954
+                },
+                {
+                    "text": "to",
+                    "start": 12.76,
+                    "end": 13.02,
+                    "confidence": 0.893
+                },
+                {
+                    "text": "encode",
+                    "start": 13.02,
+                    "end": 13.52,
+                    "confidence": 0.957
+                },
+                {
+                    "text": "style",
+                    "start": 13.52,
+                    "end": 13.96,
+                    "confidence": 0.932
+                },
+                {
+                    "text": "attributes.",
+                    "start": 13.96,
+                    "end": 14.46,
+                    "confidence": 0.928
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 14.8636875
+        }
+    ]
+}

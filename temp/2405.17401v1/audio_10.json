@@ -1,0 +1,214 @@
+{
+    "text": " Here's the equation representing the modulated reverse SDE where the controller U modifies the drift term to inject the reference style features effectively.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 5.72,
+            "text": " Here's the equation representing the modulated reverse SDE where the controller U",
+            "tokens": [
+                50363,
+                3423,
+                338,
+                262,
+                16022,
+                10200,
+                262,
+                953,
+                4817,
+                9575,
+                311,
+                7206,
+                810,
+                262,
+                10444,
+                471,
+                50643
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.23423853787508878,
+            "compression_ratio": 1.3083333333333333,
+            "no_speech_prob": 0.00855737179517746,
+            "confidence": 0.836,
+            "words": [
+                {
+                    "text": "Here's",
+                    "start": 0.12,
+                    "end": 0.62,
+                    "confidence": 0.815
+                },
+                {
+                    "text": "the",
+                    "start": 0.62,
+                    "end": 0.76,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "equation",
+                    "start": 0.76,
+                    "end": 1.24,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "representing",
+                    "start": 1.24,
+                    "end": 1.92,
+                    "confidence": 0.958
+                },
+                {
+                    "text": "the",
+                    "start": 1.92,
+                    "end": 2.16,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "modulated",
+                    "start": 2.16,
+                    "end": 2.7,
+                    "confidence": 0.947
+                },
+                {
+                    "text": "reverse",
+                    "start": 2.7,
+                    "end": 3.22,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "SDE",
+                    "start": 3.22,
+                    "end": 4.14,
+                    "confidence": 0.626
+                },
+                {
+                    "text": "where",
+                    "start": 4.14,
+                    "end": 4.6,
+                    "confidence": 0.454
+                },
+                {
+                    "text": "the",
+                    "start": 4.6,
+                    "end": 4.82,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "controller",
+                    "start": 4.82,
+                    "end": 5.24,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "U",
+                    "start": 5.24,
+                    "end": 5.72,
+                    "confidence": 0.742
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.72,
+            "end": 9.58,
+            "text": " modifies the drift term to inject the reference style features effectively.",
+            "tokens": [
+                50643,
+                953,
+                6945,
+                262,
+                24260,
+                3381,
+                284,
+                8677,
+                262,
+                4941,
+                3918,
+                3033,
+                6840,
+                13,
+                50863
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.23423853787508878,
+            "compression_ratio": 1.3083333333333333,
+            "no_speech_prob": 0.00855737179517746,
+            "confidence": 0.9,
+            "words": [
+                {
+                    "text": "modifies",
+                    "start": 5.72,
+                    "end": 6.36,
+                    "confidence": 0.676
+                },
+                {
+                    "text": "the",
+                    "start": 6.36,
+                    "end": 6.54,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "drift",
+                    "start": 6.54,
+                    "end": 6.82,
+                    "confidence": 0.894
+                },
+                {
+                    "text": "term",
+                    "start": 6.82,
+                    "end": 7.14,
+                    "confidence": 0.936
+                },
+                {
+                    "text": "to",
+                    "start": 7.14,
+                    "end": 7.36,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "inject",
+                    "start": 7.36,
+                    "end": 7.76,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "the",
+                    "start": 7.76,
+                    "end": 7.92,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "reference",
+                    "start": 7.92,
+                    "end": 8.34,
+                    "confidence": 0.92
+                },
+                {
+                    "text": "style",
+                    "start": 8.34,
+                    "end": 8.64,
+                    "confidence": 0.958
+                },
+                {
+                    "text": "features",
+                    "start": 8.64,
+                    "end": 9.06,
+                    "confidence": 0.953
+                },
+                {
+                    "text": "effectively.",
+                    "start": 9.06,
+                    "end": 9.58,
+                    "confidence": 0.921
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 9.9788125
+        }
+    ]
+}

@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 import pytest
 import requests
 from bs4 import BeautifulSoup
-from src.utils.generate_paper import (
+from utils.generate_paper import (
     convert_to_markdown,
     fetch_html,
     process_article,
@@ -49,7 +49,7 @@ def test_sanitize_url_exceptions(url, exception_message):
         sanitize_url(url)
 
 
-@patch("src.utils.generate_paper.requests.get")
+@patch("utils.generate_paper.requests.get")
 def test_fetch_html(mock_get):
     mock_response = Mock()
     mock_response.text = "<html></html>"
@@ -119,8 +119,8 @@ def test_strip_attributes(html, expected):
     assert str(soup) == expected
 
 
-@patch("src.utils.generate_paper.fetch_html")
-@patch("src.utils.generate_paper.sanitize_url")
+@patch("utils.generate_paper.fetch_html")
+@patch("utils.generate_paper.sanitize_url")
 def test_process_article(mock_sanitize_url, mock_fetch_html):
     mock_sanitize_url.return_value = "https://example.com/path"
     mock_fetch_html.return_value = "<html><article><div class='ltx_bibliography'></div><p>Content</p></article></html>"

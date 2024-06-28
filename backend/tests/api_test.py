@@ -1,9 +1,9 @@
 """ Test module for the API endpoints """
 
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from fastapi.testclient import TestClient
-from src.main import app, generate_assets_api, generate_paper, generate_script_api
+from main import app, generate_assets_api, generate_paper, generate_script_api
 
 client = TestClient(app)
 
@@ -67,7 +67,7 @@ def mock_export_srt(mp3_output, srt_output):
     pass
 
 
-def mock_export_rich_content_json(rich_content_list, rich_output):
+def mock_export_rich_content_json(rich_content_list: list, rich_output: str) -> None:
     """Mock function to export rich content JSON file.
 
     Args:
@@ -88,8 +88,8 @@ app.dependency_overrides[generate_assets_api] = {
 }
 
 
-@patch("src.utils.generate_paper.requests.get")
-def test_generate_paper(mock_get) -> None:
+@patch("utils.generate_paper.requests.get")
+def test_generate_paper(mock_get: Mock) -> None:
     """Test the generate_paper API endpoint.
 
     Args:

@@ -1,0 +1,322 @@
+{
+    "text": " The backbone of RB modulation lies in formulating the reverse dynamics of diffusion models as a stochastic optimal control problem. The method leverages a style descriptor that incorporates desired attributes into the controller's terminal cost.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 6.52,
+            "text": " The backbone of RB modulation lies in formulating the reverse dynamics of diffusion models",
+            "tokens": [
+                50363,
+                383,
+                32774,
+                286,
+                17986,
+                39007,
+                7363,
+                287,
+                1296,
+                8306,
+                262,
+                9575,
+                17262,
+                286,
+                44258,
+                4981,
+                50683
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.16201174015901526,
+            "compression_ratio": 1.4583333333333333,
+            "no_speech_prob": 0.004019726067781448,
+            "confidence": 0.902,
+            "words": [
+                {
+                    "text": "The",
+                    "start": 0.14,
+                    "end": 0.36,
+                    "confidence": 0.918
+                },
+                {
+                    "text": "backbone",
+                    "start": 0.36,
+                    "end": 0.94,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "of",
+                    "start": 0.94,
+                    "end": 1.2,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "RB",
+                    "start": 1.2,
+                    "end": 1.5,
+                    "confidence": 0.439
+                },
+                {
+                    "text": "modulation",
+                    "start": 1.5,
+                    "end": 2.28,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "lies",
+                    "start": 2.28,
+                    "end": 2.9,
+                    "confidence": 0.936
+                },
+                {
+                    "text": "in",
+                    "start": 2.9,
+                    "end": 3.16,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "formulating",
+                    "start": 3.16,
+                    "end": 3.8,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "the",
+                    "start": 3.8,
+                    "end": 4.08,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "reverse",
+                    "start": 4.08,
+                    "end": 4.44,
+                    "confidence": 0.824
+                },
+                {
+                    "text": "dynamics",
+                    "start": 4.44,
+                    "end": 5.14,
+                    "confidence": 0.945
+                },
+                {
+                    "text": "of",
+                    "start": 5.14,
+                    "end": 5.44,
+                    "confidence": 0.945
+                },
+                {
+                    "text": "diffusion",
+                    "start": 5.44,
+                    "end": 5.92,
+                    "confidence": 0.931
+                },
+                {
+                    "text": "models",
+                    "start": 5.92,
+                    "end": 6.52,
+                    "confidence": 0.979
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.58,
+            "end": 12.6,
+            "text": " as a stochastic optimal control problem. The method leverages a style descriptor",
+            "tokens": [
+                50683,
+                355,
+                257,
+                3995,
+                354,
+                3477,
+                16586,
+                1630,
+                1917,
+                13,
+                383,
+                2446,
+                17124,
+                1095,
+                257,
+                3918,
+                43087,
+                50983
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.16201174015901526,
+            "compression_ratio": 1.4583333333333333,
+            "no_speech_prob": 0.004019726067781448,
+            "confidence": 0.746,
+            "words": [
+                {
+                    "text": "as",
+                    "start": 6.58,
+                    "end": 6.82,
+                    "confidence": 0.879
+                },
+                {
+                    "text": "a",
+                    "start": 6.82,
+                    "end": 7.06,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "stochastic",
+                    "start": 7.06,
+                    "end": 7.74,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "optimal",
+                    "start": 7.74,
+                    "end": 8.32,
+                    "confidence": 0.878
+                },
+                {
+                    "text": "control",
+                    "start": 8.32,
+                    "end": 8.82,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "problem.",
+                    "start": 8.82,
+                    "end": 9.42,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "The",
+                    "start": 10.22,
+                    "end": 10.52,
+                    "confidence": 0.211
+                },
+                {
+                    "text": "method",
+                    "start": 10.52,
+                    "end": 10.84,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "leverages",
+                    "start": 10.84,
+                    "end": 11.44,
+                    "confidence": 0.305
+                },
+                {
+                    "text": "a",
+                    "start": 11.44,
+                    "end": 11.62,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "style",
+                    "start": 11.62,
+                    "end": 11.94,
+                    "confidence": 0.82
+                },
+                {
+                    "text": "descriptor",
+                    "start": 11.94,
+                    "end": 12.6,
+                    "confidence": 0.866
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 12.68,
+            "end": 16.78,
+            "text": " that incorporates desired attributes into the controller's terminal cost.",
+            "tokens": [
+                50983,
+                326,
+                33181,
+                10348,
+                12608,
+                656,
+                262,
+                10444,
+                338,
+                12094,
+                1575,
+                13,
+                51203
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.16201174015901526,
+            "compression_ratio": 1.4583333333333333,
+            "no_speech_prob": 0.004019726067781448,
+            "confidence": 0.956,
+            "words": [
+                {
+                    "text": "that",
+                    "start": 12.68,
+                    "end": 12.96,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "incorporates",
+                    "start": 12.96,
+                    "end": 13.62,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "desired",
+                    "start": 13.62,
+                    "end": 14.16,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "attributes",
+                    "start": 14.16,
+                    "end": 14.78,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "into",
+                    "start": 14.78,
+                    "end": 15.2,
+                    "confidence": 0.899
+                },
+                {
+                    "text": "the",
+                    "start": 15.2,
+                    "end": 15.36,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "controller's",
+                    "start": 15.36,
+                    "end": 15.94,
+                    "confidence": 0.892
+                },
+                {
+                    "text": "terminal",
+                    "start": 15.94,
+                    "end": 16.36,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "cost.",
+                    "start": 16.36,
+                    "end": 16.78,
+                    "confidence": 0.955
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 9.682
+        },
+        {
+            "start": 9.838,
+            "end": 17.0840625
+        }
+    ]
+}

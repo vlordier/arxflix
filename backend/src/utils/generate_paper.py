@@ -3,53 +3,59 @@ This module contains functions to generate a markdown file from a given URL.
 """
 
 import logging
+import re
 from typing import Any
 
 import requests  # type: ignore
 import tldextract
 from bs4 import BeautifulSoup, Tag  # type: ignore
 from markdownify import MarkdownConverter  # type: ignore
-from src.settings import settings  # type: ignore
+from models import ArxivPaper  # type: ignore
+from settings import settings  # type: ignore
 
 # Setup logging
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def sanitize_url(url: str) -> str:
+def get_arxiv_id_from_url(url: str) -> str:
     """
-    Sanitize a URL by removing any query parameters and enforcing HTTPS.
+    Extract the arXiv ID from a given arXiv URL.
 
     Args:
-        url (str): The URL to sanitize.
+        url (str): The arXiv URL.
 
     Returns:
-        str: The sanitized URL.
+        str: The arXiv ID.
 
     Raises:
-        ValueError: If the URL is not HTTPS or contains a file:// scheme.
+        ValueError: If the URL is not a valid arXiv URL.
     """
-    url = url.strip()
+    url = url.strip().split("?")[0].split("#")[0]
 
-    if url.startswith("file://"):
-        raise ValueError("File URLs are not allowed.")
+    if not url.startswith("https://"):
+        raise ValueError("URL must start with 'https://'.")
 
-    domain = tldextract.extract(url).registered_domain
-    if domain not in settings.ALLOWED_DOMAINS and domain != "example.com":
-        raise ValueError(f"Domain {domain} is not allowed.")
+    domain = tldextract.extract(url).domain
+    if domain != "arxiv":
+        raise ValueError("Only arXiv URLs are allowed.")
 
-    if not url.startswith("https"):
-        raise ValueError("Only HTTPS URLs are allowed.")
+    pattern = re.compile(r"/(abs|pdf|html)/(\d{4}\.\d{4,5}v\d+)")
+    match = pattern.search(url)
 
-    url = url.split("?")[0].split("#")[0]
-    return url
+    if match:
+        return match.group(2)
+    else:
+        logger.error("Unexpected error processing URL: %s", url)
+        raise ValueError(f"Unexpected error processing URL: {url}")
 
 
-def fetch_html(url: str) -> str:
+def fetch_html(arxiv_id: str) -> str:
     """
-    Fetch HTML content from a given URL.
+    Fetch HTML content from a given arXiv ID.
 
     Args:
-        url (str): The URL to fetch HTML from.
+        arxiv_id (str): The arXiv ID.
 
     Returns:
         str: The HTML content as a string.
@@ -57,7 +63,8 @@ def fetch_html(url: str) -> str:
     Raises:
         ValueError: If there is an error fetching the HTML content.
     """
-    sanitized_url = sanitize_url(url)
+    sanitized_url = f"https://arxiv.org/html/{arxiv_id}"
+    logger.debug("Fetching HTML from %s", sanitized_url)
 
     try:
         response = requests.get(sanitized_url, timeout=settings.REQUESTS_TIMEOUT)
@@ -92,8 +99,7 @@ def replace_math_tags(soup: BeautifulSoup) -> BeautifulSoup:
     Returns:
         BeautifulSoup: The modified BeautifulSoup object.
     """
-    math_tags = soup.find_all("math")
-    for math_tag in math_tags:
+    for math_tag in soup.find_all("math"):
         display = math_tag.attrs.get("display")
         latex = math_tag.attrs.get("alttext")
 
@@ -139,7 +145,20 @@ def strip_attributes(soup: BeautifulSoup) -> BeautifulSoup:
     return soup
 
 
-def process_article(url: str) -> str:
+def save_markdown(content: str, path: str) -> None:
+    """
+    Save the given content to a markdown file.
+
+    Args:
+        content (str): The markdown content to save.
+        path (str): The file path where the content should be saved.
+    """
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    logger.debug("Saved article to %s", path)
+
+
+def process_article(url: str) -> ArxivPaper:
     """
     Process an article from a given URL and save it as a markdown file.
 
@@ -147,13 +166,30 @@ def process_article(url: str) -> str:
         url (str): The URL of the article.
 
     Returns:
-        str: The processed article as a markdown string.
+        ArxivPaper: The processed article as an ArxivPaper object.
 
     Raises:
         ValueError: If no article is found in the HTML content.
     """
-    sanitized_url = sanitize_url(url)
-    html_content = fetch_html(sanitized_url)
+    arxiv_id = get_arxiv_id_from_url(url)
+    arxiv_paper = ArxivPaper(arxiv_id=arxiv_id)
+    temp_dir = settings.TEMP_DIR / arxiv_id
+    temp_dir.mkdir(parents=True, exist_ok=True)
+
+    arxiv_md_path = temp_dir / "article.md"
+    arxiv_paper.path = arxiv_md_path
+
+    logger.debug("Processing article with arXiv ID: %s", arxiv_id)
+
+    if arxiv_md_path.exists():
+        logger.debug("Article already processed: %s", arxiv_md_path)
+        with open(arxiv_md_path, "r", encoding="utf-8") as f:
+            md_content = f.read().strip()
+        if md_content:
+            arxiv_paper.markdown = md_content
+            return arxiv_paper
+
+    html_content = fetch_html(arxiv_id)
     soup = BeautifulSoup(html_content, "html.parser")
 
     soup = replace_math_tags(soup)
@@ -171,13 +207,15 @@ def process_article(url: str) -> str:
         )
     if isinstance(article, BeautifulSoup):
         article = strip_attributes(article)
-        markdown_article = convert_to_markdown(
-            article, wrap_width=True, strip=["button"]
+        markdown_article = (
+            convert_to_markdown(article, wrap_width=True, strip=["button"])
+            .replace("\n\n\n", "\n\n")
+            .strip()
         )
     else:
         raise ValueError("Article is not a BeautifulSoup object.")
-    markdown_article = markdown_article.replace("\n\n\n", "\n\n").replace(
-        "\n\n\n", "\n\n"
-    )
-    markdown_article = markdown_article.strip()
-    return markdown_article
+
+    save_markdown(markdown_article, arxiv_md_path)
+
+    arxiv_paper.markdown = markdown_article
+    return arxiv_paper

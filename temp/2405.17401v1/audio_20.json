@@ -1,0 +1,285 @@
+{
+    "text": " The paper also reports comprehensive user studies and evaluation metrics. RB modulation consistently scores higher in human preference surveys and prompt alignment metrics such as image reward and clip T scores.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 5.24,
+            "text": " The paper also reports comprehensive user studies and evaluation metrics.",
+            "tokens": [
+                50363,
+                383,
+                3348,
+                635,
+                3136,
+                9815,
+                2836,
+                3640,
+                290,
+                12660,
+                20731,
+                13,
+                50651
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.23175954818725586,
+            "compression_ratio": 1.435374149659864,
+            "no_speech_prob": 0.008183320052921772,
+            "confidence": 0.915,
+            "words": [
+                {
+                    "text": "The",
+                    "start": 0.12,
+                    "end": 0.32,
+                    "confidence": 0.885
+                },
+                {
+                    "text": "paper",
+                    "start": 0.32,
+                    "end": 0.7,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "also",
+                    "start": 0.7,
+                    "end": 1.18,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "reports",
+                    "start": 1.18,
+                    "end": 1.76,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "comprehensive",
+                    "start": 1.76,
+                    "end": 2.56,
+                    "confidence": 0.705
+                },
+                {
+                    "text": "user",
+                    "start": 2.56,
+                    "end": 3.06,
+                    "confidence": 0.932
+                },
+                {
+                    "text": "studies",
+                    "start": 3.06,
+                    "end": 3.6,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "and",
+                    "start": 3.6,
+                    "end": 3.84,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "evaluation",
+                    "start": 3.84,
+                    "end": 4.52,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "metrics.",
+                    "start": 4.52,
+                    "end": 5.24,
+                    "confidence": 0.839
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.8,
+            "end": 10.46,
+            "text": " RB modulation consistently scores higher in human preference surveys",
+            "tokens": [
+                50651,
+                17986,
+                39007,
+                9835,
+                8198,
+                2440,
+                287,
+                1692,
+                12741,
+                16255,
+                50891
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.23175954818725586,
+            "compression_ratio": 1.435374149659864,
+            "no_speech_prob": 0.008183320052921772,
+            "confidence": 0.892,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 5.8,
+                    "end": 6.36,
+                    "confidence": 0.565
+                },
+                {
+                    "text": "modulation",
+                    "start": 6.36,
+                    "end": 7.06,
+                    "confidence": 0.841
+                },
+                {
+                    "text": "consistently",
+                    "start": 7.06,
+                    "end": 7.84,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "scores",
+                    "start": 7.84,
+                    "end": 8.38,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "higher",
+                    "start": 8.38,
+                    "end": 8.88,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "in",
+                    "start": 8.88,
+                    "end": 9.1,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "human",
+                    "start": 9.1,
+                    "end": 9.44,
+                    "confidence": 0.858
+                },
+                {
+                    "text": "preference",
+                    "start": 9.44,
+                    "end": 9.9,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "surveys",
+                    "start": 9.9,
+                    "end": 10.46,
+                    "confidence": 0.974
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 10.66,
+            "end": 15.0,
+            "text": " and prompt alignment metrics such as image reward and clip T scores.",
+            "tokens": [
+                50891,
+                290,
+                6152,
+                19114,
+                20731,
+                884,
+                355,
+                2939,
+                6721,
+                290,
+                10651,
+                309,
+                8198,
+                13,
+                51143
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.23175954818725586,
+            "compression_ratio": 1.435374149659864,
+            "no_speech_prob": 0.008183320052921772,
+            "confidence": 0.864,
+            "words": [
+                {
+                    "text": "and",
+                    "start": 10.66,
+                    "end": 10.98,
+                    "confidence": 0.815
+                },
+                {
+                    "text": "prompt",
+                    "start": 10.98,
+                    "end": 11.26,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "alignment",
+                    "start": 11.26,
+                    "end": 11.74,
+                    "confidence": 0.966
+                },
+                {
+                    "text": "metrics",
+                    "start": 11.74,
+                    "end": 12.26,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "such",
+                    "start": 12.26,
+                    "end": 12.58,
+                    "confidence": 0.872
+                },
+                {
+                    "text": "as",
+                    "start": 12.58,
+                    "end": 12.84,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "image",
+                    "start": 12.84,
+                    "end": 13.14,
+                    "confidence": 0.696
+                },
+                {
+                    "text": "reward",
+                    "start": 13.14,
+                    "end": 13.68,
+                    "confidence": 0.957
+                },
+                {
+                    "text": "and",
+                    "start": 13.68,
+                    "end": 14.06,
+                    "confidence": 0.91
+                },
+                {
+                    "text": "clip",
+                    "start": 14.06,
+                    "end": 14.34,
+                    "confidence": 0.892
+                },
+                {
+                    "text": "T",
+                    "start": 14.34,
+                    "end": 14.66,
+                    "confidence": 0.532
+                },
+                {
+                    "text": "scores.",
+                    "start": 14.66,
+                    "end": 15.0,
+                    "confidence": 0.883
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 15.41225
+        }
+    ]
+}

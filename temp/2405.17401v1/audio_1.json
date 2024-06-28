@@ -1,0 +1,461 @@
+{
+    "text": " Welcome to ARKSFLIX. In today's episode, we will explore a fascinating paper titled RB Modulation, Training Free Personalization of Diffusion Models Using Stochastic Optimal Control. This paper introduces a novel training-free approach to personalizing diffusion models, addressing several limitations of existing methods. Let's dive in.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 2.42,
+            "text": " Welcome to ARKSFLIX.",
+            "tokens": [
+                50363,
+                19134,
+                284,
+                5923,
+                42,
+                50,
+                3697,
+                10426,
+                13,
+                50503
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.31583619117736816,
+            "compression_ratio": 1.4716157205240175,
+            "no_speech_prob": 0.0015856495592743158,
+            "confidence": 0.363,
+            "words": [
+                {
+                    "text": "Welcome",
+                    "start": 0.12,
+                    "end": 0.62,
+                    "confidence": 0.916
+                },
+                {
+                    "text": "to",
+                    "start": 0.62,
+                    "end": 1.0,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "ARKSFLIX.",
+                    "start": 1.0,
+                    "end": 2.42,
+                    "confidence": 0.263
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 3.24,
+            "end": 7.02,
+            "text": " In today's episode, we will explore a fascinating paper titled",
+            "tokens": [
+                50503,
+                554,
+                1909,
+                338,
+                4471,
+                11,
+                356,
+                481,
+                7301,
+                257,
+                13899,
+                3348,
+                11946,
+                50695
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.31583619117736816,
+            "compression_ratio": 1.4716157205240175,
+            "no_speech_prob": 0.0015856495592743158,
+            "confidence": 0.9,
+            "words": [
+                {
+                    "text": "In",
+                    "start": 3.24,
+                    "end": 3.54,
+                    "confidence": 0.919
+                },
+                {
+                    "text": "today's",
+                    "start": 3.54,
+                    "end": 3.94,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "episode,",
+                    "start": 3.94,
+                    "end": 4.4,
+                    "confidence": 0.6
+                },
+                {
+                    "text": "we",
+                    "start": 4.56,
+                    "end": 4.58,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "will",
+                    "start": 4.58,
+                    "end": 4.82,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "explore",
+                    "start": 4.82,
+                    "end": 5.2,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "a",
+                    "start": 5.2,
+                    "end": 5.4,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "fascinating",
+                    "start": 5.4,
+                    "end": 5.94,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "paper",
+                    "start": 5.94,
+                    "end": 6.38,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "titled",
+                    "start": 6.38,
+                    "end": 7.02,
+                    "confidence": 0.962
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 7.16,
+            "end": 14.94,
+            "text": " RB Modulation, Training Free Personalization of Diffusion Models Using Stochastic Optimal Control.",
+            "tokens": [
+                50695,
+                17986,
+                3401,
+                1741,
+                11,
+                13614,
+                3232,
+                15644,
+                1634,
+                286,
+                10631,
+                4241,
+                32329,
+                8554,
+                520,
+                5374,
+                3477,
+                13123,
+                4402,
+                6779,
+                13,
+                51119
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.31583619117736816,
+            "compression_ratio": 1.4716157205240175,
+            "no_speech_prob": 0.0015856495592743158,
+            "confidence": 0.614,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 7.16,
+                    "end": 7.72,
+                    "confidence": 0.696
+                },
+                {
+                    "text": "Modulation,",
+                    "start": 7.72,
+                    "end": 8.66,
+                    "confidence": 0.292
+                },
+                {
+                    "text": "Training",
+                    "start": 8.96,
+                    "end": 9.3,
+                    "confidence": 0.254
+                },
+                {
+                    "text": "Free",
+                    "start": 9.3,
+                    "end": 9.64,
+                    "confidence": 0.49
+                },
+                {
+                    "text": "Personalization",
+                    "start": 9.64,
+                    "end": 10.78,
+                    "confidence": 0.935
+                },
+                {
+                    "text": "of",
+                    "start": 10.78,
+                    "end": 11.06,
+                    "confidence": 0.926
+                },
+                {
+                    "text": "Diffusion",
+                    "start": 11.06,
+                    "end": 11.56,
+                    "confidence": 0.846
+                },
+                {
+                    "text": "Models",
+                    "start": 11.56,
+                    "end": 12.08,
+                    "confidence": 0.84
+                },
+                {
+                    "text": "Using",
+                    "start": 12.08,
+                    "end": 12.76,
+                    "confidence": 0.322
+                },
+                {
+                    "text": "Stochastic",
+                    "start": 12.76,
+                    "end": 13.64,
+                    "confidence": 0.814
+                },
+                {
+                    "text": "Optimal",
+                    "start": 13.64,
+                    "end": 14.24,
+                    "confidence": 0.858
+                },
+                {
+                    "text": "Control.",
+                    "start": 14.24,
+                    "end": 14.94,
+                    "confidence": 0.663
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "seek": 0,
+            "start": 15.46,
+            "end": 20.62,
+            "text": " This paper introduces a novel training-free approach to personalizing diffusion models,",
+            "tokens": [
+                51119,
+                770,
+                3348,
+                20718,
+                257,
+                5337,
+                3047,
+                12,
+                5787,
+                3164,
+                284,
+                2614,
+                2890,
+                44258,
+                4981,
+                11,
+                51375
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.31583619117736816,
+            "compression_ratio": 1.4716157205240175,
+            "no_speech_prob": 0.0015856495592743158,
+            "confidence": 0.855,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 15.46,
+                    "end": 15.9,
+                    "confidence": 0.908
+                },
+                {
+                    "text": "paper",
+                    "start": 15.9,
+                    "end": 16.26,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "introduces",
+                    "start": 16.26,
+                    "end": 16.84,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "a",
+                    "start": 16.84,
+                    "end": 17.12,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "novel",
+                    "start": 17.12,
+                    "end": 17.48,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "training-free",
+                    "start": 17.48,
+                    "end": 18.16,
+                    "confidence": 0.846
+                },
+                {
+                    "text": "approach",
+                    "start": 18.16,
+                    "end": 18.54,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "to",
+                    "start": 18.54,
+                    "end": 18.7,
+                    "confidence": 0.869
+                },
+                {
+                    "text": "personalizing",
+                    "start": 18.7,
+                    "end": 19.46,
+                    "confidence": 0.654
+                },
+                {
+                    "text": "diffusion",
+                    "start": 19.46,
+                    "end": 19.96,
+                    "confidence": 0.915
+                },
+                {
+                    "text": "models,",
+                    "start": 19.96,
+                    "end": 20.62,
+                    "confidence": 0.728
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "seek": 0,
+            "start": 20.72,
+            "end": 23.6,
+            "text": " addressing several limitations of existing methods.",
+            "tokens": [
+                51375,
+                13593,
+                1811,
+                11247,
+                286,
+                4683,
+                5050,
+                13,
+                51551
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.31583619117736816,
+            "compression_ratio": 1.4716157205240175,
+            "no_speech_prob": 0.0015856495592743158,
+            "confidence": 0.938,
+            "words": [
+                {
+                    "text": "addressing",
+                    "start": 20.72,
+                    "end": 21.26,
+                    "confidence": 0.778
+                },
+                {
+                    "text": "several",
+                    "start": 21.26,
+                    "end": 21.64,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "limitations",
+                    "start": 21.64,
+                    "end": 22.34,
+                    "confidence": 0.972
+                },
+                {
+                    "text": "of",
+                    "start": 22.34,
+                    "end": 22.56,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "existing",
+                    "start": 22.56,
+                    "end": 23.0,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "methods.",
+                    "start": 23.0,
+                    "end": 23.6,
+                    "confidence": 0.929
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "seek": 0,
+            "start": 24.16,
+            "end": 25.1,
+            "text": " Let's dive in.",
+            "tokens": [
+                51551,
+                3914,
+                338,
+                15647,
+                287,
+                13,
+                51607
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.31583619117736816,
+            "compression_ratio": 1.4716157205240175,
+            "no_speech_prob": 0.0015856495592743158,
+            "confidence": 0.868,
+            "words": [
+                {
+                    "text": "Let's",
+                    "start": 24.16,
+                    "end": 24.58,
+                    "confidence": 0.83
+                },
+                {
+                    "text": "dive",
+                    "start": 24.58,
+                    "end": 24.88,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "in.",
+                    "start": 24.88,
+                    "end": 25.1,
+                    "confidence": 0.848
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 2.418
+        },
+        {
+            "start": 2.798,
+            "end": 25.3388125
+        }
+    ]
+}

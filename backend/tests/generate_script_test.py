@@ -2,8 +2,8 @@ from unittest.mock import Mock, patch
 
 import pytest
 import requests
-from src.prompts import SYSTEM_PROMPT
-from src.utils.generate_script import correct_result_link, process_script
+from prompts import prompt_summary
+from utils.generate_script import correct_result_link, process_script
 
 
 # Mock settings
@@ -37,7 +37,7 @@ settings = MockSettings()
         ),
     ],
 )
-@patch("src.utils.generate_script.requests.head")
+@patch("utils.generate_script.requests.head")
 def test_correct_result_link(mock_head, script, url, expected):
     mock_response = Mock()
     mock_response.status_code = 200
@@ -52,8 +52,8 @@ def test_correct_result_link(mock_head, script, url, expected):
     assert corrected_script == script
 
 
-@patch("src.utils.generate_script.correct_result_link")
-@patch("src.utils.generate_script.OpenAI")
+@patch("utils.generate_script.correct_result_link")
+@patch("utils.generate_script.OpenAI")
 def test_process_script(mock_openai, mock_correct_result_link):
     mock_openai_instance = Mock()
     mock_openai.return_value = mock_openai_instance
@@ -71,8 +71,8 @@ def test_process_script(mock_openai, mock_correct_result_link):
     mock_openai_instance.chat.completions.create.assert_called_once_with(
         model=settings.OPENAI.model,
         messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": paper},
+            {"role": "system", "content": prompt_summary.system_prompt},
+            {"role": "user", "content": prompt_summary.user_prompt},
         ],
     )
     mock_correct_result_link.assert_called_once_with("Generated script", url)

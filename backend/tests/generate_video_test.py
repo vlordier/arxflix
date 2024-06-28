@@ -7,8 +7,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 import pytest
-from src.settings import RemotionSettings
-from src.utils.generate_video import CompositionProps, process_video
+from settings import RemotionSettings
+from utils.generate_video import CompositionProps, process_video
 
 REMOTION_ROOT_PATH = (
     Path(__file__).parent.parent.parent / "frontend" / "remotion" / "index.ts"
@@ -28,15 +28,15 @@ class MockSettings:
 settings = MockSettings()
 
 
-def test_composition_props_default():
+def test_composition_props_default() -> None:
     """Test default values of CompositionProps."""
     props = CompositionProps()
     assert props.duration_in_seconds == 5
     assert props.duration_in_frames == 5 * settings.VIDEO_FPS
     assert props.audio_offset_in_seconds == 0
-    assert props.subtitles_file_name == "public/output.srt"
-    assert props.audio_file_name == "public/audio.wav"
-    assert props.rich_content_file_name == "public/output.json"
+    assert props.subtitles_file_name == "output.srt"
+    assert props.audio_file_name == "audio.wav"
+    assert props.rich_content_file_name == "output.json"
     assert props.wave_color == "#a3a5ae"
     assert props.subtitles_line_per_page == 2
     assert props.subtitles_line_height == 98
@@ -45,7 +45,7 @@ def test_composition_props_default():
     assert props.mirror_wave is False
     assert props.wave_lines_to_display == 300
     assert props.wave_freq_range_start_index == 5
-    assert props.wave_number_of_samples == "512"
+    assert props.wave_number_of_samples == "256"
 
 
 @pytest.mark.parametrize(
@@ -67,7 +67,7 @@ def test_composition_props_frames(duration_in_seconds, expected_frames):
     assert props.duration_in_frames == expected_frames
 
 
-@patch("src.utils.generate_video.subprocess.run")
+@patch("utils.generate_video.subprocess.run")
 def test_process_video_defaults(mock_subprocess_run):
     """Test processing video with default settings.
 
@@ -89,13 +89,13 @@ def test_process_video_defaults(mock_subprocess_run):
         "--concurrency",
         str(settings.REMOTION.concurrency),
         "--output",
-        Path("public/output.mp4").absolute().as_posix(),
+        Path("output.mp4").absolute().as_posix(),
     ]
 
     mock_subprocess_run.assert_called_once_with(expected_command, check=True)
 
 
-@patch("src.utils.generate_video.subprocess.run")
+@patch("utils.generate_video.subprocess.run")
 def test_process_video_with_custom_props(mock_subprocess_run):
     """Test processing video with custom properties.
 
@@ -126,7 +126,7 @@ def test_process_video_with_custom_props(mock_subprocess_run):
     mock_subprocess_run.assert_called_once_with(expected_command, check=True)
 
 
-@patch("src.utils.generate_video.subprocess.run")
+@patch("utils.generate_video.subprocess.run")
 def test_process_video_failure(mock_subprocess_run):
     """Test processing video failure scenario.
 
@@ -152,7 +152,7 @@ def test_process_video_failure(mock_subprocess_run):
         "--concurrency",
         str(settings.REMOTION.concurrency),
         "--output",
-        Path("public/output.mp4").absolute().as_posix(),
+        Path("output.mp4").absolute().as_posix(),
     ]
 
     mock_subprocess_run.assert_called_once_with(expected_command, check=True)

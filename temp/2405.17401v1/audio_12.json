@@ -1,0 +1,320 @@
+{
+    "text": " To further enhance image fidelity, the paper introduces the AFA module. This module allows the attention layers to separately process keys and values from text, style and content images, improving the disentanglement of these elements.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 5.08,
+            "text": " To further enhance image fidelity, the paper introduces the AFA module.",
+            "tokens": [
+                50363,
+                1675,
+                2252,
+                9494,
+                2939,
+                37744,
+                11,
+                262,
+                3348,
+                20718,
+                262,
+                12341,
+                32,
+                8265,
+                13,
+                50623
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.22080049327775544,
+            "compression_ratio": 1.46875,
+            "no_speech_prob": 0.0033657406456768513,
+            "confidence": 0.864,
+            "words": [
+                {
+                    "text": "To",
+                    "start": 0.14,
+                    "end": 0.34,
+                    "confidence": 0.847
+                },
+                {
+                    "text": "further",
+                    "start": 0.34,
+                    "end": 0.72,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "enhance",
+                    "start": 0.72,
+                    "end": 1.18,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "image",
+                    "start": 1.18,
+                    "end": 1.54,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "fidelity,",
+                    "start": 1.54,
+                    "end": 2.2,
+                    "confidence": 0.834
+                },
+                {
+                    "text": "the",
+                    "start": 2.44,
+                    "end": 2.5,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "paper",
+                    "start": 2.5,
+                    "end": 2.82,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "introduces",
+                    "start": 2.82,
+                    "end": 3.46,
+                    "confidence": 0.984
+                },
+                {
+                    "text": "the",
+                    "start": 3.46,
+                    "end": 3.9,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "AFA",
+                    "start": 3.9,
+                    "end": 4.46,
+                    "confidence": 0.582
+                },
+                {
+                    "text": "module.",
+                    "start": 4.46,
+                    "end": 5.08,
+                    "confidence": 0.858
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.32,
+            "end": 9.92,
+            "text": " This module allows the attention layers to separately process keys and values",
+            "tokens": [
+                50623,
+                770,
+                8265,
+                3578,
+                262,
+                3241,
+                11685,
+                284,
+                13869,
+                1429,
+                8251,
+                290,
+                3815,
+                50859
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.22080049327775544,
+            "compression_ratio": 1.46875,
+            "no_speech_prob": 0.0033657406456768513,
+            "confidence": 0.96,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 5.32,
+                    "end": 5.66,
+                    "confidence": 0.906
+                },
+                {
+                    "text": "module",
+                    "start": 5.66,
+                    "end": 6.08,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "allows",
+                    "start": 6.08,
+                    "end": 6.54,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "the",
+                    "start": 6.54,
+                    "end": 6.72,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "attention",
+                    "start": 6.72,
+                    "end": 7.08,
+                    "confidence": 0.965
+                },
+                {
+                    "text": "layers",
+                    "start": 7.08,
+                    "end": 7.44,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "to",
+                    "start": 7.44,
+                    "end": 7.76,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "separately",
+                    "start": 7.76,
+                    "end": 8.18,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "process",
+                    "start": 8.18,
+                    "end": 8.74,
+                    "confidence": 0.817
+                },
+                {
+                    "text": "keys",
+                    "start": 8.74,
+                    "end": 9.14,
+                    "confidence": 0.941
+                },
+                {
+                    "text": "and",
+                    "start": 9.14,
+                    "end": 9.32,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "values",
+                    "start": 9.32,
+                    "end": 9.92,
+                    "confidence": 0.99
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 10.02,
+            "end": 15.1,
+            "text": " from text, style and content images, improving the disentanglement of these elements.",
+            "tokens": [
+                50859,
+                422,
+                2420,
+                11,
+                3918,
+                290,
+                2695,
+                4263,
+                11,
+                10068,
+                262,
+                595,
+                298,
+                648,
+                1732,
+                286,
+                777,
+                4847,
+                13,
+                51143
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.22080049327775544,
+            "compression_ratio": 1.46875,
+            "no_speech_prob": 0.0033657406456768513,
+            "confidence": 0.797,
+            "words": [
+                {
+                    "text": "from",
+                    "start": 10.02,
+                    "end": 10.32,
+                    "confidence": 0.806
+                },
+                {
+                    "text": "text,",
+                    "start": 10.32,
+                    "end": 10.8,
+                    "confidence": 0.445
+                },
+                {
+                    "text": "style",
+                    "start": 10.9,
+                    "end": 11.14,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "and",
+                    "start": 11.14,
+                    "end": 11.3,
+                    "confidence": 0.689
+                },
+                {
+                    "text": "content",
+                    "start": 11.3,
+                    "end": 11.78,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "images,",
+                    "start": 11.78,
+                    "end": 12.36,
+                    "confidence": 0.806
+                },
+                {
+                    "text": "improving",
+                    "start": 12.76,
+                    "end": 13.14,
+                    "confidence": 0.499
+                },
+                {
+                    "text": "the",
+                    "start": 13.14,
+                    "end": 13.36,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "disentanglement",
+                    "start": 13.36,
+                    "end": 14.24,
+                    "confidence": 0.856
+                },
+                {
+                    "text": "of",
+                    "start": 14.24,
+                    "end": 14.46,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "these",
+                    "start": 14.46,
+                    "end": 14.68,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "elements.",
+                    "start": 14.68,
+                    "end": 15.1,
+                    "confidence": 0.965
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 15.4645
+        }
+    ]
+}

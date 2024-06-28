@@ -5,8 +5,8 @@ from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
-from src.models import AssetsInput, ScriptInput
-from src.settings import Settings
+from models import AssetsInput, ScriptInput
+from settings import Settings
 
 # Add the backend directory to the PYTHONPATH
 sys.path.append(str(Path(__file__).resolve().parent.parent))

@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "remotion/webpack-override.mjs"
-  ],
+, "../video_render/remotion.config.ts"  ],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,232 @@
+{
+    "text": " Here, L is a transient cost and a CH is the terminal cost that captures the style discrepancy between the generated image and the reference image.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.1,
+            "end": 8.74,
+            "text": " Here, L is a transient cost and a CH is the terminal cost that captures the style discrepancy",
+            "tokens": [
+                50363,
+                3423,
+                11,
+                406,
+                318,
+                257,
+                32361,
+                1575,
+                290,
+                257,
+                5870,
+                318,
+                262,
+                12094,
+                1575,
+                326,
+                23007,
+                262,
+                3918,
+                34466,
+                50799
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2855341073238488,
+            "compression_ratio": 1.3272727272727274,
+            "no_speech_prob": 0.010704303160309792,
+            "confidence": 0.751,
+            "words": [
+                {
+                    "text": "Here,",
+                    "start": 0.1,
+                    "end": 0.9,
+                    "confidence": 0.75
+                },
+                {
+                    "text": "L",
+                    "start": 1.2,
+                    "end": 1.72,
+                    "confidence": 0.366
+                },
+                {
+                    "text": "is",
+                    "start": 1.72,
+                    "end": 2.1,
+                    "confidence": 0.823
+                },
+                {
+                    "text": "a",
+                    "start": 2.1,
+                    "end": 2.32,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "transient",
+                    "start": 2.32,
+                    "end": 2.86,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "cost",
+                    "start": 2.86,
+                    "end": 3.5,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "and",
+                    "start": 3.5,
+                    "end": 4.06,
+                    "confidence": 0.451
+                },
+                {
+                    "text": "a",
+                    "start": 4.06,
+                    "end": 4.18,
+                    "confidence": 0.636
+                },
+                {
+                    "text": "CH",
+                    "start": 4.18,
+                    "end": 4.64,
+                    "confidence": 0.169
+                },
+                {
+                    "text": "is",
+                    "start": 4.64,
+                    "end": 5.2,
+                    "confidence": 0.824
+                },
+                {
+                    "text": "the",
+                    "start": 5.2,
+                    "end": 5.38,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "terminal",
+                    "start": 5.38,
+                    "end": 5.88,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "cost",
+                    "start": 5.88,
+                    "end": 6.5,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "that",
+                    "start": 6.5,
+                    "end": 6.84,
+                    "confidence": 0.825
+                },
+                {
+                    "text": "captures",
+                    "start": 6.84,
+                    "end": 7.34,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "the",
+                    "start": 7.34,
+                    "end": 7.58,
+                    "confidence": 0.956
+                },
+                {
+                    "text": "style",
+                    "start": 7.58,
+                    "end": 8.0,
+                    "confidence": 0.93
+                },
+                {
+                    "text": "discrepancy",
+                    "start": 8.0,
+                    "end": 8.74,
+                    "confidence": 0.959
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 8.82,
+            "end": 12.0,
+            "text": " between the generated image and the reference image.",
+            "tokens": [
+                50799,
+                1022,
+                262,
+                7560,
+                2939,
+                290,
+                262,
+                4941,
+                2939,
+                13,
+                50963
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2855341073238488,
+            "compression_ratio": 1.3272727272727274,
+            "no_speech_prob": 0.010704303160309792,
+            "confidence": 0.969,
+            "words": [
+                {
+                    "text": "between",
+                    "start": 8.82,
+                    "end": 9.22,
+                    "confidence": 0.961
+                },
+                {
+                    "text": "the",
+                    "start": 9.22,
+                    "end": 9.44,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "generated",
+                    "start": 9.44,
+                    "end": 10.02,
+                    "confidence": 0.962
+                },
+                {
+                    "text": "image",
+                    "start": 10.02,
+                    "end": 10.52,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "and",
+                    "start": 10.52,
+                    "end": 11.02,
+                    "confidence": 0.937
+                },
+                {
+                    "text": "the",
+                    "start": 11.02,
+                    "end": 11.16,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "reference",
+                    "start": 11.16,
+                    "end": 11.64,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "image.",
+                    "start": 11.64,
+                    "end": 12.0,
+                    "confidence": 0.958
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 12.3036875
+        }
+    ]
+}

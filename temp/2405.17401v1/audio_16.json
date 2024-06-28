@@ -1,0 +1,367 @@
+{
+    "text": " Implementing RB modulation doesn't require back propagating through the entire model, making it feasible for large-scale diffusion models like stable cascade. This efficiency is achieved through a proximal gradient descent approach that approximates the optimal controller without extensive computation.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 5.52,
+            "text": " Implementing RB modulation doesn't require back propagating through the entire model,",
+            "tokens": [
+                50363,
+                48282,
+                278,
+                17986,
+                39007,
+                1595,
+                470,
+                2421,
+                736,
+                8928,
+                803,
+                832,
+                262,
+                2104,
+                2746,
+                11,
+                50647
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1575530479694235,
+            "compression_ratio": 1.5,
+            "no_speech_prob": 0.003919219598174095,
+            "confidence": 0.885,
+            "words": [
+                {
+                    "text": "Implementing",
+                    "start": 0.14,
+                    "end": 1.02,
+                    "confidence": 0.91
+                },
+                {
+                    "text": "RB",
+                    "start": 1.02,
+                    "end": 1.52,
+                    "confidence": 0.688
+                },
+                {
+                    "text": "modulation",
+                    "start": 1.52,
+                    "end": 2.24,
+                    "confidence": 0.965
+                },
+                {
+                    "text": "doesn't",
+                    "start": 2.24,
+                    "end": 2.7,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "require",
+                    "start": 2.7,
+                    "end": 3.16,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "back",
+                    "start": 3.16,
+                    "end": 3.46,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "propagating",
+                    "start": 3.46,
+                    "end": 4.2,
+                    "confidence": 0.873
+                },
+                {
+                    "text": "through",
+                    "start": 4.2,
+                    "end": 4.52,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "the",
+                    "start": 4.52,
+                    "end": 4.68,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "entire",
+                    "start": 4.68,
+                    "end": 5.0,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "model,",
+                    "start": 5.0,
+                    "end": 5.52,
+                    "confidence": 0.649
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.76,
+            "end": 10.36,
+            "text": " making it feasible for large-scale diffusion models like stable cascade.",
+            "tokens": [
+                50647,
+                1642,
+                340,
+                23498,
+                329,
+                1588,
+                12,
+                9888,
+                44258,
+                4981,
+                588,
+                8245,
+                44847,
+                13,
+                50899
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1575530479694235,
+            "compression_ratio": 1.5,
+            "no_speech_prob": 0.003919219598174095,
+            "confidence": 0.88,
+            "words": [
+                {
+                    "text": "making",
+                    "start": 5.76,
+                    "end": 6.18,
+                    "confidence": 0.593
+                },
+                {
+                    "text": "it",
+                    "start": 6.18,
+                    "end": 6.44,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "feasible",
+                    "start": 6.44,
+                    "end": 6.84,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "for",
+                    "start": 6.84,
+                    "end": 7.14,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "large-scale",
+                    "start": 7.14,
+                    "end": 7.9,
+                    "confidence": 0.881
+                },
+                {
+                    "text": "diffusion",
+                    "start": 7.9,
+                    "end": 8.4,
+                    "confidence": 0.952
+                },
+                {
+                    "text": "models",
+                    "start": 8.4,
+                    "end": 8.82,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "like",
+                    "start": 8.82,
+                    "end": 9.2,
+                    "confidence": 0.921
+                },
+                {
+                    "text": "stable",
+                    "start": 9.2,
+                    "end": 9.58,
+                    "confidence": 0.863
+                },
+                {
+                    "text": "cascade.",
+                    "start": 9.58,
+                    "end": 10.36,
+                    "confidence": 0.805
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 10.74,
+            "end": 15.22,
+            "text": " This efficiency is achieved through a proximal gradient descent approach",
+            "tokens": [
+                50899,
+                770,
+                9332,
+                318,
+                8793,
+                832,
+                257,
+                14793,
+                4402,
+                31312,
+                18598,
+                3164,
+                51123
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1575530479694235,
+            "compression_ratio": 1.5,
+            "no_speech_prob": 0.003919219598174095,
+            "confidence": 0.948,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 10.74,
+                    "end": 11.18,
+                    "confidence": 0.863
+                },
+                {
+                    "text": "efficiency",
+                    "start": 11.18,
+                    "end": 11.82,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "is",
+                    "start": 11.82,
+                    "end": 12.08,
+                    "confidence": 0.844
+                },
+                {
+                    "text": "achieved",
+                    "start": 12.08,
+                    "end": 12.5,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "through",
+                    "start": 12.5,
+                    "end": 12.86,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "a",
+                    "start": 12.86,
+                    "end": 13.02,
+                    "confidence": 0.897
+                },
+                {
+                    "text": "proximal",
+                    "start": 13.02,
+                    "end": 13.58,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "gradient",
+                    "start": 13.58,
+                    "end": 14.16,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "descent",
+                    "start": 14.16,
+                    "end": 14.64,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "approach",
+                    "start": 14.64,
+                    "end": 15.22,
+                    "confidence": 0.992
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "seek": 0,
+            "start": 15.32,
+            "end": 19.26,
+            "text": " that approximates the optimal controller without extensive computation.",
+            "tokens": [
+                51123,
+                326,
+                5561,
+                26748,
+                262,
+                16586,
+                10444,
+                1231,
+                7667,
+                29964,
+                13,
+                51351
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1575530479694235,
+            "compression_ratio": 1.5,
+            "no_speech_prob": 0.003919219598174095,
+            "confidence": 0.943,
+            "words": [
+                {
+                    "text": "that",
+                    "start": 15.32,
+                    "end": 15.58,
+                    "confidence": 0.737
+                },
+                {
+                    "text": "approximates",
+                    "start": 15.58,
+                    "end": 16.3,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "the",
+                    "start": 16.3,
+                    "end": 16.6,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "optimal",
+                    "start": 16.6,
+                    "end": 17.04,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "controller",
+                    "start": 17.04,
+                    "end": 17.62,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "without",
+                    "start": 17.62,
+                    "end": 18.02,
+                    "confidence": 0.942
+                },
+                {
+                    "text": "extensive",
+                    "start": 18.02,
+                    "end": 18.62,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "computation.",
+                    "start": 18.62,
+                    "end": 19.26,
+                    "confidence": 0.944
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 19.6701875
+        }
+    ]
+}

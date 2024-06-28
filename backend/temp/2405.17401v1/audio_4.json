@@ -1,0 +1,322 @@
+{
+    "text": " So what is RB modulation? It's a new plug-and-play solution for training-free personalization of diffusion models. The core idea is built on a stochastic optimal controller paired with a novel cross-attention-based feature aggregation scheme.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 2.24,
+            "text": " So what is RB modulation?",
+            "tokens": [
+                50363,
+                1406,
+                644,
+                318,
+                17986,
+                39007,
+                30,
+                50493
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20890960046800516,
+            "compression_ratio": 1.375,
+            "no_speech_prob": 0.005325658712536097,
+            "confidence": 0.766,
+            "words": [
+                {
+                    "text": "So",
+                    "start": 0.12,
+                    "end": 0.44,
+                    "confidence": 0.835
+                },
+                {
+                    "text": "what",
+                    "start": 0.44,
+                    "end": 0.74,
+                    "confidence": 0.86
+                },
+                {
+                    "text": "is",
+                    "start": 0.74,
+                    "end": 1.06,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "RB",
+                    "start": 1.06,
+                    "end": 1.42,
+                    "confidence": 0.394
+                },
+                {
+                    "text": "modulation?",
+                    "start": 1.42,
+                    "end": 2.24,
+                    "confidence": 0.85
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 2.6,
+            "end": 8.28,
+            "text": " It's a new plug-and-play solution for training-free personalization of diffusion models.",
+            "tokens": [
+                50493,
+                632,
+                338,
+                257,
+                649,
+                6107,
+                12,
+                392,
+                12,
+                1759,
+                4610,
+                329,
+                3047,
+                12,
+                5787,
+                2614,
+                1634,
+                286,
+                44258,
+                4981,
+                13,
+                50803
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20890960046800516,
+            "compression_ratio": 1.375,
+            "no_speech_prob": 0.005325658712536097,
+            "confidence": 0.836,
+            "words": [
+                {
+                    "text": "It's",
+                    "start": 2.6,
+                    "end": 3.04,
+                    "confidence": 0.819
+                },
+                {
+                    "text": "a",
+                    "start": 3.04,
+                    "end": 3.18,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "new",
+                    "start": 3.18,
+                    "end": 3.42,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "plug-and-play",
+                    "start": 3.42,
+                    "end": 4.08,
+                    "confidence": 0.851
+                },
+                {
+                    "text": "solution",
+                    "start": 4.08,
+                    "end": 4.66,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "for",
+                    "start": 4.66,
+                    "end": 4.88,
+                    "confidence": 0.921
+                },
+                {
+                    "text": "training-free",
+                    "start": 4.88,
+                    "end": 5.62,
+                    "confidence": 0.672
+                },
+                {
+                    "text": "personalization",
+                    "start": 5.62,
+                    "end": 6.84,
+                    "confidence": 0.701
+                },
+                {
+                    "text": "of",
+                    "start": 6.84,
+                    "end": 7.26,
+                    "confidence": 0.928
+                },
+                {
+                    "text": "diffusion",
+                    "start": 7.26,
+                    "end": 7.76,
+                    "confidence": 0.91
+                },
+                {
+                    "text": "models.",
+                    "start": 7.76,
+                    "end": 8.28,
+                    "confidence": 0.904
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 8.72,
+            "end": 16.26,
+            "text": " The core idea is built on a stochastic optimal controller paired with a novel cross-attention-based feature aggregation scheme.",
+            "tokens": [
+                50803,
+                383,
+                4755,
+                2126,
+                318,
+                3170,
+                319,
+                257,
+                3995,
+                354,
+                3477,
+                16586,
+                10444,
+                20312,
+                351,
+                257,
+                5337,
+                3272,
+                12,
+                1078,
+                1463,
+                12,
+                3106,
+                3895,
+                46500,
+                7791,
+                13,
+                51193
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20890960046800516,
+            "compression_ratio": 1.375,
+            "no_speech_prob": 0.005325658712536097,
+            "confidence": 0.889,
+            "words": [
+                {
+                    "text": "The",
+                    "start": 8.72,
+                    "end": 9.12,
+                    "confidence": 0.894
+                },
+                {
+                    "text": "core",
+                    "start": 9.12,
+                    "end": 9.48,
+                    "confidence": 0.77
+                },
+                {
+                    "text": "idea",
+                    "start": 9.48,
+                    "end": 9.92,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "is",
+                    "start": 9.92,
+                    "end": 10.12,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "built",
+                    "start": 10.12,
+                    "end": 10.42,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "on",
+                    "start": 10.42,
+                    "end": 10.58,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "a",
+                    "start": 10.58,
+                    "end": 10.72,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "stochastic",
+                    "start": 10.72,
+                    "end": 11.46,
+                    "confidence": 0.972
+                },
+                {
+                    "text": "optimal",
+                    "start": 11.46,
+                    "end": 11.96,
+                    "confidence": 0.669
+                },
+                {
+                    "text": "controller",
+                    "start": 11.96,
+                    "end": 12.64,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "paired",
+                    "start": 12.64,
+                    "end": 13.06,
+                    "confidence": 0.716
+                },
+                {
+                    "text": "with",
+                    "start": 13.06,
+                    "end": 13.28,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "a",
+                    "start": 13.28,
+                    "end": 13.46,
+                    "confidence": 0.943
+                },
+                {
+                    "text": "novel",
+                    "start": 13.46,
+                    "end": 13.76,
+                    "confidence": 0.946
+                },
+                {
+                    "text": "cross-attention-based",
+                    "start": 13.76,
+                    "end": 14.92,
+                    "confidence": 0.807
+                },
+                {
+                    "text": "feature",
+                    "start": 14.92,
+                    "end": 15.28,
+                    "confidence": 0.913
+                },
+                {
+                    "text": "aggregation",
+                    "start": 15.28,
+                    "end": 15.96,
+                    "confidence": 0.956
+                },
+                {
+                    "text": "scheme.",
+                    "start": 15.96,
+                    "end": 16.26,
+                    "confidence": 0.902
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 16.561625
+        }
+    ]
+}

@@ -1,0 +1,337 @@
+{
+    "text": " As seen in this figure, the AFA module processes keys and values from previous layers, text embeddings, reference style and reference contents separately. This disintangling ensures that the text attention map remains uncontaminated by the style information.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 5.8,
+            "text": " As seen in this figure, the AFA module processes keys and values from previous layers,",
+            "tokens": [
+                50363,
+                1081,
+                1775,
+                287,
+                428,
+                3785,
+                11,
+                262,
+                317,
+                7708,
+                8265,
+                7767,
+                8251,
+                290,
+                3815,
+                422,
+                2180,
+                11685,
+                11,
+                50659
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1600055524281093,
+            "compression_ratio": 1.4913294797687862,
+            "no_speech_prob": 0.008996786549687386,
+            "confidence": 0.809,
+            "words": [
+                {
+                    "text": "As",
+                    "start": 0.14,
+                    "end": 0.46,
+                    "confidence": 0.635
+                },
+                {
+                    "text": "seen",
+                    "start": 0.46,
+                    "end": 0.7,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "in",
+                    "start": 0.7,
+                    "end": 0.86,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "this",
+                    "start": 0.86,
+                    "end": 1.06,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "figure,",
+                    "start": 1.06,
+                    "end": 1.44,
+                    "confidence": 0.902
+                },
+                {
+                    "text": "the",
+                    "start": 1.72,
+                    "end": 1.84,
+                    "confidence": 0.952
+                },
+                {
+                    "text": "AFA",
+                    "start": 1.84,
+                    "end": 2.26,
+                    "confidence": 0.656
+                },
+                {
+                    "text": "module",
+                    "start": 2.26,
+                    "end": 2.7,
+                    "confidence": 0.867
+                },
+                {
+                    "text": "processes",
+                    "start": 2.7,
+                    "end": 3.24,
+                    "confidence": 0.858
+                },
+                {
+                    "text": "keys",
+                    "start": 3.24,
+                    "end": 3.8,
+                    "confidence": 0.781
+                },
+                {
+                    "text": "and",
+                    "start": 3.8,
+                    "end": 3.98,
+                    "confidence": 0.956
+                },
+                {
+                    "text": "values",
+                    "start": 3.98,
+                    "end": 4.46,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "from",
+                    "start": 4.46,
+                    "end": 4.76,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "previous",
+                    "start": 4.76,
+                    "end": 5.24,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "layers,",
+                    "start": 5.24,
+                    "end": 5.8,
+                    "confidence": 0.462
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.98,
+            "end": 9.68,
+            "text": " text embeddings, reference style and reference contents separately.",
+            "tokens": [
+                50659,
+                2420,
+                11525,
+                67,
+                654,
+                11,
+                4941,
+                3918,
+                290,
+                4941,
+                10154,
+                13869,
+                13,
+                50863
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1600055524281093,
+            "compression_ratio": 1.4913294797687862,
+            "no_speech_prob": 0.008996786549687386,
+            "confidence": 0.818,
+            "words": [
+                {
+                    "text": "text",
+                    "start": 5.98,
+                    "end": 6.4,
+                    "confidence": 0.431
+                },
+                {
+                    "text": "embeddings,",
+                    "start": 6.4,
+                    "end": 7.08,
+                    "confidence": 0.939
+                },
+                {
+                    "text": "reference",
+                    "start": 7.28,
+                    "end": 7.6,
+                    "confidence": 0.924
+                },
+                {
+                    "text": "style",
+                    "start": 7.6,
+                    "end": 7.92,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "and",
+                    "start": 7.92,
+                    "end": 8.16,
+                    "confidence": 0.661
+                },
+                {
+                    "text": "reference",
+                    "start": 8.16,
+                    "end": 8.6,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "contents",
+                    "start": 8.6,
+                    "end": 9.1,
+                    "confidence": 0.621
+                },
+                {
+                    "text": "separately.",
+                    "start": 9.1,
+                    "end": 9.68,
+                    "confidence": 0.863
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 10.0,
+            "end": 16.18,
+            "text": " This disintangling ensures that the text attention map remains uncontaminated by the style information.",
+            "tokens": [
+                50863,
+                770,
+                595,
+                600,
+                27499,
+                19047,
+                326,
+                262,
+                2420,
+                3241,
+                3975,
+                3793,
+                28605,
+                321,
+                3898,
+                416,
+                262,
+                3918,
+                1321,
+                13,
+                51183
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.1600055524281093,
+            "compression_ratio": 1.4913294797687862,
+            "no_speech_prob": 0.008996786549687386,
+            "confidence": 0.865,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 10.0,
+                    "end": 10.48,
+                    "confidence": 0.823
+                },
+                {
+                    "text": "disintangling",
+                    "start": 10.48,
+                    "end": 11.34,
+                    "confidence": 0.772
+                },
+                {
+                    "text": "ensures",
+                    "start": 11.34,
+                    "end": 11.86,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "that",
+                    "start": 11.86,
+                    "end": 12.16,
+                    "confidence": 0.965
+                },
+                {
+                    "text": "the",
+                    "start": 12.16,
+                    "end": 12.26,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "text",
+                    "start": 12.26,
+                    "end": 12.56,
+                    "confidence": 0.953
+                },
+                {
+                    "text": "attention",
+                    "start": 12.56,
+                    "end": 13.02,
+                    "confidence": 0.527
+                },
+                {
+                    "text": "map",
+                    "start": 13.02,
+                    "end": 13.3,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "remains",
+                    "start": 13.3,
+                    "end": 13.84,
+                    "confidence": 0.944
+                },
+                {
+                    "text": "uncontaminated",
+                    "start": 13.84,
+                    "end": 14.94,
+                    "confidence": 0.842
+                },
+                {
+                    "text": "by",
+                    "start": 14.94,
+                    "end": 15.24,
+                    "confidence": 0.959
+                },
+                {
+                    "text": "the",
+                    "start": 15.24,
+                    "end": 15.36,
+                    "confidence": 0.972
+                },
+                {
+                    "text": "style",
+                    "start": 15.36,
+                    "end": 15.7,
+                    "confidence": 0.831
+                },
+                {
+                    "text": "information.",
+                    "start": 15.7,
+                    "end": 16.18,
+                    "confidence": 0.916
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 16.561625
+        }
+    ]
+}

@@ -3,7 +3,7 @@
 from pathlib import Path
 from typing import List, Literal, Optional
 
-from pydantic import Field
+from pydantic import Field, validator
 from pydantic_settings import BaseSettings
 
 # check that the .env file exists
@@ -22,16 +22,7 @@ if not env_file_path.exists():
 
 
 class ElevenLabsSettings(BaseSettings):
-    """
-    Settings for ElevenLabs service.
-
-    Attributes:
-        api_key (str): The API key for the ElevenLabs service.
-        model (str): The model name for the ElevenLabs service.
-        voice_id (str): The voice ID for the ElevenLabs service.
-        stability (float): The stability parameter for the ElevenLabs service.
-        similarity_boost (float): The similarity boost parameter for the ElevenLabs service.
-    """
+    """Settings for ElevenLabs service."""
 
     api_key: Optional[str] = Field(
         default=None, json_schema_extra={"env": "ELEVENLABS_API_KEY"}
@@ -51,56 +42,52 @@ class ElevenLabsSettings(BaseSettings):
 
 
 class OpenAISettings(BaseSettings):
-    """
-    Settings for OpenAI service.
-
-    Attributes:
-        api_key (str): The API key for the OpenAI service.
-        model (str): The model name for the OpenAI service.
-    """
+    """Settings for OpenAI service."""
 
     api_key: Optional[str] = Field(
         default=None, json_schema_extra={"env": "OPENAI_API_KEY"}
     )
     model: str = Field(default="gpt-4o", json_schema_extra={"env": "OPENAI_MODEL"})
-
     max_tokens: int = Field(
         default=8192, json_schema_extra={"env": "OPENAI_MAX_TOKENS"}
     )
 
 
 class RemotionSettings(BaseSettings):
-    """
-    Settings for Remotion project.
-
-    Attributes:
-        root_path (Path): The root path for the Remotion project.
-        composition_id (str): The composition ID for the Remotion project.
-        concurrency (int): The concurrency for the Remotion project.
-    """
+    """Settings for Remotion project."""
 
     root_path: Path = Field(
-        # Current file directory / frontend/remotion/index.ts
-        default=parent_dir.parent / "frontend/remotion/index.ts",
+        default=parent_dir.parent / Path("video_render/remotion/index.ts"),
         json_schema_extra={"env": "REMOTION_ROOT_PATH"},
     )
-
     composition_id: str = Field(
         default="Arxflix", json_schema_extra={"env": "REMOTION_COMPOSITION_ID"}
     )
-    concurrency: int = Field(
-        default=1, json_schema_extra={"env": "REMOTION_CONCURRENCY"}
+    concurrency: str = Field(
+        default="80%", json_schema_extra={"env": "REMOTION_CONCURRENCY"}
     )
+
+    @validator("root_path")
+    def check_root_path(cls, v: Path) -> Path:
+        """Validate that the root_path exists and is a file.
+
+        Args:
+            cls (RemotionSettings): The class instance.
+            v (Path): The path to validate.
+
+        Raises:
+            ValueError: If the path does not exist or is not a file.
+
+        Returns:
+            Path: The validated path.
+        """
+        if not v.is_file():
+            raise ValueError(f"root_path: {v} does not exist or is not a file")
+        return v
 
 
 class LoggingSettings(BaseSettings):
-    """
-    Settings for logging configuration.
-
-    Attributes:
-        format (str): The format for logging messages.
-        level (str): The level for logging messages.
-    """
+    """Settings for logging configuration."""
 
     format: str = Field(
         default="%(asctime)s - %(name)s - %(levellevel)s - %(message)s",
@@ -110,14 +97,7 @@ class LoggingSettings(BaseSettings):
 
 
 class VideoSettings(BaseSettings):
-    """
-    Settings for video processing.
-
-    Attributes:
-        fps (int): The frames per second for video processing.
-        height (int): The height of the video.
-        width (int): The width of the video.
-    """
+    """Settings for video processing."""
 
     fps: int = Field(default=30, json_schema_extra={"env": "VIDEO_FPS"})
     height: int = Field(default=1080, json_schema_extra={"env": "VIDEO_HEIGHT"})
@@ -125,14 +105,7 @@ class VideoSettings(BaseSettings):
 
 
 class AudioSettings(BaseSettings):
-    """
-    Settings for audio processing.
-
-    Attributes:
-        sample_rate (int): The sample rate for audio processing.
-        channels (int): The number of channels for audio processing.
-        format (str): The format for audio processing.
-    """
+    """Settings for audio processing."""
 
     sample_rate: int = Field(
         default=44100, json_schema_extra={"env": "AUDIO_SAMPLE_RATE"}
@@ -142,16 +115,22 @@ class AudioSettings(BaseSettings):
 
 
 class TimeoutSettings(BaseSettings):
-    """
-    Settings for timeout.
-
-    Attributes:
-        whisper (int): The timeout for Whisper service.
-        elevenlabs (int): The timeout for ElevenLabs service.
-    """
+    """Settings for timeout."""
 
     whisper: int = Field(default=300, json_schema_extra={"env": "WHISPER_TIMEOUT"})
     elevenlabs: int = Field(default=60, json_schema_extra={"env": "ELEVENLABS_TIMEOUT"})
+
+
+class ImageSettings(BaseSettings):
+    """Settings for image processing."""
+
+    width: int = Field(default=1920, json_schema_extra={"env": "IMAGE_WIDTH"})
+    height: int = Field(default=1080, json_schema_extra={"env": "IMAGE_HEIGHT"})
+    format_type: str = Field(default="png", json_schema_extra={"env": "IMAGE_FORMAT"})
+    quality: int = Field(default=95, json_schema_extra={"env": "IMAGE_QUALITY"})
+    root_path: Path = Field(
+        default=Path("./images"), json_schema_extra={"env": "IMAGE_ROOT_PATH"}
+    )
 
 
 class CompositionPropsSettings(BaseSettings):
@@ -173,6 +152,7 @@ class CompositionPropsSettings(BaseSettings):
         wave_lines_to_display (int): The number of lines to display for the wave.
         wave_freq_range_start_index (int): The start index for the frequency range for the wave.
         wave_number_of_samples (str): The number of samples for the wave.
+        duration_in_frames (int): The duration of the composition in frames.
     """
 
     duration_in_seconds: int = Field(
@@ -182,19 +162,19 @@ class CompositionPropsSettings(BaseSettings):
         default=0, json_schema_extra={"env": "COMPOSITION_AUDIO_OFFSET_IN_SECONDS"}
     )
     subtitles_file_name: str = Field(
-        default="public/output.srt",
+        default="output.srt",
         json_schema_extra={"env": "COMPOSITION_SUBTITLES_FILE_NAME"},
     )
     audio_file_name: str = Field(
-        default="public/audio.wav",
+        default="audio.wav",
         json_schema_extra={"env": "COMPOSITION_AUDIO_FILE_NAME"},
     )
     rich_content_file_name: str = Field(
-        default="public/output.json",
+        default="output.json",
         json_schema_extra={"env": "COMPOSITION_RICH_CONTENT_FILE_NAME"},
     )
     wave_color: str = Field(
-        default="#a3a5ae", json_schema_extra={"env": "COMPOSITION_WAVE_COLOR"}
+        default="#0059b3", json_schema_extra={"env": "COMPOSITION_WAVE_COLOR"}
     )
     subtitles_line_per_page: int = Field(
         default=2, json_schema_extra={"env": "COMPOSITION_SUBTITLES_LINE_PER_PAGE"}
@@ -220,89 +200,50 @@ class CompositionPropsSettings(BaseSettings):
         default=5, json_schema_extra={"env": "COMPOSITION_WAVE_FREQ_RANGE_START_INDEX"}
     )
     wave_number_of_samples: Literal["32", "64", "128", "256", "512"] = Field(
-        default="512", json_schema_extra={"env": "COMPOSITION_WAVE_NUMBER_OF_SAMPLES"}
+        default="256", json_schema_extra={"env": "COMPOSITION_WAVE_NUMBER_OF_SAMPLES"}
+    )
+    duration_in_frames: int = Field(
+        default=1, json_schema_extra={"env": "COMPOSITION_DURATION_IN_FRAMES"}
     )
 
 
 class Settings(BaseSettings):
-    """
-    Configuration settings for the backend.
+    """Configuration settings for the backend."""
 
-    Attributes:
-        APP_NAME (str): The name of the application.
-        APP_VERSION (str): The version of the application.
-        APP_DESCRIPTION (str): A brief description of the application.
-        WHISPER_MODEL (str): The model name for the Whisper service.
-        ELEVENLABS (ElevenLabsSettings): Settings for ElevenLabs service.
-        OPENAI (OpenAISettings): Settings for OpenAI service.
-        LOGGING (LoggingSettings): Settings for logging configuration.
-        TEMP_DIR (Path): The directory for temporary files.
-        PAPER_URL (str): The URL of the research paper.
-        REQUESTS_TIMEOUT (int): The timeout for HTTP requests in seconds.
-        VIDEO (VideoSettings): Settings for video processing.
-        REMOTION (RemotionSettings): Settings for Remotion project.
-        AUDIO (AudioSettings): Settings for audio processing.
-        TIMEOUTS (TimeoutSettings): Timeout settings for various services.
-        COMPOSITION_PROPS (CompositionPropsSettings): Settings for video composition properties.
-        ALLOWED_DOMAINS (List[str]): The list of allowed domains for the application.
-    """
-
-    # Load environment variables
-    # model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
-
-    # Application settings
     APP_NAME: str = Field(default="Arxflix", json_schema_extra={"env": "APP_NAME"})
     APP_VERSION: str = Field(default="0.1.0", json_schema_extra={"env": "APP_VERSION"})
     APP_DESCRIPTION: str = Field(
-        default="A research paper summarizer",
+        default="ArXflix is an ArXiv research paper summarizer",
         json_schema_extra={"env": "APP_DESCRIPTION"},
     )
-
-    # Whisper settings
     WHISPER_MODEL: str = Field(
         default="tiny.en", json_schema_extra={"env": "WHISPER_MODEL"}
     )
-
-    # ElevenLabs settings
     ELEVENLABS: ElevenLabsSettings = ElevenLabsSettings()
-
-    # OpenAI settings
     OPENAI: OpenAISettings = OpenAISettings()
-
-    # Logging settings
     LOGGING: LoggingSettings = LoggingSettings()
-
-    # Temporary directory
-    TEMP_DIR: Path = Field(
-        default=Path("./audio"), json_schema_extra={"env": "TEMP_DIR"}
-    )
-
-    # Paper URL
-    PAPER_URL: str = Field(default="", json_schema_extra={"env": "PAPER_URL"})
-
-    # Requests
+    TEMP_DIR: Path = Field(default=Path("temp"), json_schema_extra={"env": "TEMP_DIR"})
+    # PAPER_URL: str = Field(default="", json_schema_extra={"env": "PAPER_URL"})
     REQUESTS_TIMEOUT: int = Field(
         default=10, json_schema_extra={"env": "REQUESTS_TIMEOUT"}
     )
-
-    # Video settings
     VIDEO: VideoSettings = VideoSettings()
-
-    # Remotion settings
     REMOTION: RemotionSettings = RemotionSettings()
-
-    # Audio settings
     AUDIO: AudioSettings = AudioSettings()
-
-    # Timeout settings
     TIMEOUTS: TimeoutSettings = TimeoutSettings()
-
-    # Composition properties
     COMPOSITION_PROPS: CompositionPropsSettings = CompositionPropsSettings()
-
     ALLOWED_DOMAINS: List[str] = Field(
         default_factory=lambda: ["arxiv.org", "ar5iv.labs.arxiv.org", "ar5iv.org"],
         json_schema_extra={"env": "ALLOWED_DOMAINS"},
+    )
+
+    IMAGE_ROOT: Path = Field(
+        default=Path("images"), json_schema_extra={"env": "IMAGE_ROOT"}
+    )
+    IMAGE_WIDTH: int = Field(default=1920, json_schema_extra={"env": "IMAGE_WIDTH"})
+    IMAGE_HEIGHT: int = Field(default=1080, json_schema_extra={"env": "IMAGE_HEIGHT"})
+    SCRIPT_NAME: str = Field(
+        default="script.txt", json_schema_extra={"env": "SCRIPT_NAME"}
     )
 
 

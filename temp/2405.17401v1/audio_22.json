@@ -1,0 +1,205 @@
+{
+    "text": " This user-centric approach ensures that the results are not only quantitatively but also qualitatively better, aligning more closely with user expectations and artistic vision.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 10.86,
+            "text": " This user-centric approach ensures that the results are not only quantitatively but also qualitatively better, aligning more closely with user expectations and artistic vision.",
+            "tokens": [
+                50363,
+                770,
+                2836,
+                12,
+                28577,
+                3164,
+                19047,
+                326,
+                262,
+                2482,
+                389,
+                407,
+                691,
+                5554,
+                48668,
+                475,
+                635,
+                4140,
+                48668,
+                1365,
+                11,
+                10548,
+                278,
+                517,
+                7173,
+                351,
+                2836,
+                9027,
+                290,
+                17290,
+                5761,
+                13,
+                50913
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.14647647913764505,
+            "compression_ratio": 1.3968253968253967,
+            "no_speech_prob": 0.007848205044865608,
+            "confidence": 0.915,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 0.12,
+                    "end": 0.52,
+                    "confidence": 0.981
+                },
+                {
+                    "text": "user-centric",
+                    "start": 0.52,
+                    "end": 1.32,
+                    "confidence": 0.936
+                },
+                {
+                    "text": "approach",
+                    "start": 1.32,
+                    "end": 1.76,
+                    "confidence": 1.0
+                },
+                {
+                    "text": "ensures",
+                    "start": 1.76,
+                    "end": 2.22,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "that",
+                    "start": 2.22,
+                    "end": 2.5,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "the",
+                    "start": 2.5,
+                    "end": 2.68,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "results",
+                    "start": 2.68,
+                    "end": 3.08,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "are",
+                    "start": 3.08,
+                    "end": 3.3,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "not",
+                    "start": 3.3,
+                    "end": 3.5,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "only",
+                    "start": 3.5,
+                    "end": 3.74,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "quantitatively",
+                    "start": 3.74,
+                    "end": 4.44,
+                    "confidence": 0.935
+                },
+                {
+                    "text": "but",
+                    "start": 4.44,
+                    "end": 4.78,
+                    "confidence": 0.792
+                },
+                {
+                    "text": "also",
+                    "start": 4.78,
+                    "end": 5.2,
+                    "confidence": 0.961
+                },
+                {
+                    "text": "qualitatively",
+                    "start": 5.2,
+                    "end": 5.94,
+                    "confidence": 0.732
+                },
+                {
+                    "text": "better,",
+                    "start": 5.94,
+                    "end": 6.48,
+                    "confidence": 0.848
+                },
+                {
+                    "text": "aligning",
+                    "start": 6.96,
+                    "end": 7.4,
+                    "confidence": 0.66
+                },
+                {
+                    "text": "more",
+                    "start": 7.4,
+                    "end": 7.66,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "closely",
+                    "start": 7.66,
+                    "end": 8.08,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "with",
+                    "start": 8.08,
+                    "end": 8.36,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "user",
+                    "start": 8.36,
+                    "end": 8.68,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "expectations",
+                    "start": 8.68,
+                    "end": 9.58,
+                    "confidence": 0.89
+                },
+                {
+                    "text": "and",
+                    "start": 9.58,
+                    "end": 10.08,
+                    "confidence": 0.948
+                },
+                {
+                    "text": "artistic",
+                    "start": 10.08,
+                    "end": 10.54,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "vision.",
+                    "start": 10.54,
+                    "end": 10.86,
+                    "confidence": 0.976
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 11.1804375
+        }
+    ]
+}

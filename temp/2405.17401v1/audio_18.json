@@ -1,0 +1,346 @@
+{
+    "text": " The experiments demonstrate that RB modulation outperforms state-of-the-art methods in both style extraction and prompt alignment. Qualitative results show better adherence to the text prompt and higher fidelity to the reference style compared to other methods.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 5.14,
+            "text": " The experiments demonstrate that RB modulation outperforms state-of-the-art methods",
+            "tokens": [
+                50363,
+                383,
+                10256,
+                10176,
+                326,
+                17986,
+                39007,
+                33597,
+                23914,
+                1181,
+                12,
+                1659,
+                12,
+                1169,
+                12,
+                433,
+                5050,
+                50627
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.173447678305886,
+            "compression_ratio": 1.5086705202312138,
+            "no_speech_prob": 0.006740916054695845,
+            "confidence": 0.849,
+            "words": [
+                {
+                    "text": "The",
+                    "start": 0.12,
+                    "end": 0.36,
+                    "confidence": 0.678
+                },
+                {
+                    "text": "experiments",
+                    "start": 0.36,
+                    "end": 1.04,
+                    "confidence": 0.947
+                },
+                {
+                    "text": "demonstrate",
+                    "start": 1.04,
+                    "end": 1.7,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "that",
+                    "start": 1.7,
+                    "end": 2.02,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "RB",
+                    "start": 2.02,
+                    "end": 2.4,
+                    "confidence": 0.501
+                },
+                {
+                    "text": "modulation",
+                    "start": 2.4,
+                    "end": 3.12,
+                    "confidence": 0.963
+                },
+                {
+                    "text": "outperforms",
+                    "start": 3.12,
+                    "end": 3.92,
+                    "confidence": 0.938
+                },
+                {
+                    "text": "state-of-the-art",
+                    "start": 3.92,
+                    "end": 4.62,
+                    "confidence": 0.831
+                },
+                {
+                    "text": "methods",
+                    "start": 4.62,
+                    "end": 5.14,
+                    "confidence": 0.989
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.42,
+            "end": 8.26,
+            "text": " in both style extraction and prompt alignment.",
+            "tokens": [
+                50627,
+                287,
+                1111,
+                3918,
+                22236,
+                290,
+                6152,
+                19114,
+                13,
+                50807
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.173447678305886,
+            "compression_ratio": 1.5086705202312138,
+            "no_speech_prob": 0.006740916054695845,
+            "confidence": 0.93,
+            "words": [
+                {
+                    "text": "in",
+                    "start": 5.42,
+                    "end": 5.64,
+                    "confidence": 0.797
+                },
+                {
+                    "text": "both",
+                    "start": 5.64,
+                    "end": 5.96,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "style",
+                    "start": 5.96,
+                    "end": 6.26,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "extraction",
+                    "start": 6.26,
+                    "end": 6.94,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "and",
+                    "start": 6.94,
+                    "end": 7.34,
+                    "confidence": 0.972
+                },
+                {
+                    "text": "prompt",
+                    "start": 7.34,
+                    "end": 7.62,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "alignment.",
+                    "start": 7.62,
+                    "end": 8.26,
+                    "confidence": 0.872
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 8.88,
+            "end": 12.3,
+            "text": " Qualitative results show better adherence to the text prompt",
+            "tokens": [
+                50807,
+                9537,
+                12464,
+                2482,
+                905,
+                1365,
+                34721,
+                284,
+                262,
+                2420,
+                6152,
+                50979
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.173447678305886,
+            "compression_ratio": 1.5086705202312138,
+            "no_speech_prob": 0.006740916054695845,
+            "confidence": 0.814,
+            "words": [
+                {
+                    "text": "Qualitative",
+                    "start": 8.88,
+                    "end": 9.56,
+                    "confidence": 0.406
+                },
+                {
+                    "text": "results",
+                    "start": 9.56,
+                    "end": 10.04,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "show",
+                    "start": 10.04,
+                    "end": 10.32,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "better",
+                    "start": 10.32,
+                    "end": 10.68,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "adherence",
+                    "start": 10.68,
+                    "end": 11.22,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "to",
+                    "start": 11.22,
+                    "end": 11.46,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "the",
+                    "start": 11.46,
+                    "end": 11.58,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "text",
+                    "start": 11.58,
+                    "end": 11.84,
+                    "confidence": 0.866
+                },
+                {
+                    "text": "prompt",
+                    "start": 11.84,
+                    "end": 12.3,
+                    "confidence": 0.998
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "seek": 0,
+            "start": 12.42,
+            "end": 15.78,
+            "text": " and higher fidelity to the reference style compared to other methods.",
+            "tokens": [
+                50979,
+                290,
+                2440,
+                37744,
+                284,
+                262,
+                4941,
+                3918,
+                3688,
+                284,
+                584,
+                5050,
+                13,
+                51211
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.173447678305886,
+            "compression_ratio": 1.5086705202312138,
+            "no_speech_prob": 0.006740916054695845,
+            "confidence": 0.961,
+            "words": [
+                {
+                    "text": "and",
+                    "start": 12.42,
+                    "end": 12.7,
+                    "confidence": 0.853
+                },
+                {
+                    "text": "higher",
+                    "start": 12.7,
+                    "end": 12.9,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "fidelity",
+                    "start": 12.9,
+                    "end": 13.42,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "to",
+                    "start": 13.42,
+                    "end": 13.72,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "the",
+                    "start": 13.72,
+                    "end": 13.88,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "reference",
+                    "start": 13.88,
+                    "end": 14.28,
+                    "confidence": 0.953
+                },
+                {
+                    "text": "style",
+                    "start": 14.28,
+                    "end": 14.7,
+                    "confidence": 0.97
+                },
+                {
+                    "text": "compared",
+                    "start": 14.7,
+                    "end": 15.1,
+                    "confidence": 0.941
+                },
+                {
+                    "text": "to",
+                    "start": 15.1,
+                    "end": 15.32,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "other",
+                    "start": 15.32,
+                    "end": 15.5,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "methods.",
+                    "start": 15.5,
+                    "end": 15.78,
+                    "confidence": 0.941
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 16.1175625
+        }
+    ]
+}

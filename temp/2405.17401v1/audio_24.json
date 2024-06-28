@@ -1,0 +1,489 @@
+{
+    "text": " RB modulation introduces a novel training-free method for personalizing diffusion models, leveraging concepts from stochastic optimal control. By effectively decoupling style and content through the AFA module and ensuring high fidelity to both the text prompt and the reference style, this method represents a significant step forward in the field of content generation.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.04,
+            "end": 6.64,
+            "text": " RB modulation introduces a novel training-free method for personalizing diffusion models,",
+            "tokens": [
+                50363,
+                17986,
+                39007,
+                20718,
+                257,
+                5337,
+                3047,
+                12,
+                5787,
+                2446,
+                329,
+                2614,
+                2890,
+                44258,
+                4981,
+                11,
+                50719
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18658211356715151,
+            "compression_ratio": 1.592274678111588,
+            "no_speech_prob": 0.00011773683218052611,
+            "confidence": 0.809,
+            "words": [
+                {
+                    "text": "RB",
+                    "start": 0.04,
+                    "end": 0.48,
+                    "confidence": 0.444
+                },
+                {
+                    "text": "modulation",
+                    "start": 0.48,
+                    "end": 1.34,
+                    "confidence": 0.871
+                },
+                {
+                    "text": "introduces",
+                    "start": 1.34,
+                    "end": 2.28,
+                    "confidence": 0.935
+                },
+                {
+                    "text": "a",
+                    "start": 2.28,
+                    "end": 2.66,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "novel",
+                    "start": 2.66,
+                    "end": 3.08,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "training-free",
+                    "start": 3.08,
+                    "end": 3.88,
+                    "confidence": 0.855
+                },
+                {
+                    "text": "method",
+                    "start": 3.88,
+                    "end": 4.24,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "for",
+                    "start": 4.24,
+                    "end": 4.44,
+                    "confidence": 0.783
+                },
+                {
+                    "text": "personalizing",
+                    "start": 4.44,
+                    "end": 5.36,
+                    "confidence": 0.847
+                },
+                {
+                    "text": "diffusion",
+                    "start": 5.36,
+                    "end": 5.94,
+                    "confidence": 0.91
+                },
+                {
+                    "text": "models,",
+                    "start": 5.94,
+                    "end": 6.64,
+                    "confidence": 0.618
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.96,
+            "end": 10.48,
+            "text": " leveraging concepts from stochastic optimal control.",
+            "tokens": [
+                50719,
+                42389,
+                10838,
+                422,
+                3995,
+                354,
+                3477,
+                16586,
+                1630,
+                13,
+                50925
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18658211356715151,
+            "compression_ratio": 1.592274678111588,
+            "no_speech_prob": 0.00011773683218052611,
+            "confidence": 0.779,
+            "words": [
+                {
+                    "text": "leveraging",
+                    "start": 6.96,
+                    "end": 7.58,
+                    "confidence": 0.248
+                },
+                {
+                    "text": "concepts",
+                    "start": 7.58,
+                    "end": 8.2,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "from",
+                    "start": 8.2,
+                    "end": 8.52,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "stochastic",
+                    "start": 8.52,
+                    "end": 9.22,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "optimal",
+                    "start": 9.22,
+                    "end": 9.66,
+                    "confidence": 0.922
+                },
+                {
+                    "text": "control.",
+                    "start": 9.66,
+                    "end": 10.48,
+                    "confidence": 0.72
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 11.05,
+            "end": 17.63,
+            "text": " By effectively decoupling style and content through the AFA module and ensuring high fidelity",
+            "tokens": [
+                50925,
+                2750,
+                6840,
+                875,
+                280,
+                11347,
+                3918,
+                290,
+                2695,
+                832,
+                262,
+                317,
+                7708,
+                8265,
+                290,
+                13359,
+                1029,
+                37744,
+                51255
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18658211356715151,
+            "compression_ratio": 1.592274678111588,
+            "no_speech_prob": 0.00011773683218052611,
+            "confidence": 0.814,
+            "words": [
+                {
+                    "text": "By",
+                    "start": 11.05,
+                    "end": 11.49,
+                    "confidence": 0.473
+                },
+                {
+                    "text": "effectively",
+                    "start": 11.49,
+                    "end": 12.07,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "decoupling",
+                    "start": 12.07,
+                    "end": 12.79,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "style",
+                    "start": 12.79,
+                    "end": 13.21,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "and",
+                    "start": 13.21,
+                    "end": 13.39,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "content",
+                    "start": 13.39,
+                    "end": 13.87,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "through",
+                    "start": 13.87,
+                    "end": 14.19,
+                    "confidence": 0.961
+                },
+                {
+                    "text": "the",
+                    "start": 14.19,
+                    "end": 14.35,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "AFA",
+                    "start": 14.35,
+                    "end": 14.79,
+                    "confidence": 0.664
+                },
+                {
+                    "text": "module",
+                    "start": 14.79,
+                    "end": 15.45,
+                    "confidence": 0.945
+                },
+                {
+                    "text": "and",
+                    "start": 15.45,
+                    "end": 15.97,
+                    "confidence": 0.268
+                },
+                {
+                    "text": "ensuring",
+                    "start": 15.97,
+                    "end": 16.49,
+                    "confidence": 0.946
+                },
+                {
+                    "text": "high",
+                    "start": 16.49,
+                    "end": 16.89,
+                    "confidence": 0.867
+                },
+                {
+                    "text": "fidelity",
+                    "start": 16.89,
+                    "end": 17.63,
+                    "confidence": 0.853
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "seek": 0,
+            "start": 17.83,
+            "end": 23.21,
+            "text": " to both the text prompt and the reference style, this method represents a significant",
+            "tokens": [
+                51255,
+                284,
+                1111,
+                262,
+                2420,
+                6152,
+                290,
+                262,
+                4941,
+                3918,
+                11,
+                428,
+                2446,
+                6870,
+                257,
+                2383,
+                51517
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18658211356715151,
+            "compression_ratio": 1.592274678111588,
+            "no_speech_prob": 0.00011773683218052611,
+            "confidence": 0.704,
+            "words": [
+                {
+                    "text": "to",
+                    "start": 17.83,
+                    "end": 18.07,
+                    "confidence": 0.787
+                },
+                {
+                    "text": "both",
+                    "start": 18.07,
+                    "end": 18.39,
+                    "confidence": 0.984
+                },
+                {
+                    "text": "the",
+                    "start": 18.39,
+                    "end": 18.59,
+                    "confidence": 0.963
+                },
+                {
+                    "text": "text",
+                    "start": 18.59,
+                    "end": 18.79,
+                    "confidence": 0.926
+                },
+                {
+                    "text": "prompt",
+                    "start": 18.79,
+                    "end": 19.19,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "and",
+                    "start": 19.19,
+                    "end": 19.63,
+                    "confidence": 0.94
+                },
+                {
+                    "text": "the",
+                    "start": 19.63,
+                    "end": 19.81,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "reference",
+                    "start": 19.81,
+                    "end": 20.19,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "style,",
+                    "start": 20.19,
+                    "end": 20.65,
+                    "confidence": 0.166
+                },
+                {
+                    "text": "this",
+                    "start": 21.23,
+                    "end": 21.39,
+                    "confidence": 0.366
+                },
+                {
+                    "text": "method",
+                    "start": 21.39,
+                    "end": 21.77,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "represents",
+                    "start": 21.77,
+                    "end": 22.35,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "a",
+                    "start": 22.35,
+                    "end": 22.63,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "significant",
+                    "start": 22.63,
+                    "end": 23.21,
+                    "confidence": 0.875
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "seek": 0,
+            "start": 23.21,
+            "end": 26.03,
+            "text": " step forward in the field of content generation.",
+            "tokens": [
+                51517,
+                2239,
+                2651,
+                287,
+                262,
+                2214,
+                286,
+                2695,
+                5270,
+                13,
+                51671
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18658211356715151,
+            "compression_ratio": 1.592274678111588,
+            "no_speech_prob": 0.00011773683218052611,
+            "confidence": 0.868,
+            "words": [
+                {
+                    "text": "step",
+                    "start": 23.21,
+                    "end": 23.55,
+                    "confidence": 0.356
+                },
+                {
+                    "text": "forward",
+                    "start": 23.55,
+                    "end": 24.07,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "in",
+                    "start": 24.07,
+                    "end": 24.49,
+                    "confidence": 0.928
+                },
+                {
+                    "text": "the",
+                    "start": 24.49,
+                    "end": 24.57,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "field",
+                    "start": 24.57,
+                    "end": 24.87,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "of",
+                    "start": 24.87,
+                    "end": 25.09,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "content",
+                    "start": 25.09,
+                    "end": 25.49,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "generation.",
+                    "start": 25.49,
+                    "end": 26.03,
+                    "confidence": 0.944
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 10.674
+        },
+        {
+            "start": 10.702,
+            "end": 26.4620625
+        }
+    ]
+}

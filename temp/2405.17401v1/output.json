@@ -1,0 +1,80 @@
+[
+    {
+        "type": "headline",
+        "content": "RB-Modulation: Training-Free Personalization of Diffusion Models using Stochastic Optimal Control",
+        "start": 0.0,
+        "end": 25.1
+    },
+    {
+        "type": "figure",
+        "content": "/Users/vincent/Work/arxflix/temp/2405.17401v1/x2.png",
+        "start": 25.1,
+        "end": 37.46
+    },
+    {
+        "type": "headline",
+        "content": "The Challenge of Training-Free Personalization",
+        "start": 37.46,
+        "end": 49.82
+    },
+    {
+        "type": "figure",
+        "content": "/Users/vincent/Work/arxflix/temp/2405.17401v1/x1.png",
+        "start": 49.82,
+        "end": 60.44
+    },
+    {
+        "type": "headline",
+        "content": "The Core Concept: Stochastic Optimal Control",
+        "start": 60.44,
+        "end": 77.22
+    },
+    {
+        "type": "equation",
+        "content": "\\mathrm{d}X^{u}_{t} = \\left[f(X^{u}_{t},t) - g^{2}(X^{u}_{t},t)abla\\log p(X^{u}_{t},t) + u(X^{u}_{t},t)\\right]\\mathrm{d}t + g(X^{u}_{t},t)\\mathrm{d}W_{t}",
+        "start": 77.22,
+        "end": 86.8
+    },
+    {
+        "type": "headline",
+        "content": "The Attention Feature Aggregation (AFA) Module",
+        "start": 86.8,
+        "end": 101.89999999999999
+    },
+    {
+        "type": "figure",
+        "content": "/Users/vincent/Work/arxflix/temp/2405.17401v1/x2.png",
+        "start": 101.89999999999999,
+        "end": 111.8
+    },
+    {
+        "type": "headline",
+        "content": "Practical Implementation and Results",
+        "start": 111.8,
+        "end": 131.06
+    },
+    {
+        "type": "figure",
+        "content": "/Users/vincent/Work/arxflix/temp/2405.17401v1/x3.png",
+        "start": 131.06,
+        "end": 146.84
+    },
+    {
+        "type": "headline",
+        "content": "User Study and Evaluation Metrics",
+        "start": 146.84,
+        "end": 161.84
+    },
+    {
+        "type": "figure",
+        "content": "/Users/vincent/Work/arxflix/temp/2405.17401v1/x12.png",
+        "start": 161.84,
+        "end": 172.7
+    },
+    {
+        "type": "headline",
+        "content": "Conclusion",
+        "start": 172.7,
+        "end": 208.60999999999999
+    }
+]

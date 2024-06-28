@@ -1,0 +1,228 @@
+{
+    "text": " In essence, they solve this problem to find the optimal control, which is then applied to modulate the reverse SDE for updating the current state.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.16,
+            "end": 4.02,
+            "text": " In essence, they solve this problem to find the optimal control,",
+            "tokens": [
+                50363,
+                554,
+                12799,
+                11,
+                484,
+                8494,
+                428,
+                1917,
+                284,
+                1064,
+                262,
+                16586,
+                1630,
+                11,
+                50571
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20185439246041434,
+            "compression_ratio": 1.2586206896551724,
+            "no_speech_prob": 0.00796976126730442,
+            "confidence": 0.926,
+            "words": [
+                {
+                    "text": "In",
+                    "start": 0.16,
+                    "end": 0.4,
+                    "confidence": 0.91
+                },
+                {
+                    "text": "essence,",
+                    "start": 0.4,
+                    "end": 0.9,
+                    "confidence": 0.792
+                },
+                {
+                    "text": "they",
+                    "start": 1.16,
+                    "end": 1.32,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "solve",
+                    "start": 1.32,
+                    "end": 1.6,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "this",
+                    "start": 1.6,
+                    "end": 1.82,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "problem",
+                    "start": 1.82,
+                    "end": 2.24,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "to",
+                    "start": 2.24,
+                    "end": 2.42,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "find",
+                    "start": 2.42,
+                    "end": 2.76,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "the",
+                    "start": 2.76,
+                    "end": 2.9,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "optimal",
+                    "start": 2.9,
+                    "end": 3.36,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "control,",
+                    "start": 3.36,
+                    "end": 4.02,
+                    "confidence": 0.834
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 4.2,
+            "end": 8.7,
+            "text": " which is then applied to modulate the reverse SDE for updating the current state.",
+            "tokens": [
+                50571,
+                543,
+                318,
+                788,
+                5625,
+                284,
+                953,
+                5039,
+                262,
+                9575,
+                311,
+                7206,
+                329,
+                19698,
+                262,
+                1459,
+                1181,
+                13,
+                50811
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20185439246041434,
+            "compression_ratio": 1.2586206896551724,
+            "no_speech_prob": 0.00796976126730442,
+            "confidence": 0.935,
+            "words": [
+                {
+                    "text": "which",
+                    "start": 4.2,
+                    "end": 4.52,
+                    "confidence": 0.866
+                },
+                {
+                    "text": "is",
+                    "start": 4.52,
+                    "end": 4.7,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "then",
+                    "start": 4.7,
+                    "end": 4.88,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "applied",
+                    "start": 4.88,
+                    "end": 5.22,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "to",
+                    "start": 5.22,
+                    "end": 5.44,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "modulate",
+                    "start": 5.44,
+                    "end": 5.9,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "the",
+                    "start": 5.9,
+                    "end": 6.14,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "reverse",
+                    "start": 6.14,
+                    "end": 6.48,
+                    "confidence": 0.965
+                },
+                {
+                    "text": "SDE",
+                    "start": 6.48,
+                    "end": 7.04,
+                    "confidence": 0.76
+                },
+                {
+                    "text": "for",
+                    "start": 7.04,
+                    "end": 7.3,
+                    "confidence": 0.861
+                },
+                {
+                    "text": "updating",
+                    "start": 7.3,
+                    "end": 7.8,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "the",
+                    "start": 7.8,
+                    "end": 8.1,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "current",
+                    "start": 8.1,
+                    "end": 8.44,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "state.",
+                    "start": 8.44,
+                    "end": 8.7,
+                    "confidence": 0.927
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 8.96
+        }
+    ]
+}
