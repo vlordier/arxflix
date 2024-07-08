@@ -9,7 +9,9 @@ import re
 import tempfile
 from datetime import timedelta
 from pathlib import Path
-from typing import List, Union
+from typing import List, Union, Dict
+
+from PIL import Image
 
 import requests
 import srt
@@ -246,6 +248,49 @@ def export_rich_content_json(
         raise
 
 
+def replace_url_with_path(text: str, new_path: str) -> str:
+    """
+    Replaces the URL in the given text with the specified file path.
+
+    Args:
+        text (str): The input string containing the URL.
+        new_path (str): The file path to replace the URL with.
+
+    Returns:
+        str: The modified string with the URL replaced by the new path.
+
+    Raises:
+        re.error: If there is an error in the regular expression.
+        Exception: If an unexpected error occurs.
+
+    """
+    try:
+        # Regular expression to find the URL in the markdown link
+        url_pattern = r'\(https?://[^\)]+\)'
+
+        # Log the original text and new path
+        logger.debug("Original text: %s", text)
+        logger.debug("New path: %s", new_path)
+
+        # Replace the URL with the new path
+        modified_text = re.sub(url_pattern, f'({new_path})', text)
+
+        # Log the modified text
+        logger.debug("Modified text: %s", modified_text)
+
+        return modified_text
+
+    except re.error as e:
+        logger.error("Regex error: %s", e)
+        return text
+
+    except Exception as e:
+        logger.error("An unexpected error occurred: %s", e)
+        return text
+
+
+
+
 def extract_image_name(text: str) -> str:
     """
     Extracts the image name from a given text.
@@ -260,88 +305,146 @@ def extract_image_name(text: str) -> str:
     url_match = url_pattern.search(text)
 
     if url_match:
-        url = url_match.group(1)
+        url = url_match.group(1).strip().split("?")[0].split("#")[0]
         image_name = url.split("/")[-1]
+
+        # Check that the image name ends with .png, .jpg, .jpeg, or .bmp
+        if not re.match(r".*\.(png|jpg|jpeg|bmp)$", image_name, re.IGNORECASE):
+            raise ValueError(f"Invalid image URL, should be a PNG, JPG, JPEG, or BMP image, got {image_name}")
+
+        # Check that the image name is not empty
+        if not image_name:
+            raise ValueError("Image name is empty.")
+
         return image_name
     else:
         return ""
 
-
-def fetch_images(rich_content_dicts: List[dict], arxiv_id: str) -> List[dict]:
+def fetch_images(rich_content_dicts: List[Dict[str, str]], arxiv_id: str) -> List[Dict[str, str]]:
     """
-    Fetch images for the rich content.
+    Fetch images for the rich content and update their paths.
 
     Args:
-        rich_content_dicts (List[dict]): List of rich content dictionaries.
+        rich_content_dicts (List[Dict[str, str]]): List of rich content dictionaries.
         arxiv_id (str): arXiv ID of the article.
 
     Returns:
-        List[dict]: List of rich content dictionaries with images.
+        List[Dict[str, str]]: List of rich content dictionaries with updated image paths.
     """
-    for content_dict in rich_content_dicts:
-        if content_dict["type"] == "figure":
-            if "content" in content_dict:
-                if content_dict["content"].strip() == "":
-                    raise ValueError("Image URL is empty.")
+    for index, content_dict in enumerate(rich_content_dicts):
+        if content_dict.get("type") == "figure" and "content" in content_dict:
+            content = content_dict["content"].strip()
 
-                image_name = extract_image_name(content_dict["content"])
-                logger.info("Fetching image: %s", content_dict["content"])
+            if not content:
+                raise ValueError("Image URL is empty.")
 
-                image_path = Path(settings.TEMP_DIR) / Path(arxiv_id) / Path(image_name)
-                image_path = image_path.absolute()
+            image_name = extract_image_name(content)
+            logger.info("Fetching image: %s", image_name)
 
-                image_url = f"https://arxiv.org/html/{arxiv_id}/{image_name}"
+            image_path = fetch_image(image_name, arxiv_id)
+            if not image_path:
+                raise ValueError("Failed to fetch image.")
 
-                image_path = fetch_image(image_url, arxiv_id)
-                content_dict["content"] = image_path
+            if check_image(image_path):
+                content_dict["content"] = replace_url_with_path(content, image_path)
+                rich_content_dicts[index] = content_dict
+                logger.info("Fetched image: %s", image_path)
+            else:
+                logger.warning("Failed to fetch image: %s", image_path)
+                raise ValueError(f"Failed to fetch image {image_path}")
 
     return rich_content_dicts
 
-
-def fetch_image(image_url: str, arxiv_id: str) -> str:
+def check_image(image_path: str) -> bool:
     """
-    Fetch the image from the URL.
+    Check if the image exists and is readable.
 
     Args:
-        image_url (str): URL of the image.
+        image_path (str): Path to the image file.
+
+    Returns:
+        bool: True if the image exists and is readable, False otherwise.
+    """
+    image_file = Path(image_path)
+    if image_file.exists():
+        try:
+            with Image.open(image_file) as img:
+                img.verify()
+            logger.debug("Image is valid and readable: %s", image_path)
+            return True
+        except Exception as e:
+            logger.error("Failed to open image at %s: %s", image_path, e)
+            return False
+    logger.error("Image does not exist at %s", image_path)
+    return False
+
+def fetch_image(image_name: str, arxiv_id: str) -> str:
+    """
+    Fetch the image from the URL and save it locally.
+
+    Args:
+        image_name (str): name of the image to be fetched.
         arxiv_id (str): arXiv ID of the article.
 
     Returns:
         str: Path to the saved image.
     """
+    if not image_name.strip():
+        raise ValueError("Image name is empty.")
 
-    if not image_url.strip():
-        raise ValueError("Image URL is empty.")
+    # image_url = image_url.strip().split("?")[0].split("#")[0]
 
-    image_url = image_url.strip().split("?")[0].split("#")[0]
+    # if not re.match(r"^https?://", image_url):
+    #     raise ValueError("Invalid image URL.")
 
-    if not re.match(r"^https?://", image_url):
-        raise ValueError("Invalid image URL.")
+    # image_name = image_url.split("/")[-1]
+    # if not re.match(r".*\.(png)$", image_name):
+    #     raise ValueError(f"Invalid image URL, should be a PNG image, got {image_name}")
 
-    # remove trailing slash
-    if image_url.endswith("/"):
-        image_url = image_url[:-1]
+    image_path = Path(settings.TEMP_DIR) / Path(arxiv_id) / Path(image_name)
+    image_path = image_path.absolute().as_posix()
 
-    image_name = image_url.split("/")[-1]
-    logger.debug("Fetching image from URL: %s", image_url)
-
-    if not re.match(r".*\.(png)$", image_name):
-        raise ValueError(f"Invalid image URL, should be a PNG image, got {image_name}")
+    image_url = f"{settings.ARXIV_BASE_URL}/{arxiv_id}/{image_name}"
 
     try:
-        image_path = Path(settings.TEMP_DIR) / Path(arxiv_id) / Path(image_name)
-        image_path = image_path.absolute().as_posix()
-        # image_path.parent.mkdir(parents=True, exist_ok=True)
         response = requests.get(image_url, timeout=settings.REQUESTS_TIMEOUT)
         response.raise_for_status()
         with open(image_path, "wb") as f:
             f.write(response.content)
-        logger.debug("Saved image to %s", image_path)
+        logger.info("Saved image to %s", image_path)
         return image_path
     except Exception as exc:
         logger.error("Failed to fetch image from URL: %s", exc)
         raise ValueError("Failed to fetch image.") from exc
 
+
+def replace_url_with_path(content: str, image_path: str) -> str:
+    """
+    Replaces any URL in the markdown image syntax [text](url) in the content with the given image path.
+
+    Args:
+        content (str): The content containing the markdown image syntax with URL.
+        image_path (str): The image path to replace the URL.
+
+    Returns:
+        str: The updated content with the URL replaced by the image path.
+    """
+    # Regex pattern to match the markdown image syntax [text](url)
+    url_pattern = re.compile(r'\[(.*?)\]\((http[s]?://.*?)\)')
+    
+    # Function to replace the URL in the match object with the image path
+    def replacement(match):
+        text = match.group(1)
+        new_string = f"[{text}]({image_path})"
+        return new_string
+    
+    # Replace the URL with the image path using the replacement function
+    new_content = url_pattern.sub(replacement, content)
+    
+    logger.debug("Original content: %s", content)
+    logger.debug("Updated content: %s", new_content)
+    
+    return new_content
 
 def create_elevenlabs_client(api_key: str) -> ElevenLabs:
     """

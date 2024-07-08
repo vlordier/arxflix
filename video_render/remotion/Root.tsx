@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 import {
 	VIDEO_WIDTH,
 	VIDEO_HEIGHT,
-	VIDEO_FPS,
+  VIDEO_FPS,
 	CompositionProps,
 	CompositionPropsType,
 	defaultCompositionProps

@@ -9,6 +9,16 @@
             "console": "integratedTerminal",
             "args": ["run_pipeline", "https://arxiv.org/html/2405.17401v1"]
         },
+
+        {
+            "name": "Main: assets",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["generate_assets", "--arxiv-id=2405.17401v1"]
+        },
+
         {
             "name": "FastAPI",
             "type": "debugpy",

@@ -245,6 +245,11 @@ class Settings(BaseSettings):
     SCRIPT_NAME: str = Field(
         default="script.txt", json_schema_extra={"env": "SCRIPT_NAME"}
     )
+    ARXIV_BASE_URL: str = Field(
+        default="https://arxiv.org/html",
+        json_schema_extra={"env": "ARXIV_BASE_URL"},
+    )
+
 
 
 settings = Settings()

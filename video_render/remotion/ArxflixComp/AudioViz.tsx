@@ -29,14 +29,12 @@ export const AudioViz: React.FC<{
 	const frame = useCurrentFrame();
 	const { fps } = useVideoConfig();
 
-	// Fetch audio data for the given audio source
 	const audioData = useAudioData(audioSrc);
 
 	if (!audioData) {
-		return null; // Return null if audio data is not available
+		return null;
 	}
 
-	// Get frequency data for the current frame
 	const frequencyData = visualizeAudio({
 		fps,
 		frame,
@@ -44,27 +42,33 @@ export const AudioViz: React.FC<{
 		numberOfSamples,
 	});
 
-	// Select a subset of frequency data
 	const frequencyDataSubset = frequencyData.slice(
 		freqRangeStartIndex,
 		freqRangeStartIndex +
 			(mirrorWave ? Math.round(waveLinesToDisplay / 2) : waveLinesToDisplay),
 	);
 
-	// Create mirrored frequency data if mirrorWave is true
 	const frequenciesToDisplay = mirrorWave
 		? [...frequencyDataSubset.slice(1).reverse(), ...frequencyDataSubset]
 		: frequencyDataSubset;
 
-	// Create a path for the custom waveform visualization
 	const pathLogo = linearPath(frequenciesToDisplay, {
 		type: 'steps',
-		paths: [{ d: 'V', sy: 0, x: 50, ey: 100 }],
+		paths: [
+			{d:'V', sy: 0, x: 50, ey: 100 }
+		],
 		height: 75,
 		normalizeFactor: 40,
 	});
 
-	// Bar visualization
+	// const pathLogo = polarPath(frequenciesToDisplay, {
+	// 	type: 'bars',
+  //   left: 200, top: 50, distance: 30, length: 1000,
+  //   paths: [
+	// 		{d: 'L', sdeg:50, sr:0, edeg: 50, er:100 },
+  //   ]
+	// });
+
 	const barViz = (
 		<div className="flex flex-row h-48 items-center justify-center gap-2 mt-12">
 			{frequenciesToDisplay.map((v, i) => (
@@ -81,7 +85,6 @@ export const AudioViz: React.FC<{
 		</div>
 	);
 
-	// Waveform visualization
 	const waveformViz = (
 		<svg className="css-audio-viz" viewBox={extendViewBox("0 0 500 100", 1)} preserveAspectRatio="none">
 			<polyline
@@ -89,13 +92,12 @@ export const AudioViz: React.FC<{
 				stroke={waveColor}
 				strokeWidth="2"
 				points={frequenciesToDisplay
-					.map((v, i) => `${(i / frequenciesToDisplay.length) * 500}, ${100 - (100 * Math.sqrt(v)) * 2}`)
+					.map((v, i) => `${(i / frequenciesToDisplay.length) * 500}, ${100 - (100 * Math.sqrt(v))*2}`)
 					.join(' ')}
 			/>
 		</svg>
 	);
 
-	// Circle visualization
 	const circleViz = (
 		<div className="css-audio-viz" style={{ position: 'relative', width: '500px', height: '500px' }}>
 			{frequenciesToDisplay.map((v, i) => {
@@ -121,7 +123,6 @@ export const AudioViz: React.FC<{
 		</div>
 	);
 
-	// Radial bars visualization
 	const radialBarsViz = (
 		<svg className="css-audio-viz" viewBox="0 0 500 500">
 			{frequenciesToDisplay.map((v, i) => {
@@ -145,14 +146,14 @@ export const AudioViz: React.FC<{
 		</svg>
 	);
 
-	// Custom waveform visualization
+	// https://jerosoler.github.io/waveform-path/
 	const customWaveform = (
 		<svg className="css-audio-viz" viewBox={extendViewBox("0 0 700 75", 1)} preserveAspectRatio="none">
 			<defs>
 				<linearGradient id="lgrad" x1="0%" y1="50%" x2="100%" y2="50%">
-					<stop offset="0%" style={{ stopColor: '#ff8d33', stopOpacity: 0.4 }} />
-					<stop offset="50%" style={{ stopColor: '#ff8d33', stopOpacity: 1 }} />
-					<stop offset="100%" style={{ stopColor: '#ff8d33', stopOpacity: 0.4 }} />
+					<stop offset="0%" style={{stopColor: '#ff8d33', stopOpacity: 0.4}}/>
+					<stop offset="50%" style={{stopColor: '#ff8d33', stopOpacity: 1}}/>
+					<stop offset="100%" style={{stopColor: '#ff8d33', stopOpacity: 0.4}}/>
 				</linearGradient>
 			</defs>
 			<path
@@ -160,12 +161,11 @@ export const AudioViz: React.FC<{
 				fill="none"
 				stroke="url(#lgrad)"
 				strokeWidth="5px"
-				strokeLinecap="round"
+				strokeLinecap='round'
 			/>
 		</svg>
 	);
 
-	// Return the appropriate visualization based on the vizType prop
 	return vizType === 'bars' ? barViz :
 		vizType === 'waveform' ? waveformViz :
 		vizType === 'circle' ? circleViz :

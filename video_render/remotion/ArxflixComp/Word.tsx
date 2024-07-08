@@ -1,46 +1,53 @@
+import { Easing } from 'remotion';
+import { interpolate } from 'remotion';
 import React from 'react';
-import { interpolate, Easing } from 'remotion';
 import { SubtitleItem } from 'parse-srt';
+// import katex from 'katex';
 import { InlineMath } from 'react-katex';
+// import { makeTransform, translateY, translate } from "@remotion/animation-utils";
 
-// Main component to render words based on their type
 export const Word: React.FC<{
 	item: SubtitleItem;
 	frame: number;
-}> = ({ item, frame }) => {
-	// Determine the type of word and render the appropriate component
+}> = ({ item, frame, }) => {
+	// if bold: *word* then use BoldWord
+	// else use ClassicalWord
 	if (item.text.startsWith('*') && item.text.endsWith('*')) {
-		return <BoldWord item={item} frame={frame} />;
+		return <BoldWord stroke={true} item={item} frame={frame} />;
 	} else if (item.text.startsWith('$') && item.text.endsWith('$')) {
-		return <LatexWord item={item} frame={frame} />;
-	} else {
-		return <ClassicalWord item={item} frame={frame} />;
+		return <LatexWord stroke={true} item={item} frame={frame} />;
 	}
-};
+	else {
+		return <ClassicalWord stroke={true} item={item} frame={frame} />;
+	}
+}
 
-// Component to render a classical word
 export const ClassicalWord: React.FC<{
 	item: SubtitleItem;
 	frame: number;
 	stroke?: boolean;
 }> = ({ item, frame, stroke = true }) => {
-	// Calculate opacity and vertical shift for animation
 	const opacity = interpolate(frame, [item.start, item.start + 15], [0, 1], {
 		extrapolateLeft: 'clamp',
 		extrapolateRight: 'clamp',
 	});
-	const shiftY = interpolate(frame, [item.start, item.start + 10], [0.25, 0], {
-		easing: Easing.out(Easing.quad),
-		extrapolateLeft: 'clamp',
-		extrapolateRight: 'clamp',
-	});
+	const shiftY = interpolate(
+		frame,
+		[item.start, item.start + 10],
+		[0.25, 0],
+		{
+			easing: Easing.out(Easing.quad),
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		},
+	);
 
 	return (
 		<span
 			style={{
 				display: 'inline-block',
 				opacity,
-				transform: `translateY(${shiftY}em)`,
+				translate: `0 ${shiftY}em`,
 				paintOrder: 'stroke fill',
 			}}
 			className="text-black"
@@ -50,33 +57,38 @@ export const ClassicalWord: React.FC<{
 	);
 };
 
-// Component to render a bold word
+
 export const BoldWord: React.FC<{
 	item: SubtitleItem;
 	frame: number;
 	stroke?: boolean;
-}> = ({ item, frame, stroke = false }) => {
-	// Calculate opacity and vertical shift for animation
+}> = ({ item, frame, stroke=false }) => {
 	const opacity = interpolate(frame, [item.start, item.start + 15], [0, 1], {
 		extrapolateLeft: 'clamp',
 		extrapolateRight: 'clamp',
 	});
-	const shiftY = interpolate(frame, [item.start, item.start + 10], [0.25, 0], {
-		easing: Easing.out(Easing.quad),
-		extrapolateLeft: 'clamp',
-		extrapolateRight: 'clamp',
-	});
+
+	const shiftY = interpolate(
+		frame,
+		[item.start, item.start + 10],
+		[0.25, 0],
+		{
+			easing: Easing.out(Easing.quad),
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		},
+	);
 
 	return (
 		<span
 			style={{
 				display: 'inline-block',
 				opacity,
-				transform: `translateY(${shiftY}em)`,
-				color: 'blue',
+				translate: `0 ${shiftY}em`,
+				color: "blue",
 				fontWeight: 'bold',
-				WebkitTextStroke: stroke ? '0.15px black' : undefined,
-				stroke: stroke ? '0.15px black' : undefined,
+				WebkitTextStroke: stroke ? '15px black' : undefined,
+				stroke: stroke ? '15px black' : undefined,
 				paintOrder: 'stroke fill',
 			}}
 		>
@@ -85,35 +97,49 @@ export const BoldWord: React.FC<{
 	);
 };
 
-// Component to render a LaTeX word
 export const LatexWord: React.FC<{
 	item: SubtitleItem;
 	frame: number;
 	stroke?: boolean;
-}> = ({ item, frame, stroke = false }) => {
-	// Calculate opacity and vertical shift for animation
+}> = ({ item, frame, stroke=false }) => {
 	const opacity = interpolate(frame, [item.start, item.start + 15], [0, 1], {
 		extrapolateLeft: 'clamp',
 		extrapolateRight: 'clamp',
 	});
-	const shiftY = interpolate(frame, [item.start, item.start + 10], [0.25, 0], {
-		easing: Easing.out(Easing.quad),
-		extrapolateLeft: 'clamp',
-		extrapolateRight: 'clamp',
-	});
 
+	const shiftY = interpolate(
+		frame,
+		[item.start, item.start + 10],
+		[0.25, 0],
+		{
+			easing: Easing.out(Easing.quad),
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		},
+	);
+
+	// return (
+	// 	<span
+	// 		style={{
+	// 			display: 'inline-block',
+	// 			opacity,
+	// 			translate: `0 ${shiftY}em`,
+	// 		}}
+	// 		dangerouslySetInnerHTML={{ __html: katex.renderToString(item.text.slice(1, -1)) }}
+	// 	/>
+	// );
+
+	// Using InlineMath
 	return (
-		<span
-			style={{
-				display: 'inline-block',
-				opacity,
-				transform: `translateY(${shiftY}em)`,
-				WebkitTextStroke: stroke ? '0.15px black' : undefined,
-				stroke: stroke ? '0.15px black' : undefined,
-				paintOrder: 'stroke fill',
-			}}
-		>
+		<span style={{
+			display: 'inline-block',
+			opacity,
+			translate: `0 ${shiftY}em`,
+			WebkitTextStroke: stroke ? '15px black' : undefined,
+			stroke: stroke ? '15px black' : undefined,
+			paintOrder: 'stroke fill',
+		}}>
 			<InlineMath math={item.text.slice(1, -1)} />
 		</span>
 	);
-};
+}

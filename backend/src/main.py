@@ -95,7 +95,7 @@ def generate_script_api(input_data: ScriptInput) -> str:
 
 @cli.command("generate_assets")
 def generate_assets(
-    script: str,
+    script: Optional[str] = None,
     arxiv_id: Optional[str] = None,
 ) -> float:
     """Generate audio, SRT, and rich content JSON assets from a script.
@@ -110,6 +110,14 @@ def generate_assets(
     Raises:
         ValueError: If there is an error reading the script or generating the assets.
     """
+
+    if not script:
+        script_default_path = Path(settings.TEMP_DIR) / Path(arxiv_id) / Path("script.txt")
+        script_default_path = script_default_path.absolute()
+        if not script_default_path.exists():
+            raise ValueError("Script not found in %s", script_default_path.as_posix())
+        script = script_default_path.read_text()
+
 
     try:
         mp3_output_path, srt_output_path, rich_output_path = create_directories(
