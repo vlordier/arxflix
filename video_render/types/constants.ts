@@ -1,7 +1,7 @@
 import { zColor } from "@remotion/zod-types";
 import { staticFile } from "remotion";
 import { z } from "zod";
-export const COMP_NAME = "MyComp";
+export const COMP_NAME = "Arxflix";
 
 export const CompositionProps = z.object({
 	durationInSeconds: z.number().positive(),
@@ -33,7 +33,7 @@ export const defaultCompositionProps: z.infer<typeof CompositionProps> = {
     audioOffsetInSeconds: 0,
 
     // Title settings
-    audioFileName: staticFile('audio.wav'),
+    audioFileName: staticFile('audio.mp3'),
     richContentFileName: staticFile('output.json'),
 
     // Subtitles settings
@@ -44,10 +44,10 @@ export const defaultCompositionProps: z.infer<typeof CompositionProps> = {
     subtitlesLineHeight: 98,
 
     // Wave settings
-    waveColor: '#a3a5ae',
+    waveColor: '#0059b3',
     waveFreqRangeStartIndex: 5,
     waveLinesToDisplay: 300,
-    waveNumberOfSamples: '512', // This is string for Remotion controls and will be converted to a number
+    waveNumberOfSamples: '256', // This is string for Remotion controls and will be converted to a number
     mirrorWave: false,
     
     // Metadata settings

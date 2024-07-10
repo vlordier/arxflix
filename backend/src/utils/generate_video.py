@@ -62,7 +62,7 @@ def process_video(
     #     .as_posix()
     # )
 
-    output_path = (base_dir / arxiv_id / Path("output.mp4")).absolute().as_posix()
+    output_path = (base_dir / Path("output.mp4")).absolute().as_posix()
 
     # output_path = composition_props.output
     # Fix paths
@@ -130,12 +130,12 @@ def process_video(
             remotion_root_path,
             "--composition-id=",
             settings.REMOTION.composition_id,
-            # "--subtitles=",
-            # composition_props.subtitles_file_name,
-            # "--audio=",
-            # composition_props.audio_file_name,
-            # "--richContent=",
-            # composition_props.rich_content_file_name,
+            "--subtitles=",
+            composition_props.subtitles_file_name,
+            "--audio=",
+            composition_props.audio_file_name,
+            "--richContent=",
+            composition_props.rich_content_file_name,
             "--props=",
             properties,
             "--concurrency=",

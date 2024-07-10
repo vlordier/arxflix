@@ -24,7 +24,7 @@ def assets_input() -> AssetsInput:
     return AssetsInput(
         script=r"\Headline Headline\n\n \Figure Figure \n\Paragraph Paragraph\n \Equation Equation \n \Text Text\n",
         use_path=False,
-        mp3_output="test_audio.wav",
+        mp3_output="test_audio.mp3",
         srt_output="test_output.srt",
         rich_output="test_output.json",
     )

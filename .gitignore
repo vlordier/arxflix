@@ -341,6 +341,7 @@ public/
 **/*.mp3
 **/*.mp4
 **/*.wav
+**/*.aac
 .aider*
 
 # Ruff files

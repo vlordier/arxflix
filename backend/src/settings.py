@@ -166,7 +166,7 @@ class CompositionPropsSettings(BaseSettings):
         json_schema_extra={"env": "COMPOSITION_SUBTITLES_FILE_NAME"},
     )
     audio_file_name: str = Field(
-        default="audio.wav",
+        default="audio.mp3",
         json_schema_extra={"env": "COMPOSITION_AUDIO_FILE_NAME"},
     )
     rich_content_file_name: str = Field(
@@ -213,7 +213,7 @@ class Settings(BaseSettings):
     APP_NAME: str = Field(default="Arxflix", json_schema_extra={"env": "APP_NAME"})
     APP_VERSION: str = Field(default="0.1.0", json_schema_extra={"env": "APP_VERSION"})
     APP_DESCRIPTION: str = Field(
-        default="ArXflix is an ArXiv research paper summarizer",
+        default="Arxflix is an ArXiv research paper summarizer",
         json_schema_extra={"env": "APP_DESCRIPTION"},
     )
     WHISPER_MODEL: str = Field(

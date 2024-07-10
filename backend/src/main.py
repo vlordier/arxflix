@@ -216,7 +216,7 @@ def generate_video(arxiv_id: str) -> None:
     """
 
     try:
-        logger.info("Generating video...")
+        logger.info("Generating video for ArXiv paper %s...", arxiv_id)
         process_video(arxiv_id=arxiv_id)
         logger.info("Video generated successfully.")
     except Exception as e:

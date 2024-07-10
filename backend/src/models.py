@@ -73,7 +73,7 @@ class AssetsInput(BaseModel):
     Attributes:
         script (str): The script content or the path to the script file.
         use_path (bool, optional): Whether to treat `script` as a file path. Defaults to False.
-        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "audio.wav".
+        mp3_output (str, optional): Path to save the MP3 output file. Defaults to "audio.mp3".
         srt_output (str, optional): Path to save the SRT output file. Defaults to "output.srt".
         rich_output (str, optional): Path to save the rich content JSON file. Defaults to "output.json".
     """
@@ -81,7 +81,7 @@ class AssetsInput(BaseModel):
     script: str
     use_path: bool = Field(default=False, json_schema_extra={"env": "USE_PATH"})
     mp3_output: str = Field(
-        default="audio.wav", json_schema_extra={"env": "MP3_OUTPUT"}
+        default="audio.mp3", json_schema_extra={"env": "MP3_OUTPUT"}
     )
     srt_output: str = Field(
         default="output.srt", json_schema_extra={"env": "SRT_OUTPUT"}

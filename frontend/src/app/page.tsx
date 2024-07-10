@@ -254,7 +254,7 @@ export default function Home() {
                   component={ArxflixComposition}
                   inputProps={{
                     audioOffsetInSeconds: 0,
-                    audioFileName: `${folder}/audio.wav`,
+                    audioFileName: `${folder}/audio.mp3`,
                     richContentFileName: `${folder}/rich.json`,
                     subtitlesFileName: `${folder}/subtitles.srt`,
                     onlyDisplayCurrentSentence: true,

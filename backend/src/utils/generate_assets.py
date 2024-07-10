@@ -402,6 +402,11 @@ def fetch_image(image_name: str, arxiv_id: str) -> str:
     #     raise ValueError(f"Invalid image URL, should be a PNG image, got {image_name}")
 
     image_path = Path(settings.TEMP_DIR) / Path(arxiv_id) / Path(image_name)
+
+    if image_path.exists():
+        logger.debug("Image already exists at %s", image_path)
+        return str(image_path)
+
     image_path = image_path.absolute().as_posix()
 
     image_url = f"{settings.ARXIV_BASE_URL}/{arxiv_id}/{image_name}"
@@ -574,13 +579,15 @@ def update_text_content_with_captions(
 
 def combine_audio_segments(
     audio_segments: List[AudioSegment], output_path: str
-) -> None:
+) -> str:
     """
     Combine the audio segments into a single audio file.
 
     Args:
         audio_segments (List[AudioSegment]): List of AudioSegment objects.
         output_path (str): Path to save the combined audio file.
+    
+
     """
 
     nb_audio_segments = len(audio_segments)
@@ -594,6 +601,11 @@ def combine_audio_segments(
         combined_audio += audio
     combined_audio.export(output_path, format="mp3")
     logger.debug("Exported combined audio to %s", output_path)
+    if not Path(output_path).exists():
+        raise ValueError("Failed to export combined audio.")
+   
+    return output_path
+
 
 
 def process_audio_files(text_contents: List[Text]) -> List[AudioSegment]:
@@ -696,8 +708,8 @@ def export_mp3(text_contents: List[Text], output_path: str) -> None:
     if not output_dir.exists():
         raise ValueError(f"Directory {output_dir} does not exist.")
 
-    if not str(output_path).endswith(".wav"):
-        raise ValueError("Output path must end with .wav")
+    if not str(output_path).endswith(".mp3"):
+        raise ValueError("Output path must end with .mp3")
 
     if len(text_contents) == 0:
         raise ValueError("No text contents to export.")
