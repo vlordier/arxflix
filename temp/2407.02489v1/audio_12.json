@@ -1,0 +1,222 @@
+{
+    "text": " Our approach starts by fine-tuning a pre-trained diffusion model using low-rank adaptation or LORA, combined with text tokens to generate a style-aware subject.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.16,
+            "end": 6.28,
+            "text": " Our approach starts by fine-tuning a pre-trained diffusion model using low-rank adaptation or LORA,",
+            "tokens": [
+                50363,
+                3954,
+                3164,
+                4940,
+                416,
+                3734,
+                12,
+                28286,
+                278,
+                257,
+                662,
+                12,
+                35311,
+                44258,
+                2746,
+                1262,
+                1877,
+                12,
+                43027,
+                16711,
+                393,
+                406,
+                1581,
+                32,
+                11,
+                50673
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.3120593094244236,
+            "compression_ratio": 1.2598425196850394,
+            "no_speech_prob": 0.015837183222174644,
+            "confidence": 0.703,
+            "words": [
+                {
+                    "text": "Our",
+                    "start": 0.16,
+                    "end": 0.46,
+                    "confidence": 0.653
+                },
+                {
+                    "text": "approach",
+                    "start": 0.46,
+                    "end": 0.82,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "starts",
+                    "start": 0.82,
+                    "end": 1.16,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "by",
+                    "start": 1.16,
+                    "end": 1.4,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "fine-tuning",
+                    "start": 1.4,
+                    "end": 2.14,
+                    "confidence": 0.711
+                },
+                {
+                    "text": "a",
+                    "start": 2.14,
+                    "end": 2.34,
+                    "confidence": 0.944
+                },
+                {
+                    "text": "pre-trained",
+                    "start": 2.34,
+                    "end": 2.92,
+                    "confidence": 0.909
+                },
+                {
+                    "text": "diffusion",
+                    "start": 2.92,
+                    "end": 3.38,
+                    "confidence": 0.853
+                },
+                {
+                    "text": "model",
+                    "start": 3.38,
+                    "end": 3.7,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "using",
+                    "start": 3.7,
+                    "end": 4.12,
+                    "confidence": 0.886
+                },
+                {
+                    "text": "low-rank",
+                    "start": 4.12,
+                    "end": 4.64,
+                    "confidence": 0.712
+                },
+                {
+                    "text": "adaptation",
+                    "start": 4.64,
+                    "end": 5.24,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "or",
+                    "start": 5.24,
+                    "end": 5.64,
+                    "confidence": 0.645
+                },
+                {
+                    "text": "LORA,",
+                    "start": 5.64,
+                    "end": 6.28,
+                    "confidence": 0.324
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.38,
+            "end": 9.68,
+            "text": " combined with text tokens to generate a style-aware subject.",
+            "tokens": [
+                50673,
+                5929,
+                351,
+                2420,
+                16326,
+                284,
+                7716,
+                257,
+                3918,
+                12,
+                9685,
+                2426,
+                13,
+                50855
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.3120593094244236,
+            "compression_ratio": 1.2598425196850394,
+            "no_speech_prob": 0.015837183222174644,
+            "confidence": 0.806,
+            "words": [
+                {
+                    "text": "combined",
+                    "start": 6.38,
+                    "end": 6.78,
+                    "confidence": 0.661
+                },
+                {
+                    "text": "with",
+                    "start": 6.78,
+                    "end": 7.06,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "text",
+                    "start": 7.06,
+                    "end": 7.4,
+                    "confidence": 0.942
+                },
+                {
+                    "text": "tokens",
+                    "start": 7.4,
+                    "end": 7.82,
+                    "confidence": 0.977
+                },
+                {
+                    "text": "to",
+                    "start": 7.82,
+                    "end": 8.0,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "generate",
+                    "start": 8.0,
+                    "end": 8.44,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "a",
+                    "start": 8.44,
+                    "end": 8.66,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "style-aware",
+                    "start": 8.66,
+                    "end": 9.24,
+                    "confidence": 0.57
+                },
+                {
+                    "text": "subject.",
+                    "start": 9.24,
+                    "end": 9.68,
+                    "confidence": 0.837
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 9.9788125
+        }
+    ]
+}

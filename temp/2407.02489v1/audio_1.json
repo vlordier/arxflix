@@ -1,0 +1,389 @@
+{
+    "text": " Welcome back to ARX Flix. Today we're diving into magic insert, style aware drag and drop, a groundbreaking approach for image editing. This method allows you to drag and drop subjects from one image into another with a different style while maintaining a realistic look.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 6.6,
+            "text": " Welcome back to ARX Flix. Today we're diving into magic insert, style aware drag and drop,",
+            "tokens": [
+                50363,
+                19134,
+                736,
+                284,
+                5923,
+                55,
+                1610,
+                844,
+                13,
+                6288,
+                356,
+                821,
+                23186,
+                656,
+                5536,
+                7550,
+                11,
+                3918,
+                3910,
+                6715,
+                290,
+                4268,
+                11,
+                50695
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2610918998718262,
+            "compression_ratio": 1.433862433862434,
+            "no_speech_prob": 0.010221843607723713,
+            "confidence": 0.648,
+            "words": [
+                {
+                    "text": "Welcome",
+                    "start": 0.14,
+                    "end": 0.6,
+                    "confidence": 0.94
+                },
+                {
+                    "text": "back",
+                    "start": 0.6,
+                    "end": 0.96,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "to",
+                    "start": 0.96,
+                    "end": 1.18,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "ARX",
+                    "start": 1.18,
+                    "end": 1.48,
+                    "confidence": 0.314
+                },
+                {
+                    "text": "Flix.",
+                    "start": 1.48,
+                    "end": 2.02,
+                    "confidence": 0.589
+                },
+                {
+                    "text": "Today",
+                    "start": 2.2,
+                    "end": 2.56,
+                    "confidence": 0.683
+                },
+                {
+                    "text": "we're",
+                    "start": 2.56,
+                    "end": 2.76,
+                    "confidence": 0.861
+                },
+                {
+                    "text": "diving",
+                    "start": 2.76,
+                    "end": 3.16,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "into",
+                    "start": 3.16,
+                    "end": 3.56,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "magic",
+                    "start": 3.56,
+                    "end": 4.06,
+                    "confidence": 0.589
+                },
+                {
+                    "text": "insert,",
+                    "start": 4.06,
+                    "end": 4.78,
+                    "confidence": 0.659
+                },
+                {
+                    "text": "style",
+                    "start": 5.04,
+                    "end": 5.44,
+                    "confidence": 0.544
+                },
+                {
+                    "text": "aware",
+                    "start": 5.44,
+                    "end": 5.74,
+                    "confidence": 0.544
+                },
+                {
+                    "text": "drag",
+                    "start": 5.74,
+                    "end": 6.02,
+                    "confidence": 0.534
+                },
+                {
+                    "text": "and",
+                    "start": 6.02,
+                    "end": 6.18,
+                    "confidence": 0.788
+                },
+                {
+                    "text": "drop,",
+                    "start": 6.18,
+                    "end": 6.6,
+                    "confidence": 0.494
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.78,
+            "end": 12.54,
+            "text": " a groundbreaking approach for image editing. This method allows you to drag and drop subjects",
+            "tokens": [
+                50695,
+                257,
+                31088,
+                3164,
+                329,
+                2939,
+                12857,
+                13,
+                770,
+                2446,
+                3578,
+                345,
+                284,
+                6715,
+                290,
+                4268,
+                7481,
+                50983
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2610918998718262,
+            "compression_ratio": 1.433862433862434,
+            "no_speech_prob": 0.010221843607723713,
+            "confidence": 0.786,
+            "words": [
+                {
+                    "text": "a",
+                    "start": 6.78,
+                    "end": 7.08,
+                    "confidence": 0.187
+                },
+                {
+                    "text": "groundbreaking",
+                    "start": 7.08,
+                    "end": 7.66,
+                    "confidence": 0.855
+                },
+                {
+                    "text": "approach",
+                    "start": 7.66,
+                    "end": 8.18,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "for",
+                    "start": 8.18,
+                    "end": 8.44,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "image",
+                    "start": 8.44,
+                    "end": 8.74,
+                    "confidence": 0.974
+                },
+                {
+                    "text": "editing.",
+                    "start": 8.74,
+                    "end": 9.22,
+                    "confidence": 0.881
+                },
+                {
+                    "text": "This",
+                    "start": 9.64,
+                    "end": 10.06,
+                    "confidence": 0.233
+                },
+                {
+                    "text": "method",
+                    "start": 10.06,
+                    "end": 10.44,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "allows",
+                    "start": 10.44,
+                    "end": 10.8,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "you",
+                    "start": 10.8,
+                    "end": 11.04,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "to",
+                    "start": 11.04,
+                    "end": 11.26,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "drag",
+                    "start": 11.26,
+                    "end": 11.54,
+                    "confidence": 0.984
+                },
+                {
+                    "text": "and",
+                    "start": 11.54,
+                    "end": 11.72,
+                    "confidence": 0.859
+                },
+                {
+                    "text": "drop",
+                    "start": 11.72,
+                    "end": 12.0,
+                    "confidence": 0.981
+                },
+                {
+                    "text": "subjects",
+                    "start": 12.0,
+                    "end": 12.54,
+                    "confidence": 0.954
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 12.58,
+            "end": 17.52,
+            "text": " from one image into another with a different style while maintaining a realistic look.",
+            "tokens": [
+                50983,
+                422,
+                530,
+                2939,
+                656,
+                1194,
+                351,
+                257,
+                1180,
+                3918,
+                981,
+                10941,
+                257,
+                12653,
+                804,
+                13,
+                51247
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2610918998718262,
+            "compression_ratio": 1.433862433862434,
+            "no_speech_prob": 0.010221843607723713,
+            "confidence": 0.9,
+            "words": [
+                {
+                    "text": "from",
+                    "start": 12.58,
+                    "end": 12.78,
+                    "confidence": 0.881
+                },
+                {
+                    "text": "one",
+                    "start": 12.78,
+                    "end": 13.06,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "image",
+                    "start": 13.06,
+                    "end": 13.32,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "into",
+                    "start": 13.32,
+                    "end": 13.62,
+                    "confidence": 0.938
+                },
+                {
+                    "text": "another",
+                    "start": 13.62,
+                    "end": 14.1,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "with",
+                    "start": 14.1,
+                    "end": 14.38,
+                    "confidence": 0.803
+                },
+                {
+                    "text": "a",
+                    "start": 14.38,
+                    "end": 14.52,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "different",
+                    "start": 14.52,
+                    "end": 14.88,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "style",
+                    "start": 14.88,
+                    "end": 15.36,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "while",
+                    "start": 15.36,
+                    "end": 15.84,
+                    "confidence": 0.379
+                },
+                {
+                    "text": "maintaining",
+                    "start": 15.84,
+                    "end": 16.36,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "a",
+                    "start": 16.36,
+                    "end": 16.66,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "realistic",
+                    "start": 16.66,
+                    "end": 17.16,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "look.",
+                    "start": 17.16,
+                    "end": 17.52,
+                    "confidence": 0.949
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 17.737125
+        }
+    ]
+}

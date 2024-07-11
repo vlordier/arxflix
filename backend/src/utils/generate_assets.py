@@ -9,9 +9,7 @@ import re
 import tempfile
 from datetime import timedelta
 from pathlib import Path
-from typing import List, Union, Dict
-
-from PIL import Image
+from typing import Dict, List, Union
 
 import requests
 import srt
@@ -21,6 +19,7 @@ from dotenv import load_dotenv
 from elevenlabs import Voice, VoiceSettings, save
 from elevenlabs.client import ElevenLabs
 from models import Caption, Equation, Figure, Headline, RichContent, Text
+from PIL import Image
 from pydub import AudioSegment
 from settings import settings
 
@@ -266,14 +265,14 @@ def replace_url_with_path(text: str, new_path: str) -> str:
     """
     try:
         # Regular expression to find the URL in the markdown link
-        url_pattern = r'\(https?://[^\)]+\)'
+        url_pattern = r"\(https?://[^\)]+\)"
 
         # Log the original text and new path
         logger.debug("Original text: %s", text)
         logger.debug("New path: %s", new_path)
 
         # Replace the URL with the new path
-        modified_text = re.sub(url_pattern, f'({new_path})', text)
+        modified_text = re.sub(url_pattern, f"({new_path})", text)
 
         # Log the modified text
         logger.debug("Modified text: %s", modified_text)
@@ -289,8 +288,6 @@ def replace_url_with_path(text: str, new_path: str) -> str:
         return text
 
 
-
-
 def extract_image_name(text: str) -> str:
     """
     Extracts the image name from a given text.
@@ -301,26 +298,65 @@ def extract_image_name(text: str) -> str:
     Returns:
         str: The extracted image name or an empty string if not found.
     """
-    url_pattern = re.compile(r"\((https?://[^\)]+)\)")
-    url_match = url_pattern.search(text)
 
-    if url_match:
-        url = url_match.group(1).strip().split("?")[0].split("#")[0]
-        image_name = url.split("/")[-1]
+    # clean up text by removing the markdown syntax
+    text = text.replace("![", "").replace("]", "")
+    text = text.replace("(", "").replace(")", "")
+    text = text.replace("{", "").replace("}", "")
+    text = text.replace("[", "").replace("]", "")
+    text = text.replace("`", "")
+    text = text.replace(" ", "")  # remove spaces
+    text = text.replace("\n", "")  # remove newlines
+    text = text.replace("\t", "")  # remove tabs
+    text = text.replace("\r", "")  # remove carriage returns
+    text = text.replace("\v", "")  # remove vertical tabs
+    text = text.replace("\f", "")  # remove form feeds
 
-        # Check that the image name ends with .png, .jpg, .jpeg, or .bmp
-        if not re.match(r".*\.(png|jpg|jpeg|bmp)$", image_name, re.IGNORECASE):
-            raise ValueError(f"Invalid image URL, should be a PNG, JPG, JPEG, or BMP image, got {image_name}")
+    # if the text has # or ? in it, keep only the part before it
+    if "#" in text:
+        text = text.split("#")[0]
+    if "?" in text:
+        text = text.split("?")[0]
 
-        # Check that the image name is not empty
-        if not image_name:
-            raise ValueError("Image name is empty.")
+    # if text ends with a /, remove it
+    if text.endswith("/"):
+        text = text[:-1]
 
-        return image_name
-    else:
-        return ""
+    if text.startswith("/"):
+        text = text[1:]
 
-def fetch_images(rich_content_dicts: List[Dict[str, str]], arxiv_id: str) -> List[Dict[str, str]]:
+    image_name = text.strip()
+
+    # if text.endswith("png") or text.endswith("jpg") or text.endswith("jpeg") or text.endswith("bmp"):
+
+    # if the text is a part of an url (but witout the https and domain), return it
+    # if text.startswith("/") and (text.endswith(".png") or text.endswith(".jpg") or text.endswith(".jpeg") or text.endswith(".bmp")):
+    # return text[1:]
+
+    # if the
+    # url_pattern = re.compile(r"\((https?://[^\)]+)\)")
+    # url_match = url_pattern.search(text)
+
+    # if url_match:
+    # url = url_match.group(1).strip().split("?")[0].split("#")[0]
+    # image_name = url.split("/")[-1]
+
+    # Check that the image name ends with .png, .jpg, .jpeg, or .bmp
+    if not re.match(r".*\.(png|jpg|jpeg|bmp)$", image_name, re.IGNORECASE):
+        raise ValueError(
+            f"Invalid image URL, should be a PNG, JPG, JPEG, or BMP image, got {image_name}"
+        )
+
+    # Check that the image name is not empty
+    if not image_name:
+        raise ValueError("Image name is empty.")
+
+    return image_name
+
+
+def fetch_images(
+    rich_content_dicts: List[Dict[str, str]], arxiv_id: str
+) -> List[Dict[str, str]]:
     """
     Fetch images for the rich content and update their paths.
 
@@ -355,6 +391,7 @@ def fetch_images(rich_content_dicts: List[Dict[str, str]], arxiv_id: str) -> Lis
 
     return rich_content_dicts
 
+
 def check_image(image_path: str) -> bool:
     """
     Check if the image exists and is readable.
@@ -377,6 +414,7 @@ def check_image(image_path: str) -> bool:
             return False
     logger.error("Image does not exist at %s", image_path)
     return False
+
 
 def fetch_image(image_name: str, arxiv_id: str) -> str:
     """
@@ -414,6 +452,8 @@ def fetch_image(image_name: str, arxiv_id: str) -> str:
     try:
         response = requests.get(image_url, timeout=settings.REQUESTS_TIMEOUT)
         response.raise_for_status()
+        # generate the necessary directories in image_path
+        Path(image_path).parent.mkdir(parents=True, exist_ok=True)
         with open(image_path, "wb") as f:
             f.write(response.content)
         logger.info("Saved image to %s", image_path)
@@ -435,21 +475,22 @@ def replace_url_with_path(content: str, image_path: str) -> str:
         str: The updated content with the URL replaced by the image path.
     """
     # Regex pattern to match the markdown image syntax [text](url)
-    url_pattern = re.compile(r'\[(.*?)\]\((http[s]?://.*?)\)')
-    
+    url_pattern = re.compile(r"\[(.*?)\]\((http[s]?://.*?)\)")
+
     # Function to replace the URL in the match object with the image path
     def replacement(match):
         text = match.group(1)
         new_string = f"[{text}]({image_path})"
         return new_string
-    
+
     # Replace the URL with the image path using the replacement function
     new_content = url_pattern.sub(replacement, content)
-    
+
     logger.debug("Original content: %s", content)
     logger.debug("Updated content: %s", new_content)
-    
+
     return new_content
+
 
 def create_elevenlabs_client(api_key: str) -> ElevenLabs:
     """
@@ -577,16 +618,14 @@ def update_text_content_with_captions(
     text_content.end = audio_length / whisper.audio.SAMPLE_RATE
 
 
-def combine_audio_segments(
-    audio_segments: List[AudioSegment], output_path: str
-) -> str:
+def combine_audio_segments(audio_segments: List[AudioSegment], output_path: str) -> str:
     """
     Combine the audio segments into a single audio file.
 
     Args:
         audio_segments (List[AudioSegment]): List of AudioSegment objects.
         output_path (str): Path to save the combined audio file.
-    
+
 
     """
 
@@ -603,9 +642,8 @@ def combine_audio_segments(
     logger.debug("Exported combined audio to %s", output_path)
     if not Path(output_path).exists():
         raise ValueError("Failed to export combined audio.")
-   
-    return output_path
 
+    return output_path
 
 
 def process_audio_files(text_contents: List[Text]) -> List[AudioSegment]:

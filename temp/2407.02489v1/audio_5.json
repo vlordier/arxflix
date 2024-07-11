@@ -1,0 +1,282 @@
+{
+    "text": " Traditional techniques like inpainting have struggled to achieve high quality results for this task. Processes combining methods such as dream booth, style drop, and inpainting are often cumbersome and yield subpar results.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 6.34,
+            "text": " Traditional techniques like inpainting have struggled to achieve high quality results for this task.",
+            "tokens": [
+                50363,
+                29065,
+                7605,
+                588,
+                287,
+                35436,
+                889,
+                423,
+                11615,
+                284,
+                4620,
+                1029,
+                3081,
+                2482,
+                329,
+                428,
+                4876,
+                13,
+                50711
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.24964931163382023,
+            "compression_ratio": 1.4203821656050954,
+            "no_speech_prob": 0.005864111706614494,
+            "confidence": 0.897,
+            "words": [
+                {
+                    "text": "Traditional",
+                    "start": 0.14,
+                    "end": 0.84,
+                    "confidence": 0.816
+                },
+                {
+                    "text": "techniques",
+                    "start": 0.84,
+                    "end": 1.46,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "like",
+                    "start": 1.46,
+                    "end": 1.8,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "inpainting",
+                    "start": 1.8,
+                    "end": 2.5,
+                    "confidence": 0.731
+                },
+                {
+                    "text": "have",
+                    "start": 2.5,
+                    "end": 2.74,
+                    "confidence": 0.984
+                },
+                {
+                    "text": "struggled",
+                    "start": 2.74,
+                    "end": 3.16,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "to",
+                    "start": 3.16,
+                    "end": 3.4,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "achieve",
+                    "start": 3.4,
+                    "end": 3.78,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "high",
+                    "start": 3.78,
+                    "end": 4.1,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "quality",
+                    "start": 4.1,
+                    "end": 4.54,
+                    "confidence": 0.808
+                },
+                {
+                    "text": "results",
+                    "start": 4.54,
+                    "end": 5.1,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "for",
+                    "start": 5.1,
+                    "end": 5.42,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "this",
+                    "start": 5.42,
+                    "end": 5.64,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "task.",
+                    "start": 5.64,
+                    "end": 6.34,
+                    "confidence": 0.827
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.94,
+            "end": 15.92,
+            "text": " Processes combining methods such as dream booth, style drop, and inpainting are often cumbersome and yield subpar results.",
+            "tokens": [
+                50711,
+                10854,
+                274,
+                19771,
+                5050,
+                884,
+                355,
+                4320,
+                18600,
+                11,
+                3918,
+                4268,
+                11,
+                290,
+                287,
+                35436,
+                889,
+                389,
+                1690,
+                44491,
+                290,
+                7800,
+                850,
+                1845,
+                2482,
+                13,
+                51183
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.24964931163382023,
+            "compression_ratio": 1.4203821656050954,
+            "no_speech_prob": 0.005864111706614494,
+            "confidence": 0.711,
+            "words": [
+                {
+                    "text": "Processes",
+                    "start": 6.94,
+                    "end": 7.82,
+                    "confidence": 0.877
+                },
+                {
+                    "text": "combining",
+                    "start": 7.82,
+                    "end": 8.44,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "methods",
+                    "start": 8.44,
+                    "end": 9.02,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "such",
+                    "start": 9.02,
+                    "end": 9.52,
+                    "confidence": 0.873
+                },
+                {
+                    "text": "as",
+                    "start": 9.52,
+                    "end": 9.7,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "dream",
+                    "start": 9.7,
+                    "end": 10.0,
+                    "confidence": 0.677
+                },
+                {
+                    "text": "booth,",
+                    "start": 10.0,
+                    "end": 10.56,
+                    "confidence": 0.677
+                },
+                {
+                    "text": "style",
+                    "start": 10.84,
+                    "end": 11.24,
+                    "confidence": 0.893
+                },
+                {
+                    "text": "drop,",
+                    "start": 11.24,
+                    "end": 11.66,
+                    "confidence": 0.694
+                },
+                {
+                    "text": "and",
+                    "start": 11.98,
+                    "end": 12.2,
+                    "confidence": 0.716
+                },
+                {
+                    "text": "inpainting",
+                    "start": 12.2,
+                    "end": 12.78,
+                    "confidence": 0.338
+                },
+                {
+                    "text": "are",
+                    "start": 12.78,
+                    "end": 12.94,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "often",
+                    "start": 12.94,
+                    "end": 13.3,
+                    "confidence": 0.959
+                },
+                {
+                    "text": "cumbersome",
+                    "start": 13.3,
+                    "end": 13.98,
+                    "confidence": 0.556
+                },
+                {
+                    "text": "and",
+                    "start": 13.98,
+                    "end": 14.5,
+                    "confidence": 0.428
+                },
+                {
+                    "text": "yield",
+                    "start": 14.5,
+                    "end": 14.94,
+                    "confidence": 0.616
+                },
+                {
+                    "text": "subpar",
+                    "start": 14.94,
+                    "end": 15.56,
+                    "confidence": 0.822
+                },
+                {
+                    "text": "results.",
+                    "start": 15.56,
+                    "end": 15.92,
+                    "confidence": 0.945
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 16.3265625
+        }
+    ]
+}

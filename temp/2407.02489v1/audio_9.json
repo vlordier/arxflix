@@ -1,0 +1,232 @@
+{
+    "text": " For style aware personalization, the method fine tunes are pre-trained text to image diffusion model to capture both the subject's identity and the style of the target image.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.16,
+            "end": 10.88,
+            "text": " For style aware personalization, the method fine tunes are pre-trained text to image diffusion model to capture both the subject's identity and the style of the target image.",
+            "tokens": [
+                50363,
+                1114,
+                3918,
+                3910,
+                2614,
+                1634,
+                11,
+                262,
+                2446,
+                3734,
+                31796,
+                389,
+                662,
+                12,
+                35311,
+                2420,
+                284,
+                2939,
+                44258,
+                2746,
+                284,
+                8006,
+                1111,
+                262,
+                2426,
+                338,
+                5369,
+                290,
+                262,
+                3918,
+                286,
+                262,
+                2496,
+                2939,
+                13,
+                50913
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.21381897539705844,
+            "compression_ratio": 1.380952380952381,
+            "no_speech_prob": 0.009546373039484024,
+            "confidence": 0.817,
+            "words": [
+                {
+                    "text": "For",
+                    "start": 0.16,
+                    "end": 0.44,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "style",
+                    "start": 0.44,
+                    "end": 0.82,
+                    "confidence": 0.441
+                },
+                {
+                    "text": "aware",
+                    "start": 0.82,
+                    "end": 1.1,
+                    "confidence": 0.531
+                },
+                {
+                    "text": "personalization,",
+                    "start": 1.1,
+                    "end": 2.12,
+                    "confidence": 0.692
+                },
+                {
+                    "text": "the",
+                    "start": 2.56,
+                    "end": 2.68,
+                    "confidence": 0.867
+                },
+                {
+                    "text": "method",
+                    "start": 2.68,
+                    "end": 3.0,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "fine",
+                    "start": 3.0,
+                    "end": 3.36,
+                    "confidence": 0.922
+                },
+                {
+                    "text": "tunes",
+                    "start": 3.36,
+                    "end": 3.76,
+                    "confidence": 0.893
+                },
+                {
+                    "text": "are",
+                    "start": 3.76,
+                    "end": 4.04,
+                    "confidence": 0.509
+                },
+                {
+                    "text": "pre-trained",
+                    "start": 4.04,
+                    "end": 4.72,
+                    "confidence": 0.915
+                },
+                {
+                    "text": "text",
+                    "start": 4.72,
+                    "end": 5.12,
+                    "confidence": 0.811
+                },
+                {
+                    "text": "to",
+                    "start": 5.12,
+                    "end": 5.32,
+                    "confidence": 0.775
+                },
+                {
+                    "text": "image",
+                    "start": 5.32,
+                    "end": 5.62,
+                    "confidence": 0.937
+                },
+                {
+                    "text": "diffusion",
+                    "start": 5.62,
+                    "end": 6.12,
+                    "confidence": 0.855
+                },
+                {
+                    "text": "model",
+                    "start": 6.12,
+                    "end": 6.62,
+                    "confidence": 0.935
+                },
+                {
+                    "text": "to",
+                    "start": 6.62,
+                    "end": 6.94,
+                    "confidence": 0.372
+                },
+                {
+                    "text": "capture",
+                    "start": 6.94,
+                    "end": 7.32,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "both",
+                    "start": 7.32,
+                    "end": 7.6,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "the",
+                    "start": 7.6,
+                    "end": 7.82,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "subject's",
+                    "start": 7.82,
+                    "end": 8.32,
+                    "confidence": 0.641
+                },
+                {
+                    "text": "identity",
+                    "start": 8.32,
+                    "end": 8.9,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "and",
+                    "start": 8.9,
+                    "end": 9.42,
+                    "confidence": 0.912
+                },
+                {
+                    "text": "the",
+                    "start": 9.42,
+                    "end": 9.62,
+                    "confidence": 0.898
+                },
+                {
+                    "text": "style",
+                    "start": 9.62,
+                    "end": 9.86,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "of",
+                    "start": 9.86,
+                    "end": 10.04,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "the",
+                    "start": 10.04,
+                    "end": 10.16,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "target",
+                    "start": 10.16,
+                    "end": 10.52,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "image.",
+                    "start": 10.52,
+                    "end": 10.88,
+                    "confidence": 0.953
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 11.1804375
+        }
+    ]
+}

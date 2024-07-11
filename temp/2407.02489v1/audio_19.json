@@ -1,0 +1,252 @@
+{
+    "text": " This figure illustrates the bootstrap domain adaptation process, allowing the model to progressively improve its ability to handle stylized images by learning from its own outputs.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 4.04,
+            "text": " This figure illustrates the bootstrap domain adaptation process,",
+            "tokens": [
+                50363,
+                770,
+                3785,
+                21290,
+                262,
+                6297,
+                26418,
+                7386,
+                16711,
+                1429,
+                11,
+                50567
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18024021870381124,
+            "compression_ratio": 1.3636363636363635,
+            "no_speech_prob": 0.00909099169075489,
+            "confidence": 0.899,
+            "words": [
+                {
+                    "text": "This",
+                    "start": 0.14,
+                    "end": 0.44,
+                    "confidence": 0.885
+                },
+                {
+                    "text": "figure",
+                    "start": 0.44,
+                    "end": 0.74,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "illustrates",
+                    "start": 0.74,
+                    "end": 1.32,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "the",
+                    "start": 1.32,
+                    "end": 1.56,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "bootstrap",
+                    "start": 1.56,
+                    "end": 2.12,
+                    "confidence": 0.794
+                },
+                {
+                    "text": "domain",
+                    "start": 2.12,
+                    "end": 2.62,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "adaptation",
+                    "start": 2.62,
+                    "end": 3.3,
+                    "confidence": 0.979
+                },
+                {
+                    "text": "process,",
+                    "start": 3.3,
+                    "end": 4.04,
+                    "confidence": 0.814
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 4.18,
+            "end": 8.52,
+            "text": " allowing the model to progressively improve its ability to handle stylized images",
+            "tokens": [
+                50567,
+                5086,
+                262,
+                2746,
+                284,
+                34322,
+                2987,
+                663,
+                2694,
+                284,
+                5412,
+                22152,
+                1143,
+                4263,
+                50791
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18024021870381124,
+            "compression_ratio": 1.3636363636363635,
+            "no_speech_prob": 0.00909099169075489,
+            "confidence": 0.927,
+            "words": [
+                {
+                    "text": "allowing",
+                    "start": 4.18,
+                    "end": 4.56,
+                    "confidence": 0.546
+                },
+                {
+                    "text": "the",
+                    "start": 4.56,
+                    "end": 4.8,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "model",
+                    "start": 4.8,
+                    "end": 5.04,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "to",
+                    "start": 5.04,
+                    "end": 5.24,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "progressively",
+                    "start": 5.24,
+                    "end": 5.74,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "improve",
+                    "start": 5.74,
+                    "end": 6.2,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "its",
+                    "start": 6.2,
+                    "end": 6.4,
+                    "confidence": 0.946
+                },
+                {
+                    "text": "ability",
+                    "start": 6.4,
+                    "end": 6.76,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "to",
+                    "start": 6.76,
+                    "end": 7.02,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "handle",
+                    "start": 7.02,
+                    "end": 7.38,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "stylized",
+                    "start": 7.38,
+                    "end": 8.0,
+                    "confidence": 0.916
+                },
+                {
+                    "text": "images",
+                    "start": 8.0,
+                    "end": 8.52,
+                    "confidence": 0.962
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 8.68,
+            "end": 10.22,
+            "text": " by learning from its own outputs.",
+            "tokens": [
+                50791,
+                416,
+                4673,
+                422,
+                663,
+                898,
+                23862,
+                13,
+                50891
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18024021870381124,
+            "compression_ratio": 1.3636363636363635,
+            "no_speech_prob": 0.00909099169075489,
+            "confidence": 0.95,
+            "words": [
+                {
+                    "text": "by",
+                    "start": 8.68,
+                    "end": 8.94,
+                    "confidence": 0.927
+                },
+                {
+                    "text": "learning",
+                    "start": 8.94,
+                    "end": 9.26,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "from",
+                    "start": 9.26,
+                    "end": 9.5,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "its",
+                    "start": 9.5,
+                    "end": 9.64,
+                    "confidence": 0.937
+                },
+                {
+                    "text": "own",
+                    "start": 9.64,
+                    "end": 9.84,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "outputs.",
+                    "start": 9.84,
+                    "end": 10.22,
+                    "confidence": 0.905
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 10.631875
+        }
+    ]
+}

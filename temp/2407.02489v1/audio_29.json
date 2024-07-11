@@ -1,0 +1,305 @@
+{
+    "text": " In summary, magic insert provides a robust solution for style aware drag-and-drop in image editing. By leveraging state-of-the-art diffusion models and innovative adaptation techniques, it allows for seamless and realistic image composites.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 6.96,
+            "text": " In summary, magic insert provides a robust solution for style aware drag-and-drop in image editing.",
+            "tokens": [
+                50363,
+                554,
+                10638,
+                11,
+                5536,
+                7550,
+                3769,
+                257,
+                12373,
+                4610,
+                329,
+                3918,
+                3910,
+                6715,
+                12,
+                392,
+                12,
+                14781,
+                287,
+                2939,
+                12857,
+                13,
+                50727
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18416113323635525,
+            "compression_ratio": 1.4285714285714286,
+            "no_speech_prob": 0.009812702424824238,
+            "confidence": 0.805,
+            "words": [
+                {
+                    "text": "In",
+                    "start": 0.14,
+                    "end": 0.46,
+                    "confidence": 0.873
+                },
+                {
+                    "text": "summary,",
+                    "start": 0.46,
+                    "end": 1.06,
+                    "confidence": 0.773
+                },
+                {
+                    "text": "magic",
+                    "start": 1.24,
+                    "end": 1.6,
+                    "confidence": 0.546
+                },
+                {
+                    "text": "insert",
+                    "start": 1.6,
+                    "end": 2.16,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "provides",
+                    "start": 2.16,
+                    "end": 2.76,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "a",
+                    "start": 2.76,
+                    "end": 2.96,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "robust",
+                    "start": 2.96,
+                    "end": 3.38,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "solution",
+                    "start": 3.38,
+                    "end": 4.04,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "for",
+                    "start": 4.04,
+                    "end": 4.36,
+                    "confidence": 0.961
+                },
+                {
+                    "text": "style",
+                    "start": 4.36,
+                    "end": 4.8,
+                    "confidence": 0.913
+                },
+                {
+                    "text": "aware",
+                    "start": 4.8,
+                    "end": 5.24,
+                    "confidence": 0.777
+                },
+                {
+                    "text": "drag-and-drop",
+                    "start": 5.24,
+                    "end": 5.96,
+                    "confidence": 0.649
+                },
+                {
+                    "text": "in",
+                    "start": 5.96,
+                    "end": 6.18,
+                    "confidence": 0.87
+                },
+                {
+                    "text": "image",
+                    "start": 6.18,
+                    "end": 6.44,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "editing.",
+                    "start": 6.44,
+                    "end": 6.96,
+                    "confidence": 0.758
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 7.34,
+            "end": 12.3,
+            "text": " By leveraging state-of-the-art diffusion models and innovative adaptation techniques,",
+            "tokens": [
+                50727,
+                2750,
+                42389,
+                1181,
+                12,
+                1659,
+                12,
+                1169,
+                12,
+                433,
+                44258,
+                4981,
+                290,
+                13097,
+                16711,
+                7605,
+                11,
+                50979
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18416113323635525,
+            "compression_ratio": 1.4285714285714286,
+            "no_speech_prob": 0.009812702424824238,
+            "confidence": 0.913,
+            "words": [
+                {
+                    "text": "By",
+                    "start": 7.34,
+                    "end": 7.66,
+                    "confidence": 0.771
+                },
+                {
+                    "text": "leveraging",
+                    "start": 7.66,
+                    "end": 8.32,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "state-of-the-art",
+                    "start": 8.32,
+                    "end": 9.28,
+                    "confidence": 0.923
+                },
+                {
+                    "text": "diffusion",
+                    "start": 9.28,
+                    "end": 9.74,
+                    "confidence": 0.888
+                },
+                {
+                    "text": "models",
+                    "start": 9.74,
+                    "end": 10.18,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "and",
+                    "start": 10.18,
+                    "end": 10.46,
+                    "confidence": 0.894
+                },
+                {
+                    "text": "innovative",
+                    "start": 10.46,
+                    "end": 10.98,
+                    "confidence": 0.956
+                },
+                {
+                    "text": "adaptation",
+                    "start": 10.98,
+                    "end": 11.66,
+                    "confidence": 0.888
+                },
+                {
+                    "text": "techniques,",
+                    "start": 11.66,
+                    "end": 12.3,
+                    "confidence": 0.897
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 12.46,
+            "end": 15.58,
+            "text": " it allows for seamless and realistic image composites.",
+            "tokens": [
+                50979,
+                340,
+                3578,
+                329,
+                32354,
+                290,
+                12653,
+                2939,
+                18882,
+                2737,
+                13,
+                51151
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.18416113323635525,
+            "compression_ratio": 1.4285714285714286,
+            "no_speech_prob": 0.009812702424824238,
+            "confidence": 0.888,
+            "words": [
+                {
+                    "text": "it",
+                    "start": 12.46,
+                    "end": 12.74,
+                    "confidence": 0.422
+                },
+                {
+                    "text": "allows",
+                    "start": 12.74,
+                    "end": 13.06,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "for",
+                    "start": 13.06,
+                    "end": 13.3,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "seamless",
+                    "start": 13.3,
+                    "end": 13.78,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "and",
+                    "start": 13.78,
+                    "end": 14.02,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "realistic",
+                    "start": 14.02,
+                    "end": 14.6,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "image",
+                    "start": 14.6,
+                    "end": 14.98,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "composites.",
+                    "start": 14.98,
+                    "end": 15.58,
+                    "confidence": 0.906
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 15.8301875
+        }
+    ]
+}

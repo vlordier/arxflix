@@ -1,0 +1,219 @@
+{
+    "text": " Here's a gallery displaying some remarkable results achieved using magic insert, showing different subjects inserted into target images across a wide range of styles.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 4.98,
+            "text": " Here's a gallery displaying some remarkable results achieved using magic insert,",
+            "tokens": [
+                50363,
+                3423,
+                338,
+                257,
+                15604,
+                19407,
+                617,
+                11004,
+                2482,
+                8793,
+                1262,
+                5536,
+                7550,
+                11,
+                50615
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.19196344912052155,
+            "compression_ratio": 1.3070866141732282,
+            "no_speech_prob": 0.012328795157372952,
+            "confidence": 0.843,
+            "words": [
+                {
+                    "text": "Here's",
+                    "start": 0.14,
+                    "end": 0.54,
+                    "confidence": 0.811
+                },
+                {
+                    "text": "a",
+                    "start": 0.54,
+                    "end": 0.7,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "gallery",
+                    "start": 0.7,
+                    "end": 1.04,
+                    "confidence": 0.924
+                },
+                {
+                    "text": "displaying",
+                    "start": 1.04,
+                    "end": 1.58,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "some",
+                    "start": 1.58,
+                    "end": 1.84,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "remarkable",
+                    "start": 1.84,
+                    "end": 2.36,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "results",
+                    "start": 2.36,
+                    "end": 2.96,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "achieved",
+                    "start": 2.96,
+                    "end": 3.42,
+                    "confidence": 0.956
+                },
+                {
+                    "text": "using",
+                    "start": 3.42,
+                    "end": 3.86,
+                    "confidence": 0.97
+                },
+                {
+                    "text": "magic",
+                    "start": 3.86,
+                    "end": 4.3,
+                    "confidence": 0.897
+                },
+                {
+                    "text": "insert,",
+                    "start": 4.3,
+                    "end": 4.98,
+                    "confidence": 0.475
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.16,
+            "end": 9.96,
+            "text": " showing different subjects inserted into target images across a wide range of styles.",
+            "tokens": [
+                50615,
+                4478,
+                1180,
+                7481,
+                18846,
+                656,
+                2496,
+                4263,
+                1973,
+                257,
+                3094,
+                2837,
+                286,
+                12186,
+                13,
+                50879
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.19196344912052155,
+            "compression_ratio": 1.3070866141732282,
+            "no_speech_prob": 0.012328795157372952,
+            "confidence": 0.958,
+            "words": [
+                {
+                    "text": "showing",
+                    "start": 5.16,
+                    "end": 5.54,
+                    "confidence": 0.862
+                },
+                {
+                    "text": "different",
+                    "start": 5.54,
+                    "end": 5.96,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "subjects",
+                    "start": 5.96,
+                    "end": 6.52,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "inserted",
+                    "start": 6.52,
+                    "end": 7.06,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "into",
+                    "start": 7.06,
+                    "end": 7.34,
+                    "confidence": 0.949
+                },
+                {
+                    "text": "target",
+                    "start": 7.34,
+                    "end": 7.76,
+                    "confidence": 0.919
+                },
+                {
+                    "text": "images",
+                    "start": 7.76,
+                    "end": 8.28,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "across",
+                    "start": 8.28,
+                    "end": 8.66,
+                    "confidence": 0.937
+                },
+                {
+                    "text": "a",
+                    "start": 8.66,
+                    "end": 8.78,
+                    "confidence": 0.985
+                },
+                {
+                    "text": "wide",
+                    "start": 8.78,
+                    "end": 9.1,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "range",
+                    "start": 9.1,
+                    "end": 9.4,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "of",
+                    "start": 9.4,
+                    "end": 9.58,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "styles.",
+                    "start": 9.58,
+                    "end": 9.96,
+                    "confidence": 0.914
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 10.3445
+        }
+    ]
+}

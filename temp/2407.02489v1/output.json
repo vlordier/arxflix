@@ -1,0 +1,98 @@
+[
+    {
+        "type": "headline",
+        "content": "Magic Insert: Style-Aware Drag-and-Drop",
+        "start": 0.0,
+        "end": 17.52
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/teaser.png",
+        "start": 17.52,
+        "end": 29.98
+    },
+    {
+        "type": "headline",
+        "content": "The Problem with Traditional Methods",
+        "start": 29.98,
+        "end": 45.9
+    },
+    {
+        "type": "headline",
+        "content": "Key Innovations",
+        "start": 45.9,
+        "end": 55.68
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/style_aware_personalization.png",
+        "start": 55.68,
+        "end": 66.56
+    },
+    {
+        "type": "headline",
+        "content": "Style-Aware Personalization",
+        "start": 66.56,
+        "end": 71.4
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/style_aware_personalization.png",
+        "start": 71.4,
+        "end": 76.24000000000001
+    },
+    {
+        "type": "equation",
+        "content": "L_{\\text{joint}} = \\mathbb{E}_{t, \\epsilon} \\left[\\| \\epsilon - \\epsilon_{\\theta^{\\prime}}(x_{s}^t, t, [e_{1}; e_{2}]) \\|_{2}^{2} \\right]",
+        "start": 76.24000000000001,
+        "end": 84.84
+    },
+    {
+        "type": "headline",
+        "content": "Realistic Object Insertion",
+        "start": 84.84,
+        "end": 90.82000000000001
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/subject_insertion_inference.png",
+        "start": 90.82000000000001,
+        "end": 96.80000000000001
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/bootstrap_domain_adaptation.png",
+        "start": 96.80000000000001,
+        "end": 107.02000000000001
+    },
+    {
+        "type": "headline",
+        "content": "SubjectPlop Dataset",
+        "start": 107.02000000000001,
+        "end": 122.10000000000001
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/gallery.png",
+        "start": 122.10000000000001,
+        "end": 132.06
+    },
+    {
+        "type": "headline",
+        "content": "Experiment Results",
+        "start": 132.06,
+        "end": 146.76
+    },
+    {
+        "type": "figure",
+        "content": "extracted/5705895/figure/comparison_style_personalization.png",
+        "start": 146.76,
+        "end": 157.62
+    },
+    {
+        "type": "headline",
+        "content": "Conclusion",
+        "start": 157.62,
+        "end": 184.46
+    }
+]

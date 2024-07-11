@@ -1,0 +1,290 @@
+{
+    "text": " If you're interested in more cutting edge research updates, don't forget to like, subscribe, and hit the bell icon. See you next time on ARXFlix, where we make complex research simple and engaging.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 6.36,
+            "text": " If you're interested in more cutting edge research updates, don't forget to like, subscribe, and hit the bell icon.",
+            "tokens": [
+                50363,
+                1002,
+                345,
+                821,
+                4609,
+                287,
+                517,
+                7720,
+                5743,
+                2267,
+                5992,
+                11,
+                836,
+                470,
+                6044,
+                284,
+                588,
+                11,
+                12383,
+                11,
+                290,
+                2277,
+                262,
+                8966,
+                7196,
+                13,
+                50695
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2893091318558674,
+            "compression_ratio": 1.3221476510067114,
+            "no_speech_prob": 0.023941028863191605,
+            "confidence": 0.859,
+            "words": [
+                {
+                    "text": "If",
+                    "start": 0.12,
+                    "end": 0.36,
+                    "confidence": 0.808
+                },
+                {
+                    "text": "you're",
+                    "start": 0.36,
+                    "end": 0.62,
+                    "confidence": 0.918
+                },
+                {
+                    "text": "interested",
+                    "start": 0.62,
+                    "end": 1.02,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "in",
+                    "start": 1.02,
+                    "end": 1.28,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "more",
+                    "start": 1.28,
+                    "end": 1.48,
+                    "confidence": 0.968
+                },
+                {
+                    "text": "cutting",
+                    "start": 1.48,
+                    "end": 1.82,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "edge",
+                    "start": 1.82,
+                    "end": 2.12,
+                    "confidence": 0.871
+                },
+                {
+                    "text": "research",
+                    "start": 2.12,
+                    "end": 2.5,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "updates,",
+                    "start": 2.5,
+                    "end": 3.08,
+                    "confidence": 0.763
+                },
+                {
+                    "text": "don't",
+                    "start": 3.46,
+                    "end": 3.54,
+                    "confidence": 0.906
+                },
+                {
+                    "text": "forget",
+                    "start": 3.54,
+                    "end": 3.84,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "to",
+                    "start": 3.84,
+                    "end": 4.08,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "like,",
+                    "start": 4.08,
+                    "end": 4.36,
+                    "confidence": 0.804
+                },
+                {
+                    "text": "subscribe,",
+                    "start": 4.44,
+                    "end": 4.98,
+                    "confidence": 0.418
+                },
+                {
+                    "text": "and",
+                    "start": 5.12,
+                    "end": 5.22,
+                    "confidence": 0.955
+                },
+                {
+                    "text": "hit",
+                    "start": 5.22,
+                    "end": 5.42,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "the",
+                    "start": 5.42,
+                    "end": 5.52,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "bell",
+                    "start": 5.52,
+                    "end": 5.82,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "icon.",
+                    "start": 5.82,
+                    "end": 6.36,
+                    "confidence": 0.9
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.72,
+            "end": 11.26,
+            "text": " See you next time on ARXFlix, where we make complex research simple and engaging.",
+            "tokens": [
+                50695,
+                4091,
+                345,
+                1306,
+                640,
+                319,
+                5923,
+                55,
+                7414,
+                844,
+                11,
+                810,
+                356,
+                787,
+                3716,
+                2267,
+                2829,
+                290,
+                11932,
+                13,
+                50951
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.2893091318558674,
+            "compression_ratio": 1.3221476510067114,
+            "no_speech_prob": 0.023941028863191605,
+            "confidence": 0.761,
+            "words": [
+                {
+                    "text": "See",
+                    "start": 6.72,
+                    "end": 7.1,
+                    "confidence": 0.91
+                },
+                {
+                    "text": "you",
+                    "start": 7.1,
+                    "end": 7.22,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "next",
+                    "start": 7.22,
+                    "end": 7.42,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "time",
+                    "start": 7.42,
+                    "end": 7.72,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "on",
+                    "start": 7.72,
+                    "end": 7.88,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "ARXFlix,",
+                    "start": 7.88,
+                    "end": 8.46,
+                    "confidence": 0.384
+                },
+                {
+                    "text": "where",
+                    "start": 8.68,
+                    "end": 8.88,
+                    "confidence": 0.975
+                },
+                {
+                    "text": "we",
+                    "start": 8.88,
+                    "end": 8.98,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "make",
+                    "start": 8.98,
+                    "end": 9.26,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "complex",
+                    "start": 9.26,
+                    "end": 9.8,
+                    "confidence": 0.96
+                },
+                {
+                    "text": "research",
+                    "start": 9.8,
+                    "end": 10.28,
+                    "confidence": 0.99
+                },
+                {
+                    "text": "simple",
+                    "start": 10.28,
+                    "end": 10.66,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "and",
+                    "start": 10.66,
+                    "end": 10.86,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "engaging.",
+                    "start": 10.86,
+                    "end": 11.26,
+                    "confidence": 0.915
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 11.598375
+        }
+    ]
+}

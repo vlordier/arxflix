@@ -1,0 +1,273 @@
+{
+    "text": " In the experiments, magic insert was compared against several baselines. It demonstrated superior performance in maintaining subject fidelity and style adherence while integrating subjects realistically into varied target images.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 4.84,
+            "text": " In the experiments, magic insert was compared against several baselines.",
+            "tokens": [
+                50363,
+                554,
+                262,
+                10256,
+                11,
+                5536,
+                7550,
+                373,
+                3688,
+                1028,
+                1811,
+                1615,
+                20655,
+                13,
+                50611
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.22900538444519042,
+            "compression_ratio": 1.4585987261146496,
+            "no_speech_prob": 0.01086758729070425,
+            "confidence": 0.825,
+            "words": [
+                {
+                    "text": "In",
+                    "start": 0.12,
+                    "end": 0.4,
+                    "confidence": 0.879
+                },
+                {
+                    "text": "the",
+                    "start": 0.4,
+                    "end": 0.6,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "experiments,",
+                    "start": 0.6,
+                    "end": 1.28,
+                    "confidence": 0.542
+                },
+                {
+                    "text": "magic",
+                    "start": 1.54,
+                    "end": 1.92,
+                    "confidence": 0.72
+                },
+                {
+                    "text": "insert",
+                    "start": 1.92,
+                    "end": 2.4,
+                    "confidence": 0.972
+                },
+                {
+                    "text": "was",
+                    "start": 2.4,
+                    "end": 2.72,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "compared",
+                    "start": 2.72,
+                    "end": 3.06,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "against",
+                    "start": 3.06,
+                    "end": 3.56,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "several",
+                    "start": 3.56,
+                    "end": 4.04,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "baselines.",
+                    "start": 4.04,
+                    "end": 4.84,
+                    "confidence": 0.778
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.02,
+            "end": 10.48,
+            "text": " It demonstrated superior performance in maintaining subject fidelity and style adherence",
+            "tokens": [
+                50611,
+                632,
+                9555,
+                9098,
+                2854,
+                287,
+                10941,
+                2426,
+                37744,
+                290,
+                3918,
+                34721,
+                50891
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.22900538444519042,
+            "compression_ratio": 1.4585987261146496,
+            "no_speech_prob": 0.01086758729070425,
+            "confidence": 0.878,
+            "words": [
+                {
+                    "text": "It",
+                    "start": 5.02,
+                    "end": 5.36,
+                    "confidence": 0.727
+                },
+                {
+                    "text": "demonstrated",
+                    "start": 5.36,
+                    "end": 6.1,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "superior",
+                    "start": 6.1,
+                    "end": 6.7,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "performance",
+                    "start": 6.7,
+                    "end": 7.4,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "in",
+                    "start": 7.4,
+                    "end": 7.62,
+                    "confidence": 0.903
+                },
+                {
+                    "text": "maintaining",
+                    "start": 7.62,
+                    "end": 8.2,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "subject",
+                    "start": 8.2,
+                    "end": 8.72,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "fidelity",
+                    "start": 8.72,
+                    "end": 9.28,
+                    "confidence": 0.491
+                },
+                {
+                    "text": "and",
+                    "start": 9.28,
+                    "end": 9.52,
+                    "confidence": 0.957
+                },
+                {
+                    "text": "style",
+                    "start": 9.52,
+                    "end": 9.82,
+                    "confidence": 0.902
+                },
+                {
+                    "text": "adherence",
+                    "start": 9.82,
+                    "end": 10.48,
+                    "confidence": 0.922
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "seek": 0,
+            "start": 10.7,
+            "end": 14.7,
+            "text": " while integrating subjects realistically into varied target images.",
+            "tokens": [
+                50891,
+                981,
+                32029,
+                7481,
+                39659,
+                656,
+                15641,
+                2496,
+                4263,
+                13,
+                51143
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.22900538444519042,
+            "compression_ratio": 1.4585987261146496,
+            "no_speech_prob": 0.01086758729070425,
+            "confidence": 0.976,
+            "words": [
+                {
+                    "text": "while",
+                    "start": 10.7,
+                    "end": 11.02,
+                    "confidence": 0.942
+                },
+                {
+                    "text": "integrating",
+                    "start": 11.02,
+                    "end": 11.64,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "subjects",
+                    "start": 11.64,
+                    "end": 12.3,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "realistically",
+                    "start": 12.3,
+                    "end": 13.06,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "into",
+                    "start": 13.06,
+                    "end": 13.52,
+                    "confidence": 0.981
+                },
+                {
+                    "text": "varied",
+                    "start": 13.52,
+                    "end": 13.96,
+                    "confidence": 0.981
+                },
+                {
+                    "text": "target",
+                    "start": 13.96,
+                    "end": 14.38,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "images.",
+                    "start": 14.38,
+                    "end": 14.7,
+                    "confidence": 0.959
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 15.1249375
+        }
+    ]
+}

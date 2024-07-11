@@ -25,7 +25,7 @@ export const RemotionRoot: React.FC = () => {
 				// Determine the length of the video based on the duration of the audio file
 				calculateMetadata={({ props }) => {
 					return {
-						durationInFrames: props.durationInSeconds * VIDEO_FPS,
+						durationInFrames: Math.ceil(props.durationInSeconds * VIDEO_FPS),
 						props,
 					};
 				}}

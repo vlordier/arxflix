@@ -1,0 +1,192 @@
+{
+    "text": " Magic insert tackles this problem through two main innovations. Style aware personalization and realistic object insertion using bootstrap domain adaptation.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.14,
+            "end": 3.94,
+            "text": " Magic insert tackles this problem through two main innovations.",
+            "tokens": [
+                50363,
+                6139,
+                7550,
+                18034,
+                428,
+                1917,
+                832,
+                734,
+                1388,
+                25438,
+                13,
+                50571
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.30296180988180227,
+            "compression_ratio": 1.319327731092437,
+            "no_speech_prob": 0.007411269471049309,
+            "confidence": 0.884,
+            "words": [
+                {
+                    "text": "Magic",
+                    "start": 0.14,
+                    "end": 0.64,
+                    "confidence": 0.734
+                },
+                {
+                    "text": "insert",
+                    "start": 0.64,
+                    "end": 1.12,
+                    "confidence": 0.761
+                },
+                {
+                    "text": "tackles",
+                    "start": 1.12,
+                    "end": 1.58,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "this",
+                    "start": 1.58,
+                    "end": 1.88,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "problem",
+                    "start": 1.88,
+                    "end": 2.28,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "through",
+                    "start": 2.28,
+                    "end": 2.58,
+                    "confidence": 0.994
+                },
+                {
+                    "text": "two",
+                    "start": 2.58,
+                    "end": 2.9,
+                    "confidence": 0.871
+                },
+                {
+                    "text": "main",
+                    "start": 2.9,
+                    "end": 3.14,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "innovations.",
+                    "start": 3.14,
+                    "end": 3.94,
+                    "confidence": 0.783
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 4.22,
+            "end": 9.78,
+            "text": " Style aware personalization and realistic object insertion using bootstrap domain adaptation.",
+            "tokens": [
+                50571,
+                17738,
+                3910,
+                2614,
+                1634,
+                290,
+                12653,
+                2134,
+                36075,
+                1262,
+                6297,
+                26418,
+                7386,
+                16711,
+                13,
+                50871
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.30296180988180227,
+            "compression_ratio": 1.319327731092437,
+            "no_speech_prob": 0.007411269471049309,
+            "confidence": 0.755,
+            "words": [
+                {
+                    "text": "Style",
+                    "start": 4.22,
+                    "end": 4.8,
+                    "confidence": 0.501
+                },
+                {
+                    "text": "aware",
+                    "start": 4.8,
+                    "end": 5.1,
+                    "confidence": 0.327
+                },
+                {
+                    "text": "personalization",
+                    "start": 5.1,
+                    "end": 6.08,
+                    "confidence": 0.831
+                },
+                {
+                    "text": "and",
+                    "start": 6.08,
+                    "end": 6.34,
+                    "confidence": 0.988
+                },
+                {
+                    "text": "realistic",
+                    "start": 6.34,
+                    "end": 6.88,
+                    "confidence": 0.984
+                },
+                {
+                    "text": "object",
+                    "start": 6.88,
+                    "end": 7.38,
+                    "confidence": 0.982
+                },
+                {
+                    "text": "insertion",
+                    "start": 7.38,
+                    "end": 7.9,
+                    "confidence": 0.924
+                },
+                {
+                    "text": "using",
+                    "start": 7.9,
+                    "end": 8.26,
+                    "confidence": 0.971
+                },
+                {
+                    "text": "bootstrap",
+                    "start": 8.26,
+                    "end": 8.84,
+                    "confidence": 0.599
+                },
+                {
+                    "text": "domain",
+                    "start": 8.84,
+                    "end": 9.2,
+                    "confidence": 0.969
+                },
+                {
+                    "text": "adaptation.",
+                    "start": 9.2,
+                    "end": 9.78,
+                    "confidence": 0.763
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 10.161625
+        }
+    ]
+}

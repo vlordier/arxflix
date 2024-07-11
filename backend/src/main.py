@@ -20,7 +20,7 @@ from utils.generate_assets import (
 )
 from utils.generate_paper import get_arxiv_id_from_url, process_article
 from utils.generate_script import process_script
-from utils.generate_video import get_total_duration, process_video
+from utils.generate_video import CompositionProps, get_total_duration, process_video
 
 # Setup logging configuration
 logging.basicConfig(level=settings.LOGGING.level, format=settings.LOGGING.format)
@@ -112,12 +112,13 @@ def generate_assets(
     """
 
     if not script:
-        script_default_path = Path(settings.TEMP_DIR) / Path(arxiv_id) / Path("script.txt")
+        script_default_path = (
+            Path(settings.TEMP_DIR) / Path(arxiv_id) / Path("script.txt")
+        )
         script_default_path = script_default_path.absolute()
         if not script_default_path.exists():
             raise ValueError("Script not found in %s", script_default_path.as_posix())
         script = script_default_path.read_text()
-
 
     try:
         mp3_output_path, srt_output_path, rich_output_path = create_directories(
@@ -175,11 +176,9 @@ def create_directories(arxiv_id: str) -> Tuple[Path, Path, Path]:
     base_dir = base_dir.absolute()
     base_dir.mkdir(parents=True, exist_ok=True)
 
-    mp3_output_path = base_dir / Path(settings.COMPOSITION_PROPS.audio_file_name)
-    srt_output_path = base_dir / Path(settings.COMPOSITION_PROPS.subtitles_file_name)
-    rich_output_path = base_dir / Path(
-        settings.COMPOSITION_PROPS.rich_content_file_name
-    )
+    mp3_output_path = base_dir / Path(settings.COMPOSITION_PROPS.audioFileName)
+    srt_output_path = base_dir / Path(settings.COMPOSITION_PROPS.subtitlesFileName)
+    rich_output_path = base_dir / Path(settings.COMPOSITION_PROPS.richContentFileName)
 
     return mp3_output_path, srt_output_path, rich_output_path
 
@@ -205,7 +204,7 @@ def generate_assets_api(assets_input: AssetsInput) -> float:
 
 @cli.command("generate_video")
 @api.post("/generate_video/")
-def generate_video(arxiv_id: str) -> None:
+def generate_video(arxiv_id: str, duration_in_seconds: float) -> None:
     """Generate a video from the processed script.
 
     Args:
@@ -217,7 +216,9 @@ def generate_video(arxiv_id: str) -> None:
 
     try:
         logger.info("Generating video for ArXiv paper %s...", arxiv_id)
-        process_video(arxiv_id=arxiv_id)
+        composition_props = CompositionProps(durationInSeconds=duration_in_seconds)
+
+        process_video(arxiv_id=arxiv_id, composition_props=composition_props)
         logger.info("Video generated successfully.")
     except Exception as e:
         logger.exception("Error generating video: %s", e)
@@ -247,10 +248,12 @@ def run_pipeline(url: str) -> None:
         logger.info("Script content generated successfully.")
 
         logger.info("Generating assets...")
-        generate_assets(script_content, arxiv_id=arxiv_id)
+        total_duration = generate_assets(script_content, arxiv_id=arxiv_id)
         logger.info("Assets generated successfully.")
 
-        generate_video(arxiv_id=arxiv_id)
+        logger.info("Generating video...")
+
+        generate_video(arxiv_id=arxiv_id, duration_in_seconds=total_duration)
         logger.info("Video generated successfully.")
     except Exception as e:
         logger.exception("Error running pipeline: %s", e)

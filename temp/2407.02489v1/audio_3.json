@@ -1,0 +1,289 @@
+{
+    "text": " As you can see in this figure, magic insert enables the insertion of subjects from a user image into a target image with a vastly different style, achieving a seamlessly styled and realistic composite.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 5.84,
+            "text": " As you can see in this figure, magic insert enables the insertion of subjects from a user image",
+            "tokens": [
+                50363,
+                1081,
+                345,
+                460,
+                766,
+                287,
+                428,
+                3785,
+                11,
+                5536,
+                7550,
+                13536,
+                262,
+                36075,
+                286,
+                7481,
+                422,
+                257,
+                2836,
+                2939,
+                50655
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.16541948772612072,
+            "compression_ratio": 1.4460431654676258,
+            "no_speech_prob": 0.0074533880688250065,
+            "confidence": 0.932,
+            "words": [
+                {
+                    "text": "As",
+                    "start": 0.12,
+                    "end": 0.36,
+                    "confidence": 0.882
+                },
+                {
+                    "text": "you",
+                    "start": 0.36,
+                    "end": 0.48,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "can",
+                    "start": 0.48,
+                    "end": 0.74,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "see",
+                    "start": 0.74,
+                    "end": 0.9,
+                    "confidence": 0.998
+                },
+                {
+                    "text": "in",
+                    "start": 0.9,
+                    "end": 1.0,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "this",
+                    "start": 1.0,
+                    "end": 1.16,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "figure,",
+                    "start": 1.16,
+                    "end": 1.7,
+                    "confidence": 0.788
+                },
+                {
+                    "text": "magic",
+                    "start": 2.08,
+                    "end": 2.22,
+                    "confidence": 0.767
+                },
+                {
+                    "text": "insert",
+                    "start": 2.22,
+                    "end": 2.68,
+                    "confidence": 0.873
+                },
+                {
+                    "text": "enables",
+                    "start": 2.68,
+                    "end": 3.16,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "the",
+                    "start": 3.16,
+                    "end": 3.38,
+                    "confidence": 0.983
+                },
+                {
+                    "text": "insertion",
+                    "start": 3.38,
+                    "end": 3.78,
+                    "confidence": 0.993
+                },
+                {
+                    "text": "of",
+                    "start": 3.78,
+                    "end": 3.98,
+                    "confidence": 0.97
+                },
+                {
+                    "text": "subjects",
+                    "start": 3.98,
+                    "end": 4.42,
+                    "confidence": 0.964
+                },
+                {
+                    "text": "from",
+                    "start": 4.42,
+                    "end": 4.72,
+                    "confidence": 0.93
+                },
+                {
+                    "text": "a",
+                    "start": 4.72,
+                    "end": 4.96,
+                    "confidence": 0.942
+                },
+                {
+                    "text": "user",
+                    "start": 4.96,
+                    "end": 5.24,
+                    "confidence": 0.958
+                },
+                {
+                    "text": "image",
+                    "start": 5.24,
+                    "end": 5.84,
+                    "confidence": 0.967
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 5.92,
+            "end": 12.46,
+            "text": " into a target image with a vastly different style, achieving a seamlessly styled and realistic composite.",
+            "tokens": [
+                50655,
+                656,
+                257,
+                2496,
+                2939,
+                351,
+                257,
+                22056,
+                1180,
+                3918,
+                11,
+                16937,
+                257,
+                33681,
+                45552,
+                290,
+                12653,
+                24185,
+                13,
+                51003
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.16541948772612072,
+            "compression_ratio": 1.4460431654676258,
+            "no_speech_prob": 0.0074533880688250065,
+            "confidence": 0.872,
+            "words": [
+                {
+                    "text": "into",
+                    "start": 5.92,
+                    "end": 6.32,
+                    "confidence": 0.748
+                },
+                {
+                    "text": "a",
+                    "start": 6.32,
+                    "end": 6.5,
+                    "confidence": 0.996
+                },
+                {
+                    "text": "target",
+                    "start": 6.5,
+                    "end": 6.88,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "image",
+                    "start": 6.88,
+                    "end": 7.22,
+                    "confidence": 0.999
+                },
+                {
+                    "text": "with",
+                    "start": 7.22,
+                    "end": 7.46,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "a",
+                    "start": 7.46,
+                    "end": 7.6,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "vastly",
+                    "start": 7.6,
+                    "end": 8.1,
+                    "confidence": 0.995
+                },
+                {
+                    "text": "different",
+                    "start": 8.1,
+                    "end": 8.62,
+                    "confidence": 0.997
+                },
+                {
+                    "text": "style,",
+                    "start": 8.62,
+                    "end": 9.26,
+                    "confidence": 0.798
+                },
+                {
+                    "text": "achieving",
+                    "start": 9.56,
+                    "end": 9.9,
+                    "confidence": 0.329
+                },
+                {
+                    "text": "a",
+                    "start": 9.9,
+                    "end": 10.14,
+                    "confidence": 0.98
+                },
+                {
+                    "text": "seamlessly",
+                    "start": 10.14,
+                    "end": 10.74,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "styled",
+                    "start": 10.74,
+                    "end": 11.24,
+                    "confidence": 0.885
+                },
+                {
+                    "text": "and",
+                    "start": 11.24,
+                    "end": 11.46,
+                    "confidence": 0.953
+                },
+                {
+                    "text": "realistic",
+                    "start": 11.46,
+                    "end": 11.98,
+                    "confidence": 0.939
+                },
+                {
+                    "text": "composite.",
+                    "start": 11.98,
+                    "end": 12.46,
+                    "confidence": 0.873
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 12.85225
+        }
+    ]
+}

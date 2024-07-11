@@ -1,0 +1,260 @@
+{
+    "text": " For the insertion step, magic insert uses a novel technique called Bootstrap Domain Adaptation, which adapts a model initially trained on real-world images to perform well with stylized images.",
+    "segments": [
+        {
+            "id": 0,
+            "seek": 0,
+            "start": 0.12,
+            "end": 6.52,
+            "text": " For the insertion step, magic insert uses a novel technique called Bootstrap Domain Adaptation,",
+            "tokens": [
+                50363,
+                1114,
+                262,
+                36075,
+                2239,
+                11,
+                5536,
+                7550,
+                3544,
+                257,
+                5337,
+                8173,
+                1444,
+                18892,
+                26418,
+                20021,
+                30019,
+                341,
+                11,
+                50691
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20247803177944448,
+            "compression_ratio": 1.3785714285714286,
+            "no_speech_prob": 0.00862049125134945,
+            "confidence": 0.846,
+            "words": [
+                {
+                    "text": "For",
+                    "start": 0.12,
+                    "end": 0.38,
+                    "confidence": 0.961
+                },
+                {
+                    "text": "the",
+                    "start": 0.38,
+                    "end": 0.46,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "insertion",
+                    "start": 0.46,
+                    "end": 1.02,
+                    "confidence": 0.799
+                },
+                {
+                    "text": "step,",
+                    "start": 1.02,
+                    "end": 1.52,
+                    "confidence": 0.947
+                },
+                {
+                    "text": "magic",
+                    "start": 1.68,
+                    "end": 2.06,
+                    "confidence": 0.515
+                },
+                {
+                    "text": "insert",
+                    "start": 2.06,
+                    "end": 2.6,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "uses",
+                    "start": 2.6,
+                    "end": 3.0,
+                    "confidence": 0.939
+                },
+                {
+                    "text": "a",
+                    "start": 3.0,
+                    "end": 3.24,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "novel",
+                    "start": 3.24,
+                    "end": 3.52,
+                    "confidence": 0.972
+                },
+                {
+                    "text": "technique",
+                    "start": 3.52,
+                    "end": 4.02,
+                    "confidence": 0.987
+                },
+                {
+                    "text": "called",
+                    "start": 4.02,
+                    "end": 4.48,
+                    "confidence": 0.967
+                },
+                {
+                    "text": "Bootstrap",
+                    "start": 4.48,
+                    "end": 5.2,
+                    "confidence": 0.607
+                },
+                {
+                    "text": "Domain",
+                    "start": 5.2,
+                    "end": 5.68,
+                    "confidence": 0.841
+                },
+                {
+                    "text": "Adaptation,",
+                    "start": 5.68,
+                    "end": 6.52,
+                    "confidence": 0.812
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "seek": 0,
+            "start": 6.62,
+            "end": 11.96,
+            "text": " which adapts a model initially trained on real-world images to perform well with stylized images.",
+            "tokens": [
+                50691,
+                543,
+                6068,
+                82,
+                257,
+                2746,
+                7317,
+                8776,
+                319,
+                1103,
+                12,
+                6894,
+                4263,
+                284,
+                1620,
+                880,
+                351,
+                22152,
+                1143,
+                4263,
+                13,
+                50975
+            ],
+            "temperature": 0.0,
+            "avg_logprob": -0.20247803177944448,
+            "compression_ratio": 1.3785714285714286,
+            "no_speech_prob": 0.00862049125134945,
+            "confidence": 0.898,
+            "words": [
+                {
+                    "text": "which",
+                    "start": 6.62,
+                    "end": 6.92,
+                    "confidence": 0.943
+                },
+                {
+                    "text": "adapts",
+                    "start": 6.92,
+                    "end": 7.36,
+                    "confidence": 0.991
+                },
+                {
+                    "text": "a",
+                    "start": 7.36,
+                    "end": 7.5,
+                    "confidence": 0.935
+                },
+                {
+                    "text": "model",
+                    "start": 7.5,
+                    "end": 7.76,
+                    "confidence": 0.992
+                },
+                {
+                    "text": "initially",
+                    "start": 7.76,
+                    "end": 8.3,
+                    "confidence": 0.986
+                },
+                {
+                    "text": "trained",
+                    "start": 8.3,
+                    "end": 8.68,
+                    "confidence": 0.989
+                },
+                {
+                    "text": "on",
+                    "start": 8.68,
+                    "end": 8.9,
+                    "confidence": 0.978
+                },
+                {
+                    "text": "real-world",
+                    "start": 8.9,
+                    "end": 9.4,
+                    "confidence": 0.738
+                },
+                {
+                    "text": "images",
+                    "start": 9.4,
+                    "end": 9.82,
+                    "confidence": 0.981
+                },
+                {
+                    "text": "to",
+                    "start": 9.82,
+                    "end": 10.02,
+                    "confidence": 0.646
+                },
+                {
+                    "text": "perform",
+                    "start": 10.02,
+                    "end": 10.44,
+                    "confidence": 0.976
+                },
+                {
+                    "text": "well",
+                    "start": 10.44,
+                    "end": 10.84,
+                    "confidence": 0.973
+                },
+                {
+                    "text": "with",
+                    "start": 10.84,
+                    "end": 11.08,
+                    "confidence": 0.957
+                },
+                {
+                    "text": "stylized",
+                    "start": 11.08,
+                    "end": 11.64,
+                    "confidence": 0.835
+                },
+                {
+                    "text": "images.",
+                    "start": 11.64,
+                    "end": 11.96,
+                    "confidence": 0.934
+                }
+            ]
+        }
+    ],
+    "language": "en",
+    "speech_activity": [
+        {
+            "start": 0.0,
+            "end": 12.3820625
+        }
+    ]
+}

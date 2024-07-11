@@ -14,11 +14,14 @@ parent_dir = Path(__file__).resolve().parent.parent
 # .env file path in the current directory
 env_file_path = parent_dir / ".env"
 
+
 # check if the .env file exists
 if not env_file_path.exists():
     raise FileNotFoundError(
         ".env file not found, please create one and add your API keys."
     )
+
+VIDEO_FPS: int = 30
 
 
 class ElevenLabsSettings(BaseSettings):
@@ -138,8 +141,8 @@ class CompositionPropsSettings(BaseSettings):
     Settings for composition props.
 
     Attributes:
-        duration_in_seconds (int): The duration of the composition in seconds.
-        audio_offset_in_seconds (int): The audio offset in seconds.
+        durationInSeconds (int): The duration of the composition in seconds.
+        audioOffsetInSeconds (int): The audio offset in seconds.
         subtitles_file_name (str): The subtitles file name.
         audio_file_name (str): The audio file name.
         rich_content_file_name (str): The rich content file name.
@@ -155,56 +158,68 @@ class CompositionPropsSettings(BaseSettings):
         duration_in_frames (int): The duration of the composition in frames.
     """
 
-    duration_in_seconds: int = Field(
-        default=5, json_schema_extra={"env": "COMPOSITION_DURATION_IN_SECONDS"}
+    durationInSeconds: float = Field(
+        default=20, json_schema_extra={"env": "COMPOSITION_DURATION_IN_SECONDS"}
     )
-    audio_offset_in_seconds: int = Field(
+    audioOffsetInSeconds: int = Field(
         default=0, json_schema_extra={"env": "COMPOSITION_AUDIO_OFFSET_IN_SECONDS"}
     )
-    subtitles_file_name: str = Field(
+    subtitlesFileName: str = Field(
         default="output.srt",
         json_schema_extra={"env": "COMPOSITION_SUBTITLES_FILE_NAME"},
     )
-    audio_file_name: str = Field(
+    audioFileName: str = Field(
         default="audio.mp3",
         json_schema_extra={"env": "COMPOSITION_AUDIO_FILE_NAME"},
     )
-    rich_content_file_name: str = Field(
+    richContentFileName: str = Field(
         default="output.json",
         json_schema_extra={"env": "COMPOSITION_RICH_CONTENT_FILE_NAME"},
     )
-    wave_color: str = Field(
+    waveColor: str = Field(
         default="#0059b3", json_schema_extra={"env": "COMPOSITION_WAVE_COLOR"}
     )
-    subtitles_line_per_page: int = Field(
+    subtitlesLinePerPage: int = Field(
         default=2, json_schema_extra={"env": "COMPOSITION_SUBTITLES_LINE_PER_PAGE"}
     )
-    subtitles_line_height: int = Field(
+    subtitlesLineHeight: int = Field(
         default=98, json_schema_extra={"env": "COMPOSITION_SUBTITLES_LINE_HEIGHT"}
     )
-    subtitles_zoom_measurer_size: int = Field(
+    subtitlesZoomMeasurerSize: int = Field(
         default=10,
         json_schema_extra={"env": "COMPOSITION_SUBTITLES_ZOOM_MEASURER_SIZE"},
     )
-    only_display_current_sentence: bool = Field(
+    onlyDisplayCurrentSentence: bool = Field(
         default=True,
         json_schema_extra={"env": "COMPOSITION_ONLY_DISPLAY_CURRENT_SENTENCE"},
     )
-    mirror_wave: bool = Field(
+    mirrorWave: bool = Field(
         default=False, json_schema_extra={"env": "COMPOSITION_MIRROR_WAVE"}
     )
-    wave_lines_to_display: int = Field(
+    waveLinesToDisplay: int = Field(
         default=300, json_schema_extra={"env": "COMPOSITION_WAVE_LINES_TO_DISPLAY"}
     )
-    wave_freq_range_start_index: int = Field(
+    waveFreqRangeStartIndex: int = Field(
         default=5, json_schema_extra={"env": "COMPOSITION_WAVE_FREQ_RANGE_START_INDEX"}
     )
-    wave_number_of_samples: Literal["32", "64", "128", "256", "512"] = Field(
+    waveNumberOfSamples: Literal["32", "64", "128", "256", "512"] = Field(
         default="256", json_schema_extra={"env": "COMPOSITION_WAVE_NUMBER_OF_SAMPLES"}
     )
-    duration_in_frames: int = Field(
+    durationInFrames: int = Field(
         default=1, json_schema_extra={"env": "COMPOSITION_DURATION_IN_FRAMES"}
     )
+
+    @validator("durationInFrames", pre=True)
+    def calculate_duration_in_frames(cls, v: int) -> int:
+        """Calculate the duration in frames.
+
+        Args:
+            v (int): The duration in frames.
+
+        Returns:
+            int: The calculated duration in frames.
+        """
+        return v * VIDEO_FPS
 
 
 class Settings(BaseSettings):
@@ -250,6 +265,12 @@ class Settings(BaseSettings):
         json_schema_extra={"env": "ARXIV_BASE_URL"},
     )
 
+    PUBLIC_DIR: Path = Field(
+        default=(Path(__file__).resolve().parent.parent.parent / Path("public"))
+        .absolute()
+        .as_posix(),
+        json_schema_extra={"env": "PUBLIC_DIR"},
+    )
 
 
 settings = Settings()
